@@ -11,7 +11,7 @@ class Tile : public DrawableEntity {
         bool walkable;
     
     public:
-        Tile(int x, int y, std::string image);
+        Tile(int x, int y, std::string image, bool walkable);
         
         void setWalkable(bool walkable);
         
