@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "../entities/Entities.h"
+#include "../utilities/UtilityFunctions.h"
 
 class Game {
     public:
