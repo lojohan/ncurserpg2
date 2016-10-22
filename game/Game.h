@@ -2,7 +2,7 @@
 #define GAME_H
 
 #include <iostream>
-#include "../entities/entityheaders/Entity.h"
+#include "../entities/Entities.h"
 
 class Game {
     public:

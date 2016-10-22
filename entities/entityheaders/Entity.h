@@ -4,7 +4,7 @@
 #include <iostream>
 
 class Entity {
-    private:
+    protected:
         int x, y;
         
     public:

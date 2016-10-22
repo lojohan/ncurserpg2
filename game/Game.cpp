@@ -3,7 +3,12 @@
 Game::Game() {
     int x = 20;
     int y = 0;
-    Entity * entity = new Entity(x,y);
+    DrawableEntity * entity = new DrawableEntity(x,y,"Hello");
     
-    std::cout << "X: " << entity->getX() << ", Y: " << entity->getY();
+    initscr();
+    while(true) {
+        entity->draw();
+    }
+    getch();
+    endwin();
 }
