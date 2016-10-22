@@ -1,5 +1,5 @@
-#ifndef GAME_H
-#define GAME_H
+#ifndef MAP_H
+#define MAP_H
 
 #include <stdio.h>
 #include <fstream>
@@ -16,9 +16,11 @@ class Map {
         
         void parseMap();
         
+        void putTileInTileMap(Tile tile);
+        
         Tile getTileAtIndex(int i);
         
-        std::vector<Tile> getMap();
+        std::vector<Tile> getTileMap();
 };
 
 #endif
