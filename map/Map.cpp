@@ -4,6 +4,7 @@ Map::Map() {
 }
 
 void Map::parseMap() {
+    
 }
 
 Tile Map::getTileAtIndex(int i) {
