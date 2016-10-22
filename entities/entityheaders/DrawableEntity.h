@@ -7,7 +7,7 @@
 #include <string.h>
 
 class DrawableEntity : public Entity {
-    private:
+    protected:
         std::string image;
         
     public:

@@ -1,13 +1,13 @@
 #include "Game.h"
 
 Game::Game() {
-    int x = 20;
+    int x = 10;
     int y = 0;
-    DrawableEntity * entity = new DrawableEntity(x,y,"Hello");
+    Tile * tile = new Tile(x,y,"#");
     
     initscr();
     while(true) {
-        entity->draw();
+        tile->draw();
     }
     getch();
     endwin();
