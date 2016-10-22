@@ -3,9 +3,9 @@
 g++ -c ./Main.cpp
 g++ -c ./entities/entityclass/Entity.cpp
 
-g++ -o Game Main.o Entity.o
+g++ -o RPG *.o
 
 rm *.o
 
-mv ./Game ./output/
+mv ./RPG ./output/
 
