@@ -1,24 +1,39 @@
 #include "UtilityFunctions.h"
 
 void clearScreen() {
-    printf("\033c");
+    printf(0,0,"\033c");
 }
 
-bool kbhit() {
-    int ch = getch();
+int kbhit(int t1,int t2) {
+  struct timeval        timeout;
+  fd_set                readfds;
+  int                   how;
 
-    if (ch != ERR) {
-        ungetch(ch);
-        return true;
-    } else {
-        return false;
-    }
+  /* look only at stdin (fd = 0) */
+  FD_ZERO(&readfds);
+  FD_SET(0, &readfds);
+
+  /* poll: return immediately */
+  timeout.tv_sec = t1;
+  timeout.tv_usec = t2;
+
+  how = select(1, &readfds, (fd_set *)NULL, (fd_set *)NULL, &timeout);
+  /* Change "&timeout" above to "(struct timeval *)0"       ^^^^^^^^
+   * if you want to wait until a key is hit
+   */
+
+  if ((how > 0) && FD_ISSET(0, &readfds))
+    return 1;
+  else
+    return 0;
+  
 }
 
-char playerInput() {
-    if(kbhit()) {
-        return getch();    
+int playerInput(WINDOW *menu_win) {
+    nodelay(stdscr, TRUE);
+    if(kbhit(1,0)) {
+        return wgetch(menu_win);    
     } else {
-        return 0;
+        return -1;
     }
 }

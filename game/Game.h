@@ -11,6 +11,7 @@ class Game {
     private: 
         std::vector<Tile> tileList;
         Map map;
+        WINDOW *menu_win;
 
     public:
         Game();

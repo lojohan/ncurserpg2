@@ -16,5 +16,4 @@ void DrawableEntity::draw() {
     const char * c = (this->image).c_str();
     mvprintw(this->x,this->y,c);
     refresh();
-    refresh();
 }
