@@ -3,21 +3,20 @@
 
 #include <iostream>
 #include <ncurses.h>
-#include "Entity.h"
 #include <string.h>
+#include "Entity.h"
 
 class DrawableEntity : public Entity {
     protected:
         std::string image;
         
     public:
-        DrawableEntity(int x, int y, std::string image);
-        
+    
         void setImage(std::string image);
         
         std::string getImage();
         
-        void draw();
+        virtual void draw();
         
 };
 

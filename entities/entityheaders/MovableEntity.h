@@ -4,20 +4,19 @@
 #include <iostream>
 #include "DrawableEntity.h"
 
-class MovableEntity : public DrawableEntity { 
+class MovableEntity : public DrawableEntity{ 
     protected:
-        void moveUp();
+        virtual void moveUp()=0;
         
-        void moveDown();
+        virtual void moveDown()=0;
         
-        void moveLeft();
+        virtual void moveLeft()=0;
         
-        void moveRight();
+        virtual void moveRight()=0;
      
     public:       
-        MovableEntity(int x, int y, std::string image);
     
-        void move(int c);
+        virtual void move(int c)=0;
         
 };
 

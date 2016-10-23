@@ -8,14 +8,13 @@ class Entity {
         int x, y;
         
     public:
-        Entity(int x, int y);
         
-        void setX(int x);
-        void setY(int y);
-        void setCoords(int x, int y);
+        virtual void setX(int x);
+        virtual void setY(int y);
+        virtual void setCoords(int x, int y);
         
-        int getX();
-        int getY();
+        virtual int getX();
+        virtual int getY();
         
 };
 

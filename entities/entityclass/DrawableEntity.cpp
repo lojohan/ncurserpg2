@@ -1,9 +1,5 @@
 #include "../entityheaders/DrawableEntity.h"
 
-DrawableEntity::DrawableEntity(int x, int y, std::string image) : Entity(x,y) {
-    this->image = image;
-}
-
 void DrawableEntity::setImage(std::string image) {
     this->image = image;
 }

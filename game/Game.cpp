@@ -23,14 +23,11 @@ Game::Game() {
 void Game::fillTileMap() {
     (this->map).parseMap();    
     for(std::vector<Tile>::iterator it = (this->map).getTileMap().begin(); it != (this->map).getTileMap().end(); ++it) {
-        (this->tileList).push_back( *(it) );
+        (this->tileList).push_back( (*it) );
     }
 }
 
 void Game::updateMovables(int ch) {
-    // for testing purposes
-    //player->move(ch);
-    
     for(std::vector<MovableEntity*>::iterator it = mvEntityList.begin(); it != mvEntityList.end(); ++it) {
         (*it)->move(ch);
     }
@@ -42,10 +39,7 @@ void Game::drawTiles() {
     }
 }
 
-void Game::drawMovables() {
-    // for testing purposes
-    //player->draw();
-    
+void Game::drawMovables() {   
     for(std::vector<MovableEntity*>::iterator it = mvEntityList.begin(); it != mvEntityList.end(); ++it) {
         (*it)->draw();
     }

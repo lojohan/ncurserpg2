@@ -1,6 +1,8 @@
 #include "../entityheaders/Tile.h"
 
-Tile::Tile(int x, int y, std::string image, bool walkable) : DrawableEntity(x,y,image) {
+Tile::Tile(int x, int y, std::string image, bool walkable) {
+    this->x = x;
+    this->y = y;
     this->walkable = walkable;
 }
 
