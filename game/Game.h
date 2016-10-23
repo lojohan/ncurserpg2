@@ -10,8 +10,9 @@
 class Game {
     private: 
         std::vector<Tile> tileList;
-        std::vector<MovableEntity> mvEntityList;
+        std::vector<MovableEntity*> mvEntityList;
         Map map;
+        Player * player;
         
         // should be in drawing bit
         WINDOW *menu_win;

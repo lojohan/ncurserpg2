@@ -5,8 +5,8 @@ Game::Game() {
     this->init();
     
     // placeholder
-    MovableEntity mve = *(new MovableEntity(10,10,"p"));
-    mvEntityList.push_back(mve);
+    Player * player = new Player(10,10);
+    mvEntityList.push_back(player);
     
     while(true) {
     
@@ -28,8 +28,11 @@ void Game::fillTileMap() {
 }
 
 void Game::updateMovables(int ch) {
-        for(std::vector<MovableEntity>::iterator it = mvEntityList.begin(); it != mvEntityList.end(); ++it) {
-        it->move(ch);
+    // for testing purposes
+    //player->move(ch);
+    
+    for(std::vector<MovableEntity*>::iterator it = mvEntityList.begin(); it != mvEntityList.end(); ++it) {
+        (*it)->move(ch);
     }
 }
 
@@ -40,8 +43,11 @@ void Game::drawTiles() {
 }
 
 void Game::drawMovables() {
-    for(std::vector<MovableEntity>::iterator it = mvEntityList.begin(); it != mvEntityList.end(); ++it) {
-        it->draw();
+    // for testing purposes
+    //player->draw();
+    
+    for(std::vector<MovableEntity*>::iterator it = mvEntityList.begin(); it != mvEntityList.end(); ++it) {
+        (*it)->draw();
     }
 }
 
