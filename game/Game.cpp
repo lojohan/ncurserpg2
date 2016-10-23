@@ -21,7 +21,6 @@ Game::Game() {
 }
 
 void Game::fillTileMap() {
-    (this->map).parseMap();    
     for(std::vector<Tile>::iterator it = (this->map).getTileMap().begin(); it != (this->map).getTileMap().end(); ++it) {
         (this->tileList).push_back( (*it) );
     }

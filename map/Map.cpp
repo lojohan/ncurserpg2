@@ -1,6 +1,7 @@
 #include "Map.h"
 
 Map::Map() {
+    parseMap();
 }
 
 void Map::parseMap() {
