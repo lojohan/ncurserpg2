@@ -9,7 +9,7 @@
 
 class Game {
     private: 
-        std::vector<Tile> tileList;
+        std::vector<Tile*> tileList;
         std::vector<MovableEntity*> mvEntityList;
         Map map;
         Player * player;

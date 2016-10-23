@@ -2,6 +2,7 @@
 
 Game::Game() {
     
+    map = *(new Map());
     this->init();
     
     // placeholder
@@ -20,21 +21,23 @@ Game::Game() {
     this->end();
 }
 
+// build map
 void Game::fillTileMap() {
-    for(std::vector<Tile>::iterator it = (this->map).getTileMap().begin(); it != (this->map).getTileMap().end(); ++it) {
-        (this->tileList).push_back( (*it) );
-    }
+    (this->map).parseMap( &(this->tileList) );
 }
 
+// run logic for movables
 void Game::updateMovables(int ch) {
     for(std::vector<MovableEntity*>::iterator it = mvEntityList.begin(); it != mvEntityList.end(); ++it) {
         (*it)->move(ch);
     }
 }
 
+// separate drawing into spearate class 
+//---------------------------------------------------------------------------------------------------------------------------------
 void Game::drawTiles() {
-    for(std::vector<Tile>::iterator it = tileList.begin(); it != tileList.end(); ++it) {
-        it->draw();
+    for(std::vector<Tile*>::iterator it = tileList.begin(); it != tileList.end(); ++it) {
+        (*it)->draw();
     }
 }
 
@@ -44,6 +47,25 @@ void Game::drawMovables() {
     }
 }
 
+void Game::draw() {
+    clearBeforeDraw();
+    drawTiles();
+    drawMovables();
+    refresh();
+}
+
+void Game::clearBeforeDraw() {
+    for(int i = 0; i < MENU_HEIGHT; i++) {
+        for(int j = 0; j < MENU_WIDTH; j++) {
+            mvprintw(i,j," ");
+        }
+    }
+}
+
+//---------------------------------------------------------------------------------------------------------------------------------
+
+// init and end stuff
+//---------------------------------------------------------------------------------------------------------------------------------
 void Game::init() {
     initscr();
     
@@ -60,19 +82,4 @@ void Game::init() {
 void Game::end() {
     endwin();
 }
-
-void Game::clearBeforeDraw() {
-    for(int i = 0; i < MENU_HEIGHT; i++) {
-        for(int j = 0; j < MENU_WIDTH; j++) {
-            mvprintw(i,j," ");
-        }
-    }
-}
-
-// separate drawing into spearate class 
-void Game::draw() {
-    clearBeforeDraw();
-    drawTiles();
-    drawMovables();
-    refresh();
-}
+//---------------------------------------------------------------------------------------------------------------------------------

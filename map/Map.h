@@ -7,20 +7,16 @@
 #include "../entities/Entities.h"
 #include "../utilities/UtilityFunctions.h"
 
-class Map {
-    protected:
-        std::vector<Tile> tiles;
-    
+class Map {   
     public:
+    
         Map();
         
-        void parseMap();
+        void parseMap(std::vector<Tile*> * tiles);
         
-        void putTileInTileMap(Tile tile);
+        void putTileInTileMap(Tile *tile,  std::vector<Tile*> * tiles);
         
-        Tile getTileAtIndex(int i);
-        
-        std::vector<Tile> getTileMap();
+        Tile* getTileAtIndex(int i);
 };
 
 #endif
