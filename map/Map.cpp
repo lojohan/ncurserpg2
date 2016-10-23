@@ -5,7 +5,7 @@ Map::Map() {
 
 void Map::parseMap() {
     for(int i = 0; i < 3; i++) {
-        putTileInTileMap( *(new Tile(0,i,"#",false)) );
+        putTileInTileMap( *(new Tile(i,0,"#",false)) );
     }
 }
 
