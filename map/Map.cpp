@@ -5,7 +5,7 @@ Map::Map(){
 
 void Map::parseMap(std::vector<Tile*> * tiles) {
     for(int i = 0; i < 3; i++) {
-        putTileInTileMap( new Tile(i,0,"#",true), tiles);
+        putTileInTileMap( new Tile(i,0,L"#",true), tiles);
     }
 }
 

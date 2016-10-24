@@ -16,7 +16,7 @@ g++ -c ./game/Game.cpp
 g++ -c ./utilities/UtilityFunctions.cpp
 
 
-g++ -o RPG *.o  -lncurses
+g++ -o RPG *.o  -lncursesw
 
 rm *.o
 

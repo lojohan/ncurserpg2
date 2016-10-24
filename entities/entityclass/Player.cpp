@@ -1,7 +1,7 @@
 #include "../entityheaders/Player.h"
 
 Player::Player(int x, int y) {
-    this->image = "p";
+    this->image = L"\u03c3";
     this->solid = true;
     this->x = x;
     this->y = y;

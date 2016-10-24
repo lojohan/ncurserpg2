@@ -2,19 +2,19 @@
 #define DRAWABLEENTITY_H
 
 #include <iostream>
-#include <ncurses.h>
+#include <ncursesw/ncurses.h>
 #include <string.h>
 #include "Entity.h"
 
 class DrawableEntity : public Entity {
     protected:
-        std::string image;
+        const wchar_t * image;
         
     public:
     
-        void setImage(std::string image);
+        void setImage(const wchar_t * image);
         
-        std::string getImage();
+        const wchar_t * getImage();
         
         virtual void draw();
         

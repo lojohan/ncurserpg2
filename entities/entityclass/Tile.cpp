@@ -1,6 +1,6 @@
 #include "../entityheaders/Tile.h"
 
-Tile::Tile(int x, int y, std::string image, bool walkable) {
+Tile::Tile(int x, int y, const wchar_t * image, bool walkable) {
     this->x = x;
     this->y = y;
     this->walkable = walkable;

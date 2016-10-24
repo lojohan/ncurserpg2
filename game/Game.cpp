@@ -66,6 +66,7 @@ void Game::clearBeforeDraw() {
 // init and end stuff
 //---------------------------------------------------------------------------------------------------------------------------------
 void Game::init() {
+    setlocale(LC_ALL, "");
     initscr();
     
     menu_win = newwin(30,30,10,10);
