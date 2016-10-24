@@ -6,11 +6,10 @@ Game::Game() {
     this->init();
     
     // placeholder
-    Player * player = new Player(10,10);
+    this->player = new Player(10,10);
     mvEntityList.push_back(player);
     
     while(true) {
-    
         this->draw();
         // placeholder
         int ch = playerInput(this->menu_win);
