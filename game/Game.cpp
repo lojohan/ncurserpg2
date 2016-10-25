@@ -7,7 +7,7 @@ Game::Game() {
     
     // placeholder
     this->player = new Player(10,10);
-    mvEntityList.push_back(player);
+    entityList.push_back(player);
     
     while(true) {
         this->draw();
@@ -22,34 +22,32 @@ Game::Game() {
 
 // build map
 void Game::fillTileMap() {
-    (this->map).parseMap( &(this->tileList) );
+    (this->map).parseMap( &(this->entityList) );
 }
 
 // run logic for movables
 void Game::updateMovables(int ch) {
-    for(std::vector<MovableEntity*>::iterator it = mvEntityList.begin(); it != mvEntityList.end(); ++it) {
-        (*it)->move(ch);
+    for(std::vector<Entity*>::iterator it = entityList.begin(); it != entityList.end(); ++it) {
+        if(MovableEntity* v = dynamic_cast<MovableEntity*>( *it )) {
+            v->move(ch);
+        }
     }
 }
 
 // separate drawing into spearate class 
 //---------------------------------------------------------------------------------------------------------------------------------
-void Game::drawTiles() {
-    for(std::vector<Tile*>::iterator it = tileList.begin(); it != tileList.end(); ++it) {
-        (*it)->draw();
-    }
-}
 
-void Game::drawMovables() {   
-    for(std::vector<MovableEntity*>::iterator it = mvEntityList.begin(); it != mvEntityList.end(); ++it) {
-        (*it)->draw();
+void Game::drawEntities() {
+    for(std::vector<Entity*>::iterator it = entityList.begin(); it != entityList.end(); ++it) {
+        if(DrawableEntity* v = dynamic_cast<DrawableEntity*>( *it )) {
+            v->draw();
+        }
     }
 }
 
 void Game::draw() {
     clearBeforeDraw();
-    drawTiles();
-    drawMovables();
+    drawEntities();
     refresh();
 }
 

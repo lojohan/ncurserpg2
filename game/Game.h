@@ -9,8 +9,9 @@
 
 class Game {
     private: 
-        std::vector<Tile*> tileList;
-        std::vector<MovableEntity*> mvEntityList;
+        //std::vector<Tile*> tileList;
+        //std::vector<MovableEntity*> mvEntityList;
+        std::vector<Entity*> entityList;
         Map map;
         Player * player;
         
@@ -30,8 +31,7 @@ class Game {
         
         // separate this drawing bit here
         void clearBeforeDraw();
-        void drawTiles();
-        void drawMovables();
+        void drawEntities();
         void draw();
              
 };

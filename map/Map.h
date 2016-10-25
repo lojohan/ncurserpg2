@@ -12,9 +12,9 @@ class Map {
     
         Map();
         
-        void parseMap(std::vector<Tile*> * tiles);
+        void parseMap(std::vector<Entity*> * tiles);
         
-        void putTileInTileMap(Tile *tile,  std::vector<Tile*> * tiles);
+        void putTileInTileMap(Tile *tile,  std::vector<Entity*> * tiles);
         
         Tile* getTileAtIndex(int i);
 };

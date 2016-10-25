@@ -3,12 +3,12 @@
 Map::Map(){
 }
 
-void Map::parseMap(std::vector<Tile*> * tiles) {
+void Map::parseMap(std::vector<Entity*> * tiles) {
     for(int i = 0; i < 3; i++) {
         putTileInTileMap( new Tile(i,0,L"#",true), tiles);
     }
 }
 
-void Map::putTileInTileMap(Tile * tile, std::vector<Tile*> * tiles) {
+void Map::putTileInTileMap(Tile * tile, std::vector<Entity*> * tiles) {
     tiles->push_back(tile);
 }
