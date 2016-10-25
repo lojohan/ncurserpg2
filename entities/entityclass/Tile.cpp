@@ -15,3 +15,6 @@ void Tile::setWalkable(bool walkable) {
 bool Tile::getWalkable() {
     return this->walkable;
 }
+
+void Tile::onCollision(Entity *e) {
+}
