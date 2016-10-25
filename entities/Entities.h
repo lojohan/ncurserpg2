@@ -4,3 +4,4 @@
 #include "entityheaders/MovableEntity.h"
 #include "entityheaders/CollidableEntity.h"
 #include "entityheaders/Player.h"
+#include "entityheaders/CollidableTile.h"

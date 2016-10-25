@@ -5,7 +5,7 @@ Map::Map(){
 
 void Map::parseMap(std::vector<Entity*> * tiles) {
     for(int i = 0; i < 3; i++) {
-        putTileInTileMap( new Tile(i,0,L"#",true), tiles);
+        putTileInTileMap( new CollidableTile(i,0,L"#",true,true), tiles);
     }
 }
 
