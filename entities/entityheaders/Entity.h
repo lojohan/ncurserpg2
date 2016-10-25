@@ -2,6 +2,7 @@
 #define ENTITY_H
 
 #include <iostream>
+#include <ncurses.h>
 #include <ncursesw/ncurses.h>
 #include <string.h>
 
@@ -37,7 +38,7 @@ class Entity {
         
         const wchar_t * getImage();
         
-        virtual void draw();
+        virtual void draw(WINDOW * win);
         
 };
 

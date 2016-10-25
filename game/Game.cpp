@@ -12,7 +12,7 @@ Game::Game() {
     while(true) {
         this->draw();
         // placeholder
-        int ch = playerInput(this->menu_win);
+        int ch = playerInput(this->game_window);
         updateMovables(ch);
         
     }
@@ -35,20 +35,20 @@ void Game::updateMovables(int ch) {
 
 void Game::drawEntities() {
     for(std::vector<Entity*>::iterator it = entityList.begin(); it != entityList.end(); ++it) {
-        (*it)->draw();
+        (*it)->draw(game_window);
     }
 }
 
 void Game::draw() {
-    clearBeforeDraw();
+    clearBeforeDraw(game_window);
     drawEntities();
-    refresh();
+    wrefresh(game_window);
 }
 
-void Game::clearBeforeDraw() {
-    for(int i = 0; i < MENU_HEIGHT; i++) {
-        for(int j = 0; j < MENU_WIDTH; j++) {
-            mvprintw(i,j," ");
+void Game::clearBeforeDraw(WINDOW * win) {
+    for(int i = 0; i < GAME_HEIGHT; i++) {
+        for(int j = 0; j < GAME_WIDTH; j++) {
+            mvwprintw(win, i,j," ");
         }
     }
 }
@@ -61,8 +61,13 @@ void Game::init() {
     setlocale(LC_ALL, "");
     initscr();
     
-    menu_win = newwin(30,30,10,10);
-    keypad(menu_win,true);
+    super_window = newwin(GAME_HEIGHT+2,GAME_WIDTH+2,0,0);
+    game_window = subwin(super_window, GAME_HEIGHT, GAME_WIDTH, 1, 1);
+    box(super_window, 0, 0);
+    touchwin(game_window);
+    keypad(game_window,true);
+    wrefresh(super_window);
+    wrefresh(game_window);
     
     clear();
 	noecho();

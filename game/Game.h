@@ -17,9 +17,10 @@ class Game {
         Player * player;
         
         // should be in drawing bit
-        WINDOW *menu_win;
-        const static int MENU_HEIGHT = 30;
-        const static int MENU_WIDTH = 30;
+        WINDOW *super_window;
+        WINDOW *game_window;
+        const static int GAME_HEIGHT = 15;
+        const static int GAME_WIDTH = 30;
         const static int START_X = 0;
         const static int START_Y = 0;
 
@@ -31,7 +32,7 @@ class Game {
         void updateMovables(int ch);
         
         // separate this drawing bit here
-        void clearBeforeDraw();
+        void clearBeforeDraw(WINDOW * win);
         void drawEntities();
         void draw();
              

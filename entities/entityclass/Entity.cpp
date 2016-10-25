@@ -48,7 +48,6 @@ const wchar_t * Entity::getImage() {
     return this->image;
 }
 
-void Entity::draw() {
-    
-    mvaddwstr(this->x, this->y, this->image);
+void Entity::draw(WINDOW *win) {
+    mvwaddwstr(win, this->x, this->y, this->image);
 }
