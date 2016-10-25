@@ -6,17 +6,12 @@
 
 class MovableEntity : public DrawableEntity{ 
     protected:
-        virtual void moveUp();
-        
-        virtual void moveDown();
-        
-        virtual void moveLeft();
-        
-        virtual void moveRight();
      
-    public:       
+    public:
     
-        virtual void move(int c)=0;
+        virtual void getNextMove(int c, int arr[2]) = 0;
+    
+        void move(int arr[2]);
         
 };
 

@@ -12,7 +12,7 @@ class Player : public MovableEntity, public CollidableEntity {
         
     public:
         Player(int x, int y);
-        void move(int c);
+        void getNextMove(int c, int arr[2]);
         
         void onCollision(CollidableEntity *ce);
         

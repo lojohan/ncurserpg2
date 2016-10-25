@@ -29,7 +29,12 @@ void Game::fillTileMap() {
 void Game::updateMovables(int ch) {
     for(std::vector<Entity*>::iterator it = entityList.begin(); it != entityList.end(); ++it) {
         if(MovableEntity* v = dynamic_cast<MovableEntity*>( *it )) {
-            v->move(ch);
+            int arr[2];
+            arr[0] = v->getX();
+            arr[1] = v->getY();
+            
+            v->getNextMove(ch, arr);
+            v->move(arr);
         }
     }
 }
