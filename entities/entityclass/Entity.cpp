@@ -20,3 +20,35 @@ int Entity::getX(){
 int Entity::getY(){
     return this->y;
 }
+
+void Entity::getNextMove(int c, int arr[2]) {
+}
+
+void Entity::move(int arr[2]) {
+    this->setX(arr[0]);
+    this->setY(arr[1]);
+}
+
+void Entity::setSolid(bool solid) {
+    this->solid = solid;
+}
+
+bool Entity::getSolid() {
+    return this->solid;
+}
+
+void Entity::onCollision(Entity *e) {
+}
+
+void Entity::setImage(const wchar_t * image) {
+    this->image = image;
+}
+        
+const wchar_t * Entity::getImage() {
+    return this->image;
+}
+
+void Entity::draw() {
+    
+    mvaddwstr(this->x, this->y, this->image);
+}

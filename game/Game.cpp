@@ -27,16 +27,7 @@ void Game::fillTileMap() {
 
 // run logic for movables
 void Game::updateMovables(int ch) {
-    for(std::vector<Entity*>::iterator it = entityList.begin(); it != entityList.end(); ++it) {
-        if(MovableEntity* v = dynamic_cast<MovableEntity*>( *it )) {
-            int arr[2];
-            arr[0] = v->getX();
-            arr[1] = v->getY();
-            
-            v->getNextMove(ch, arr);
-            v->move(arr);
-        }
-    }
+    physicsLoop(ch, this->entityList);
 }
 
 // separate drawing into spearate class 
@@ -44,9 +35,7 @@ void Game::updateMovables(int ch) {
 
 void Game::drawEntities() {
     for(std::vector<Entity*>::iterator it = entityList.begin(); it != entityList.end(); ++it) {
-        if(DrawableEntity* v = dynamic_cast<DrawableEntity*>( *it )) {
-            v->draw();
-        }
+        (*it)->draw();
     }
 }
 

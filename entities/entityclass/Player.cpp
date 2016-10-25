@@ -3,8 +3,8 @@
 Player::Player(int x, int y) {
     this->image = L"\u03c3";
     this->solid = true;
-    this->x = x;
-    this->y = y;
+    this->setX(x);
+    this->setY(y);
 }
 
 void Player::getNextMove(int c, int arr[2]) {
@@ -26,5 +26,5 @@ void Player::getNextMove(int c, int arr[2]) {
     }
 }
 
-void Player::onCollision(CollidableEntity *ce) {
+void Player::onCollision(Entity *e) {
 }

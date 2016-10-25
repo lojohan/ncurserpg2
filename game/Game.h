@@ -6,6 +6,7 @@
 #include "../entities/Entities.h"
 #include "../utilities/UtilityFunctions.h"
 #include "../map/Map.h"
+#include "../physics/Physics.h"
 
 class Game {
     private: 
