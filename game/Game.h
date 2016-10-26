@@ -38,13 +38,22 @@ class Game {
 
     public:
         Game();
+        
         void fillTileMap();
+        
+        
         void init();
+        
+        // closes all windows on close.
         void end();
+        
+        // run logic for movables
         void updateMovables(int ch);
         
-        // ncurses init stuff
+        // inits things related to ncurses (graphics)
         void initNCurses();
+        
+        // creates windows and boxes.
         void createWindows();
         
         // separate this drawing bit here
