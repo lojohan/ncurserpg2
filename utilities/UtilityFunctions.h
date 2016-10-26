@@ -26,4 +26,6 @@ void gameLoopInputHandler(int ch, bool *game_paused);
 
 void relativeCameraPos(Entity * centerentity, Entity * drawEntity, int arr[2], int height, int width);
 
+void splitString(std::string str_to_split, std::string * str1, std::string * str2, char delimiter);
+
 #endif

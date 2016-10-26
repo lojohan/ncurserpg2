@@ -25,7 +25,7 @@ Game::Game() {
     this->end();
 }
 
-// build map
+// build map, will also build entities.
 void Game::fillTileMap() {
     (this->map).parseMap( &(this->entityList) );
 }

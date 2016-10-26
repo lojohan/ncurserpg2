@@ -3,11 +3,16 @@
 
 #include <stdio.h>
 #include <fstream>
+#include <iostream>
+#include <string>
 #include <vector>
 #include "../entities/Entities.h"
 #include "../utilities/UtilityFunctions.h"
 
-class Map {   
+class Map {
+    protected:
+        std::string name;
+
     public:
     
         Map();
