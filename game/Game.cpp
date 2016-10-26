@@ -19,7 +19,7 @@ Game::Game() {
         // run game logic here if not paused
         if(!game_paused) {
             updateMovables(ch);
-        } 
+        }
     }
     
     this->end();
@@ -54,10 +54,10 @@ void Game::drawEntities() {
 
 void Game::drawPause() {
     std::string pauseString = "PAUSED";
-    wattron(game_window, COLOR_PAIR(COLOR_WHITE));
+    wattron(game_window, A_REVERSE);
     if(game_paused)
         mvwprintw(game_window,0,0,pauseString.c_str());
-    wattroff(game_window, COLOR_PAIR(COLOR_WHITE));
+    wattroff(game_window, A_REVERSE);
     
 }
 

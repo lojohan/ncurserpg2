@@ -4,6 +4,7 @@ Map::Map(){
 }
 
 void Map::parseMap(std::vector<Entity*> * tiles) {
+    // placeholder
     for(int i = 0; i < 3; i++) {
         putTileInTileMap( new Tile(i+5,0,L"#",true,true, i+1), tiles);
     }
