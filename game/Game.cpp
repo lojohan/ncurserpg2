@@ -33,10 +33,16 @@ void Game::updateMovables(int ch) {
 //---------------------------------------------------------------------------------------------------------------------------------
 
 void Game::drawEntities() {
+    int color_count = 1;
+
     for(std::vector<Entity*>::iterator it = entityList.begin(); it != entityList.end(); ++it) {
         int arr[2];
         relativeCameraPos( *it, player, arr, GAME_HEIGHT, GAME_WIDTH);
+        init_pair(color_count, (*it)->getColor(), COLOR_BLACK);
+        wattron(game_window, COLOR_PAIR(color_count));
         (*it)->draw(game_window, arr[0], arr[1]);
+        wattroff(game_window, COLOR_PAIR(color_count));
+        color_count++;
     }
 }
 
@@ -104,7 +110,13 @@ void Game::initNCurses() {
     setlocale(LC_ALL, "");
     initscr();
     
+    start_color();
+    
     createWindows();
+    
+    //init_pair(1,COLOR_RED, COLOR_BLACK);
+    
+    //wbkgd(game_window, COLOR_PAIR(1));
     
     keypad(game_window,true);
     wrefresh(super_window);

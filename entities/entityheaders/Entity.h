@@ -14,6 +14,7 @@ class Entity {
         bool solid;
         const wchar_t * image;
         Direction dir;
+        int color;
         
     public:
         
@@ -41,6 +42,7 @@ class Entity {
         void setImage(const wchar_t * image);
         
         const wchar_t * getImage();
+        virtual int getColor();
         
         virtual void draw(WINDOW * win);
         virtual void draw(WINDOW * win, int x, int y);

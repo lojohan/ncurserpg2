@@ -6,6 +6,7 @@ Tile::Tile(int x, int y, const wchar_t * image, bool walkable, bool solid) {
     this->walkable = walkable;
     this->image = image;
     this->solid = solid;
+    this->color = COLOR_WHITE;
 }
 
 void Tile::setWalkable(bool walkable) {

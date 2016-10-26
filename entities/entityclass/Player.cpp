@@ -5,6 +5,7 @@ Player::Player(int x, int y) {
     this->solid = true;
     this->setX(x);
     this->setY(y);
+    this->color = COLOR_GREEN;
 }
 
 void Player::getNextMove(int c, int arr[2]) {

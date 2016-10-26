@@ -67,8 +67,16 @@ const wchar_t * Entity::getImage() {
     return this->image;
 }
 
+int Entity::getColor() {
+    return this->color;
+}
+
 void Entity::draw(WINDOW *win) {
+    //init_pair(1, COLOR_RED, COLOR_RED);
+    //wattron(win, COLOR_PAIR(1));
     mvwaddwstr(win, this->x, this->y, this->image);
+    //wrefresh(win);
+    //wattroff(win, COLOR_PAIR(1));
 }
 
 void Entity::draw(WINDOW * win, int x, int y) {
