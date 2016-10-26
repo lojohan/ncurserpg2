@@ -24,6 +24,25 @@ int Entity::getY(){
 void Entity::getNextMove(int c, int arr[2]) {
 }
 
+std::string Entity::getCurrentDirection() {
+    switch(dir)
+    {	case NORTH:
+            return "NORTH";
+		break;
+	case SOUTH:
+            return "SOUTH";
+		break;
+	case WEST:
+	        return "WEST";
+		break;
+	case EAST:
+            return "EAST";
+		break;
+	default:
+		return "";
+    }
+}
+
 void Entity::move(int arr[2]) {
     this->setX(arr[0]);
     this->setY(arr[1]);

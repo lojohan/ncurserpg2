@@ -14,7 +14,6 @@ Game::Game() {
         // placeholder
         int ch = playerInput(this->game_window);
         updateMovables(ch);
-        
     }
     
     this->end();
@@ -44,6 +43,11 @@ void Game::drawEntities() {
 void Game::draw() {
     clearBeforeDraw(game_window);
     drawEntities();
+    
+    // placeholder
+    mvwprintw(game_window,0,0,"Currently facing: %s", (player->getCurrentDirection()).c_str() );
+    
+    wrefresh(super_window);
     wrefresh(game_window);
 }
 

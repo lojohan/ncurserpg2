@@ -1,3 +1,6 @@
+#ifndef UTILITYFUNCTIONS_H
+#define UTILITYFUNCTIONS_H
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -20,3 +23,5 @@ int kbhit(int t1,int t2);
 int playerInput(WINDOW *menu_win);
 
 void relativeCameraPos(Entity * centerentity, Entity * drawEntity, int arr[2], int height, int width);
+
+#endif

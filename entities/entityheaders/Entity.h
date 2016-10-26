@@ -8,9 +8,12 @@
 
 class Entity {
     protected:
+        
+        enum Direction {NORTH = 0, EAST = 1, SOUTH = 2, WEST = 3};
         int x, y;
         bool solid;
         const wchar_t * image;
+        Direction dir;
         
     public:
         
@@ -23,6 +26,7 @@ class Entity {
         
         // Movement
         virtual void getNextMove(int c, int arr[2]);
+        std::string getCurrentDirection();
     
         void move(int arr[2]);
         
