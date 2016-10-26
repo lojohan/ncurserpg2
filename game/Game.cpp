@@ -40,45 +40,102 @@ void Game::drawEntities() {
     }
 }
 
-void Game::draw() {
-    clearBeforeDraw(game_window);
-    drawEntities();
-    
+void Game::drawGUI1Elements() {
     // placeholder
-    mvwprintw(game_window,0,0,"Currently facing: %s", (player->getCurrentDirection()).c_str() );
-    
-    wrefresh(super_window);
-    wrefresh(game_window);
+    mvwprintw(gui1_window,1,1,"Currently facing: %s", (player->getCurrentDirection()).c_str() );
 }
 
-void Game::clearBeforeDraw(WINDOW * win) {
-    for(int i = 0; i < GAME_HEIGHT; i++) {
-        for(int j = 0; j < GAME_WIDTH; j++) {
+void Game::drawGUI2Elements() {
+    // placeholder
+    mvwprintw(gui2_window,1,1,"Lorem Ipsum");
+}
+
+void Game::draw() {
+    clearBeforeDraw(game_window, 0, 0, GAME_HEIGHT, GAME_WIDTH);
+    clearBeforeDraw(gui1_window, 1, 1, GUI1_HEIGHT-2, GUI1_WIDTH-2);
+    clearBeforeDraw(gui2_window, 1, 1, GUI2_HEIGHT-2, GUI2_WIDTH-2);
+    
+    drawEntities();
+    
+    drawGUI1Elements();
+    drawGUI2Elements();
+    
+    wrefresh(super_window);
+    
+    refreshGUI1();
+    refreshGUI2();
+    refreshGameScreen();
+    
+}
+
+void Game::clearBeforeDraw(WINDOW * win,int startX, int startY, int height, int width) {
+    for(int i = startX; i < height; i++) {
+        for(int j = startY; j < width; j++) {
             mvwprintw(win, i,j," ");
         }
     }
 }
+
+void Game::refreshGameScreen() {
+    wrefresh(game_box);
+    wrefresh(game_window);
+}
+
+void Game::refreshGUI1() {
+    wrefresh(gui1_window);
+}
+
+void Game::refreshGUI2() {
+    wrefresh(gui2_window);
+}
+
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
 // init and end stuff
 //---------------------------------------------------------------------------------------------------------------------------------
 void Game::init() {
+
+    fillTileMap();
+    initNCurses();
+}
+
+void Game::initNCurses() {
     setlocale(LC_ALL, "");
     initscr();
     
-    super_window = newwin(GAME_HEIGHT+2,GAME_WIDTH+2,0,0);
-    game_window = subwin(super_window, GAME_HEIGHT, GAME_WIDTH, 1, 1);
-    box(super_window, 0, 0);
-    touchwin(game_window);
+    createWindows();
+    
     keypad(game_window,true);
     wrefresh(super_window);
+    
+    refreshGUI1();
+    refreshGUI2();
+    refreshGameScreen();
     
     clear();
 	noecho();
 	cbreak();	/* Line buffering disabled. pass on everything */
     curs_set(0);
-    fillTileMap();
+}
+
+void Game::createWindows() {
+    super_window = newwin(GAME_HEIGHT+GUI2_HEIGHT+4,GAME_WIDTH+4+GUI1_WIDTH,0,0);
+    
+    game_box = subwin(super_window, GAME_HEIGHT+2,GAME_WIDTH+2,0,0);
+    game_window = subwin(game_box, GAME_HEIGHT, GAME_WIDTH, 1, 1);
+    
+    gui1_window = subwin(super_window, GUI1_HEIGHT+2,GUI1_WIDTH+2,0,GAME_WIDTH+2);
+    
+    gui2_window = subwin(super_window, GUI2_HEIGHT+2,GUI2_WIDTH+2,GAME_HEIGHT+2,0);
+    
+    box(game_box,0,0);
+    box(gui1_window,0,0);
+    box(gui2_window,0,0);
+    
+    touchwin(gui1_window);
+    touchwin(gui2_window);
+    touchwin(game_window);
 }
 
 void Game::end() {
