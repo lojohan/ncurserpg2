@@ -18,6 +18,8 @@ class Entity {
         
     public:
         
+        Entity(int x, int y, bool solid, const wchar_t * image, int color);
+        
         virtual void setX(int x);
         virtual void setY(int y);
         virtual void setCoords(int x, int y);

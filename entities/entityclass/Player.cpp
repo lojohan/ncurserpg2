@@ -1,11 +1,6 @@
 #include "../entityheaders/Player.h"
 
-Player::Player(int x, int y) {
-    this->image = L"\u03c3";
-    this->solid = true;
-    this->setX(x);
-    this->setY(y);
-    this->color = COLOR_GREEN;
+Player::Player(int x, int y, bool solid, const wchar_t * image, int color) : Entity(x, y, solid, image, color){
 }
 
 void Player::getNextMove(int c, int arr[2]) {

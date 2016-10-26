@@ -1,5 +1,13 @@
 #include "../entityheaders/Entity.h"
 
+Entity::Entity(int x, int y, bool solid, const wchar_t * image, int color) {
+    this->image = image;
+    this->solid = solid;
+    this->setX(x);
+    this->setY(y);
+    this->color = color;
+}
+
 void Entity::setX(int x) {
     this->x = x;
 }

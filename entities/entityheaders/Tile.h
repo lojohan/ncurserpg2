@@ -11,7 +11,7 @@ class Tile : public Entity {
         bool walkable;
     
     public:
-        Tile(int x, int y, const wchar_t * image, bool walkable, bool solid);
+        Tile(int x, int y, const wchar_t * image, bool walkable, bool solid, int color);
         
         void setWalkable(bool walkable);
         
