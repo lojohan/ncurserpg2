@@ -35,7 +35,9 @@ void Game::updateMovables(int ch) {
 
 void Game::drawEntities() {
     for(std::vector<Entity*>::iterator it = entityList.begin(); it != entityList.end(); ++it) {
-        (*it)->draw(game_window);
+        int arr[2];
+        relativeCameraPos( *it, player, arr, GAME_HEIGHT, GAME_WIDTH);
+        (*it)->draw(game_window, arr[0], arr[1]);
     }
 }
 
@@ -67,7 +69,6 @@ void Game::init() {
     touchwin(game_window);
     keypad(game_window,true);
     wrefresh(super_window);
-    wrefresh(game_window);
     
     clear();
 	noecho();

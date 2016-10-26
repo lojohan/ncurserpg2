@@ -39,6 +39,7 @@ class Entity {
         const wchar_t * getImage();
         
         virtual void draw(WINDOW * win);
+        virtual void draw(WINDOW * win, int x, int y);
         
 };
 

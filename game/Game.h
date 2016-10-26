@@ -10,8 +10,6 @@
 
 class Game {
     private: 
-        //std::vector<Tile*> tileList;
-        //std::vector<MovableEntity*> mvEntityList;
         std::vector<Entity*> entityList;
         Map map;
         Player * player;
