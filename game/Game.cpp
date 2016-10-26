@@ -13,7 +13,13 @@ Game::Game() {
         this->draw();
         // placeholder
         int ch = playerInput(this->game_window);
-        updateMovables(ch);
+        
+        gameLoopInputHandler(ch, &game_paused);
+        
+        // run game logic here if not paused
+        if(!game_paused) {
+            updateMovables(ch);
+        } 
     }
     
     this->end();
@@ -33,7 +39,6 @@ void Game::updateMovables(int ch) {
 //---------------------------------------------------------------------------------------------------------------------------------
 
 void Game::drawEntities() {
-    int color_count = 1;
 
     for(std::vector<Entity*>::iterator it = entityList.begin(); it != entityList.end(); ++it) {
         // Array containing positions of entities relative to camera.
@@ -41,18 +46,27 @@ void Game::drawEntities() {
         relativeCameraPos( *it, player, arr, GAME_HEIGHT, GAME_WIDTH);
         
         // draws the entities in list of entities with the appropriate color.
-        init_pair(color_count, (*it)->getColor(), COLOR_BLACK);
-        wattron(game_window, COLOR_PAIR(color_count));
+        wattron(game_window, COLOR_PAIR( (*it)->getColor() ));
         (*it)->draw(game_window, arr[0], arr[1]);
-        wattroff(game_window, COLOR_PAIR(color_count));
-        color_count++;
+        wattroff(game_window, COLOR_PAIR( (*it)->getColor() ));
     }
+}
+
+void Game::drawPause() {
+    std::string pauseString = "PAUSED";
+    wattron(game_window, COLOR_PAIR(COLOR_WHITE));
+    if(game_paused)
+        mvwprintw(game_window,0,0,pauseString.c_str());
+    wattroff(game_window, COLOR_PAIR(COLOR_WHITE));
+    
 }
 
 // draw elements of GUI1
 void Game::drawGUI1Elements() {
     // placeholder
     mvwprintw(gui1_window,1,1,"Currently facing: %s", (player->getCurrentDirection()).c_str() );
+    mvwprintw(gui1_window,2,1,"Player position: X=%d, Y=%d", player->getX(), player->getY() );
+    mvwprintw(gui1_window,3,1,"Game paused: %s", game_paused ? "true" : "false" );
 }
 
 // draw elements of GUI2
@@ -68,6 +82,8 @@ void Game::draw() {
     clearBeforeDraw(gui2_window, 1, 1, GUI2_HEIGHT-2, GUI2_WIDTH-2);
     
     drawEntities();
+    
+    drawPause();
     
     drawGUI1Elements();
     drawGUI2Elements();
@@ -115,6 +131,7 @@ void Game::refreshGUI2() {
 // TODO: should also create entities on map.
 void Game::init() {
 
+    game_paused = false;
     fillTileMap();
     initNCurses();
 }
@@ -125,6 +142,7 @@ void Game::initNCurses() {
     initscr();
     
     start_color();
+    initColors();
     
     createWindows();
     
@@ -159,6 +177,14 @@ void Game::createWindows() {
     touchwin(gui1_window);
     touchwin(gui2_window);
     touchwin(game_window);
+}
+
+// init color pairs
+
+void Game::initColors() {
+    for(int i = COLOR_RED; i <= COLOR_WHITE; i++) {
+        init_pair(i, i, COLOR_BLACK);
+    }
 }
 
 // closes all windows on close.

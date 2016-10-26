@@ -14,6 +14,8 @@ class Game {
         Map map;
         Player * player;
         
+        bool game_paused;
+
         // should be in drawing bit
         WINDOW *super_window;
         
@@ -52,6 +54,7 @@ class Game {
         
         // inits things related to ncurses (graphics)
         void initNCurses();
+        void initColors();
         
         // creates windows and boxes.
         void createWindows();
@@ -61,6 +64,7 @@ class Game {
         void drawEntities();
         void drawGUI1Elements();
         void drawGUI2Elements();
+        void drawPause();
         void draw();
         void refreshGameScreen();
         void refreshGUI1();

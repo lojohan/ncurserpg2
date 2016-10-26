@@ -42,3 +42,13 @@ void relativeCameraPos(Entity * centerentity, Entity * drawEntity, int arr[2], i
     arr[0] = height/2 + centerentity->getX() - drawEntity->getX();
     arr[1] = width/2 + centerentity->getY() - drawEntity->getY();
 }
+
+void gameLoopInputHandler(int ch, bool *game_paused) {
+    switch(ch)
+    {	case KEY_BACKSPACE:
+            *game_paused = !(*game_paused);
+		break;
+	default:
+		break;
+    }
+}
