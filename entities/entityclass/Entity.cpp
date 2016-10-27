@@ -67,6 +67,7 @@ bool Entity::getSolid() {
 }
 
 void Entity::onCollision(Entity *e) {
+    myCollisionFunctionPointers(e, this);
 }
 
 void Entity::setImage(const wchar_t * image) {

@@ -12,7 +12,7 @@ bool Tile::getWalkable() {
     return this->walkable;
 }
 
-void Tile::onCollision(Entity *e) {
+//void Tile::onCollision(Entity *e) {
     // Testing function pointers
-    myCollisionFunctionPointers(e);
-}
+    //myCollisionFunctionPointers(e, this);
+//}

@@ -4,9 +4,9 @@
 #include <vector>
 #include <string>
 #include <stdlib.h>
-#include "../entities/entityheaders/Entity.h"
+#include <ncurses.h>
+#include "../entities/Entities.h"
 
-
-void teleportEntity(Entity * e);
+void teleportEntity(Entity * e1, Entity * e2);
 
 #endif

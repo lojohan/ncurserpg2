@@ -26,5 +26,5 @@ void Player::getNextMove(int c, int arr[2]) {
     }
 }
 
-void Player::onCollision(Entity *e) {
-}
+//void Player::onCollision(Entity *e) {
+//}

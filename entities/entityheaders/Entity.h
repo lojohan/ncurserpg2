@@ -10,7 +10,7 @@ class Entity {
 
     protected:
     
-        typedef void (*FnPtr)(Entity* entity);
+        typedef void (*FnPtr)(Entity* entity1, Entity* entity2);
     
         FnPtr myCollisionFunctionPointers;
         

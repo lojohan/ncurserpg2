@@ -17,7 +17,7 @@ class Tile : public Entity {
         
         bool getWalkable();
         
-        void onCollision(Entity *e);
+        //void onCollision(Entity *e);
                 
 };
 

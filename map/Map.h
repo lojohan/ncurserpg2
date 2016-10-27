@@ -14,7 +14,7 @@
 class Map {
 
     protected:
-        typedef void (*FnPtr)(Entity* entity);
+        typedef void (*FnPtr)(Entity* entity1, Entity* entity2);
     
         std::string name;
         std::map<std::string,FnPtr> functionMap; 
