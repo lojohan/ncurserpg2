@@ -1,6 +1,7 @@
 #include "Physics.h"
 
-
+// should be rewritten so that all moves are performed first, then move things
+// back, then perform onCollision;
 void physicsLoop(int ch, std::vector<Entity*> entityList) {
 
     for(std::vector<Entity*>::iterator it = entityList.begin(); it != entityList.end(); ++it) {
@@ -27,6 +28,9 @@ void physicsLoop(int ch, std::vector<Entity*> entityList) {
         if(collision != 0) {
             for (int i = 0; i < collision; i++) {
                 collidee[i]->onCollision( *it );
+                //TODO: all onCollision calls now happen at least twice. fix
+                (*it)->onCollision(collidee[i]);
+                
             }
         } else {
             (*it)->move(arr);

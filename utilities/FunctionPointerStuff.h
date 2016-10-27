@@ -9,4 +9,6 @@
 
 void teleportEntity(Entity * e1, Entity * e2);
 
+void doNothing(Entity * e1, Entity * e2);
+
 #endif

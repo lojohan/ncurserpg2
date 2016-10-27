@@ -61,7 +61,7 @@ void Map::parseMap(std::vector<Entity*> * tiles) {
                 putEntityInMap( new Tile(pos[0],pos[1],image,true,true, color, teleportEntity), tiles);
             }
             if (!splitstrings.at(0).compare("Player")) {
-                putEntityInMap( new Player(pos[0],pos[1], true, image, color, teleportEntity), tiles);
+                putEntityInMap( new Player(pos[0],pos[1], true, image, color, doNothing), tiles);
             }
         }
     myfile.close();
