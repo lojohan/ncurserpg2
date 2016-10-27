@@ -20,11 +20,12 @@ void Map::parseMap(std::vector<Entity*> * tiles) {
             
             // TODO: rework to support additional types of things from map.
             
+            const wchar_t * image;
+            int pos[2];
+            int color;
+            
             // Gets various parameters from map file and constructs an object.
             for(int i = 1; i < splitstrings.size(); i++) {
-                const wchar_t * image;
-                int pos[2];
-                int color;
                 
                 switch(i)
                 {	case 1 :
@@ -52,12 +53,15 @@ void Map::parseMap(std::vector<Entity*> * tiles) {
                 default:
                     break;
                 }
-                
-                if (!splitstrings.at(0).compare("Tile")) {
-                    
-                    putTileInTileMap( new Tile(pos[0],pos[1],image,true,true, color), tiles);
-                }
 
+            }
+                
+            if (!splitstrings.at(0).compare("Tile")) {
+                
+                putEntityInMap( new Tile(pos[0],pos[1],image,true,true, color), tiles);
+            }
+            if (!splitstrings.at(0).compare("Player")) {
+                putEntityInMap( new Player(pos[0],pos[1], true, image, color), tiles);
             }
         }
     myfile.close();
@@ -65,8 +69,8 @@ void Map::parseMap(std::vector<Entity*> * tiles) {
 
 }
 
-void Map::putTileInTileMap(Tile * tile, std::vector<Entity*> * tiles) {
-    tiles->push_back(tile);
+void Map::putEntityInMap(Entity * entity, std::vector<Entity*> * entities) {
+    entities->push_back(entity);
 }
 
 void Map::getImageFromImageMap(const wchar_t ** wch, int i ) {

@@ -49,8 +49,10 @@ class Game {
         // closes all windows on close.
         void end();
         
-        // run logic for movables
+        // run logic for entities
         void updateMovables(int ch);
+        
+        void getPlayerFromEntities(Player ** player);
         
         // inits things related to ncurses (graphics)
         void initNCurses();

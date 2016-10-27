@@ -19,9 +19,9 @@ class Map {
         
         void parseMap(std::vector<Entity*> * tiles);
         
-        void putTileInTileMap(Tile *tile,  std::vector<Entity*> * tiles);
+        void putEntityInMap(Entity * entity, std::vector<Entity*> * entities);
         
-        Tile* getTileAtIndex(int i);
+        Entity* getEntityAtIndex(int i);
         
         void getImageFromImageMap(const wchar_t ** wch, int i );
 };

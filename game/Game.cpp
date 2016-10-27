@@ -5,9 +5,9 @@ Game::Game() {
     map = *(new Map());
     this->init();
     
-    // placeholder
-    this->player = new Player(10,10, true, L"\u03c3", COLOR_GREEN);
-    entityList.push_back(player);
+    getPlayerFromEntities(&(this->player));
+    //player = new Player(10,10, true, L"\u03c3", COLOR_GREEN);
+    //entityList.push_back(player);
     
     while(true) {
         this->draw();
@@ -33,6 +33,14 @@ void Game::fillTileMap() {
 // run logic for movables
 void Game::updateMovables(int ch) {
     physicsLoop(ch, this->entityList);
+}
+
+void Game::getPlayerFromEntities(Player ** player){
+    for(std::vector<Entity*>::iterator it = entityList.begin(); it != entityList.end(); ++it) {
+        if(Player* v = dynamic_cast<Player*>( *it )) {
+            *player = v;
+        }
+    }
 }
 
 // separate drawing into spearate class 
@@ -134,6 +142,10 @@ void Game::init() {
 
     game_paused = false;
     fillTileMap();
+    
+    //this->player = new Player(10,10, true, L"\u03c3", COLOR_GREEN);
+    
+    //getPlayerFromEntities(this->player);
     initNCurses();
 }
 
