@@ -67,6 +67,7 @@ void Game::drawGUI1Elements() {
     mvwprintw(gui1_window,1,1,"Currently facing: %s", (player->getCurrentDirection()).c_str() );
     mvwprintw(gui1_window,2,1,"Player position: X=%d, Y=%d", player->getX(), player->getY() );
     mvwprintw(gui1_window,3,1,"Game paused: %s", game_paused ? "true" : "false" );
+    mvwaddwstr(gui1_window,4,1,L"HP: ♥♥♥♥♥♥");
 }
 
 // draw elements of GUI2

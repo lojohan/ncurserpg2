@@ -22,6 +22,8 @@ class Map {
         void putTileInTileMap(Tile *tile,  std::vector<Entity*> * tiles);
         
         Tile* getTileAtIndex(int i);
+        
+        void getImageFromImageMap(const wchar_t ** wch, int i );
 };
 
 #endif

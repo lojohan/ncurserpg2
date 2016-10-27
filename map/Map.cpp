@@ -1,6 +1,7 @@
 #include "Map.h"
 
 Map::Map(){
+
 }
 
 void Map::parseMap(std::vector<Entity*> * tiles) {
@@ -14,13 +15,18 @@ void Map::parseMap(std::vector<Entity*> * tiles) {
     {
         while ( std::getline (myfile,line) )
         {   
-            std::string substr1;
-            std::string substr2;
+            std::vector<std::string> splitstrings;
             
-            splitString(line, &substr1, &substr2, ',');
+            splitString(line, &splitstrings, ';');
             
-            if (!substr1.compare("Tile")) {
-                putTileInTileMap( new Tile(5+i,0,L"#",true,true, i+1), tiles);
+            if (!splitstrings.at(0).compare("Tile")) {
+                int value = atoi( splitstrings.at(1).c_str());
+                
+                const wchar_t * wch;
+                
+                getImageFromImageMap(&wch,value);
+                
+                putTileInTileMap( new Tile(5+i,0,wch,true,true, i+1), tiles);
                 i++;
             }
         }
@@ -31,4 +37,17 @@ void Map::parseMap(std::vector<Entity*> * tiles) {
 
 void Map::putTileInTileMap(Tile * tile, std::vector<Entity*> * tiles) {
     tiles->push_back(tile);
+}
+
+void Map::getImageFromImageMap(const wchar_t ** wch, int i ) {
+    switch(i)
+    {	case 1:
+            *wch = L"#";
+		break;
+	case 2:
+            *wch = L"\u00A2";
+		break;
+	default:
+		break;
+    }
 }

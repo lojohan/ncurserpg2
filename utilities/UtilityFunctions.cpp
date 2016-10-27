@@ -53,20 +53,15 @@ void gameLoopInputHandler(int ch, bool *game_paused) {
     }
 }
 
-void splitString(std::string str_to_split, std::string * str1, std::string * str2, char delimiter) {
-    int i = 0;
+void splitString(std::string str_to_split, std::vector< std::string > * splits, char delimiter) {
+    int prevsplit = 0;
     
-    while( i < str_to_split.length()) {
+    for(int i = 0; i < str_to_split.length(); i++) {
         char c = str_to_split[i];
         if(c == delimiter) {
-            *str1 += str_to_split.substr(0,i);
-            if(i+1 < str_to_split.length())
-                *str2 += str_to_split.substr(i+1,str_to_split.length());
-            else
-                *str2 += "";
-            break;
+            (*splits).push_back( str_to_split.substr(prevsplit,i-prevsplit) );
+            prevsplit = i+1;
         }
-        i++;
     }
 }
 
