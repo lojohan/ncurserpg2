@@ -14,6 +14,7 @@ Map::Map(){
     movementFunctionMap["randomAI"] = randomAI;
 }
 
+//TODO: clean and split into smaller functions.
 void Map::parseMap(std::vector<Entity*> * tiles) {
     
     // placeholder
@@ -27,8 +28,6 @@ void Map::parseMap(std::vector<Entity*> * tiles) {
             std::vector<std::string> splitstrings;
             
             splitString(line, &splitstrings, ';');
-            
-            // TODO: rework to support additional types of things from map.
             
             const wchar_t * image;
             int pos[2];

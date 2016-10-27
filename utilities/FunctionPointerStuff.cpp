@@ -41,9 +41,33 @@ void playerControl(Entity * e, int c, int arr[2], int dt) {
 }
 
 void randomAI(Entity * e, int c, int arr[2], int dt) {
+
     e->t += dt;
     if(e->t > 250000) {
-        arr[0] = e->getX() - 1;
+        srand (time(NULL));
+
+        int output = (rand() % (int)(4));
+        
+        switch(output)
+        {	case 0:
+                arr[0] = e->getX() - 1;
+                e->dir = Entity::NORTH;
+		    break;
+	    case 1:
+                arr[0] = e->getX() + 1;
+                e->dir = Entity::SOUTH;
+		    break;
+	    case 2:
+	            arr[1] = e->getY() - 1;
+	            e->dir = Entity::WEST;
+		    break;
+	    case 3:
+	            arr[1] = e->getY() + 1;
+	            e->dir = Entity::EAST;
+		    break;
+	    default:
+		    break;
+        }
         e->t = 0;
     }
 }
