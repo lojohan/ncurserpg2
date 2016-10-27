@@ -17,7 +17,7 @@ class Map {
         typedef void (*FnPtr)(Entity* entity1, Entity* entity2);
     
         std::string name;
-        std::map<std::string,FnPtr> functionMap; 
+        std::map<std::string,FnPtr> functionMap;
 
     public:
     
@@ -30,6 +30,7 @@ class Map {
         Entity* getEntityAtIndex(int i);
         
         void getImageFromImageMap(const wchar_t ** wch, int i );
+        
 };
 
 #endif

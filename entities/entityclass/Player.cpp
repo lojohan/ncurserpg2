@@ -1,6 +1,6 @@
 #include "../entityheaders/Player.h"
 
-Player::Player(int x, int y, bool solid, const wchar_t * image, int color, FnPtr ptr) : Entity(x, y, solid, image, color, ptr){
+Player::Player(int x, int y, bool solid, const wchar_t * image, int color, std::vector<FnPtr> ptrs) : Entity(x, y, solid, image, color, ptrs){
 }
 
 void Player::getNextMove(int c, int arr[2]) {

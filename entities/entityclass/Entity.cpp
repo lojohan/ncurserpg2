@@ -1,13 +1,17 @@
 #include "../entityheaders/Entity.h"
 
-Entity::Entity(int x, int y, bool solid, const wchar_t * image, int color, FnPtr ptr) {
+Entity::Entity(int x, int y, bool solid, const wchar_t * image, int color, std::vector<FnPtr> ptrs) {
     this->image = image;
     this->solid = solid;
     this->setX(x);
     this->setY(y);
     this->color = color;
     
-    this->myCollisionFunctionPointers = ptr;
+    //this->myCollisionFunctionPointers = ptrs;
+    int l = ptrs.size();
+    for(int i = 0; i < l; i++) {
+        (this->myCollisionFunctionPointers).push_back( ptrs.at(i));
+    }
 }
 
 void Entity::setX(int x) {
@@ -67,7 +71,11 @@ bool Entity::getSolid() {
 }
 
 void Entity::onCollision(Entity *e) {
-    myCollisionFunctionPointers(e, this);
+    int l = myCollisionFunctionPointers.size();
+    
+    for(int i = 0; i < l; i++) {
+        (myCollisionFunctionPointers.at(i))(e,this);
+    }
 }
 
 void Entity::setImage(const wchar_t * image) {
@@ -80,6 +88,12 @@ const wchar_t * Entity::getImage() {
 
 int Entity::getColor() {
     return this->color;
+}
+
+void Entity::setColor(int color) {
+    if(color > 0 && color < 8) {
+        this->color = color;
+    }
 }
 
 void Entity::draw(WINDOW *win) {

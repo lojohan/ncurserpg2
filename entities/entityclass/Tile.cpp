@@ -1,6 +1,6 @@
 #include "../entityheaders/Tile.h"
 
-Tile::Tile(int x, int y, const wchar_t * image, bool walkable, bool solid, int color, FnPtr ptr) : Entity(x, y, solid, image, color, ptr){
+Tile::Tile(int x, int y, const wchar_t * image, bool walkable, bool solid, int color, std::vector<FnPtr> ptrs) : Entity(x, y, solid, image, color, ptrs){
     this->walkable = walkable;
 }
 

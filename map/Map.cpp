@@ -1,7 +1,9 @@
 #include "Map.h"
 
 Map::Map(){
-
+    functionMap["doNothing"] = doNothing;
+    functionMap["teleportEntity"] = teleportEntity;
+    functionMap["changeColor"] = changeColor;
 }
 
 void Map::parseMap(std::vector<Entity*> * tiles) {
@@ -23,6 +25,7 @@ void Map::parseMap(std::vector<Entity*> * tiles) {
             const wchar_t * image;
             int pos[2];
             int color;
+            std::vector<FnPtr> functionpointers;
             
             // Gets various parameters from map file and constructs an object.
             for(int i = 1; i < splitstrings.size(); i++) {
@@ -49,6 +52,17 @@ void Map::parseMap(std::vector<Entity*> * tiles) {
                 case 3:
                     {
                         color = atoi( splitstrings.at(i).c_str());
+                    break;
+                    }
+                case 4:
+                    {
+                        std::vector<std::string> functionstrings;
+                        splitString( splitstrings.at(i), &functionstrings, ',');
+                        
+                        for(std::vector<std::string>::iterator it = functionstrings.begin(); it != functionstrings.end(); ++it) {
+                            functionpointers.push_back(functionMap[ (*it) ]);
+                        }
+                    break;
                     }
                 default:
                     break;
@@ -58,10 +72,10 @@ void Map::parseMap(std::vector<Entity*> * tiles) {
                 
             if (!splitstrings.at(0).compare("Tile")) {
                 
-                putEntityInMap( new Tile(pos[0],pos[1],image,true,true, color, teleportEntity), tiles);
+                putEntityInMap( new Tile(pos[0],pos[1],image,true,true, color, functionpointers), tiles);
             }
             if (!splitstrings.at(0).compare("Player")) {
-                putEntityInMap( new Player(pos[0],pos[1], true, image, color, doNothing), tiles);
+                putEntityInMap( new Player(pos[0],pos[1], true, image, color, functionpointers), tiles);
             }
         }
     myfile.close();

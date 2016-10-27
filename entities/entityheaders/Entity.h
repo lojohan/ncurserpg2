@@ -5,6 +5,7 @@
 #include <ncurses.h>
 #include <ncursesw/ncurses.h>
 #include <string.h>
+#include <vector>
 
 class Entity {
 
@@ -12,7 +13,7 @@ class Entity {
     
         typedef void (*FnPtr)(Entity* entity1, Entity* entity2);
     
-        FnPtr myCollisionFunctionPointers;
+        std::vector<FnPtr> myCollisionFunctionPointers;
         
         enum Direction {NORTH = 0, EAST = 1, SOUTH = 2, WEST = 3};
         int x, y;
@@ -23,7 +24,7 @@ class Entity {
         
     public:
         
-        Entity(int x, int y, bool solid, const wchar_t * image, int color, FnPtr ptr);
+        Entity(int x, int y, bool solid, const wchar_t * image, int color, std::vector<FnPtr> ptrs);
         
         virtual void setX(int x);
         virtual void setY(int y);
@@ -49,6 +50,7 @@ class Entity {
         void setImage(const wchar_t * image);
         
         const wchar_t * getImage();
+        virtual void setColor(int color);
         virtual int getColor();
         
         virtual void draw(WINDOW * win);
