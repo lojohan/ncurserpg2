@@ -61,6 +61,8 @@ void splitString(std::string str_to_split, std::vector< std::string > * splits, 
         if(c == delimiter) {
             (*splits).push_back( str_to_split.substr(prevsplit,i-prevsplit) );
             prevsplit = i+1;
+        } else if (i == str_to_split.length() -1 ) {
+            (*splits).push_back( str_to_split.substr(prevsplit,i-prevsplit+1) );
         }
     }
 }

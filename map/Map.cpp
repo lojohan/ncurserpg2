@@ -8,7 +8,6 @@ void Map::parseMap(std::vector<Entity*> * tiles) {
     
     // placeholder
     
-    int i = 0;
     std::string line;
     std::ifstream myfile ("../res/maps/map.txt");
     if (myfile.is_open())
@@ -19,15 +18,46 @@ void Map::parseMap(std::vector<Entity*> * tiles) {
             
             splitString(line, &splitstrings, ';');
             
-            if (!splitstrings.at(0).compare("Tile")) {
-                int value = atoi( splitstrings.at(1).c_str());
+            // TODO: rework to support additional types of things from map.
+            
+            // Gets various parameters from map file and constructs an object.
+            for(int i = 1; i < splitstrings.size(); i++) {
+                const wchar_t * image;
+                int pos[2];
+                int color;
                 
-                const wchar_t * wch;
+                switch(i)
+                {	case 1 :
+                    {
+                        std::vector<std::string> coords;
+                        splitString( splitstrings.at(i), &coords, ',');
+                        
+                        
+                        pos[0] = atoi( coords.at(0).c_str());
+                        pos[1] = atoi( coords.at(1).c_str());
+                        
+                    break;
+                    }
+                case 2:
+                    {
+                        int value = atoi( splitstrings.at(i).c_str());
+                        
+                        getImageFromImageMap(&image,value);
+                    break;
+                    }
+                case 3:
+                    {
+                        color = atoi( splitstrings.at(i).c_str());
+                    }
+                default:
+                    break;
+                }
                 
-                getImageFromImageMap(&wch,value);
-                
-                putTileInTileMap( new Tile(5+i,0,wch,true,true, i+1), tiles);
-                i++;
+                if (!splitstrings.at(0).compare("Tile")) {
+                    
+                    putTileInTileMap( new Tile(pos[0],pos[1],image,true,true, color), tiles);
+                }
+
             }
         }
     myfile.close();
