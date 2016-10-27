@@ -1,6 +1,6 @@
 #include "../entityheaders/Tile.h"
 
-Tile::Tile(int x, int y, const wchar_t * image, bool walkable, bool solid, int color) : Entity(x, y, solid, image, color){
+Tile::Tile(int x, int y, const wchar_t * image, bool walkable, bool solid, int color, FnPtr ptr) : Entity(x, y, solid, image, color, ptr){
     this->walkable = walkable;
 }
 
@@ -13,4 +13,6 @@ bool Tile::getWalkable() {
 }
 
 void Tile::onCollision(Entity *e) {
+    // Testing function pointers
+    myCollisionFunctionPointers(e);
 }

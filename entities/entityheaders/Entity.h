@@ -7,7 +7,12 @@
 #include <string.h>
 
 class Entity {
+
     protected:
+    
+        typedef void (*FnPtr)(Entity* entity);
+    
+        FnPtr myCollisionFunctionPointers;
         
         enum Direction {NORTH = 0, EAST = 1, SOUTH = 2, WEST = 3};
         int x, y;
@@ -18,7 +23,7 @@ class Entity {
         
     public:
         
-        Entity(int x, int y, bool solid, const wchar_t * image, int color);
+        Entity(int x, int y, bool solid, const wchar_t * image, int color, FnPtr ptr);
         
         virtual void setX(int x);
         virtual void setY(int y);

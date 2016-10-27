@@ -14,6 +14,8 @@ g++ -c ./game/Game.cpp
 
 g++ -c ./utilities/UtilityFunctions.cpp
 
+g++ -c ./utilities/FunctionPointerStuff.cpp
+
 
 g++ -o RPG *.o  -lncursesw
 

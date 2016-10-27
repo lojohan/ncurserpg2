@@ -6,12 +6,18 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <map>
 #include "../entities/Entities.h"
 #include "../utilities/UtilityFunctions.h"
+#include "../utilities/FunctionPointerStuff.h"
 
 class Map {
+
     protected:
+        typedef void (*FnPtr)(Entity* entity);
+    
         std::string name;
+        std::map<std::string,FnPtr> functionMap; 
 
     public:
     

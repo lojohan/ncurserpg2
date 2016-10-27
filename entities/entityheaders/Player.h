@@ -8,7 +8,7 @@
 class Player : public Entity {
     
     public:
-        Player(int x, int y, bool solid, const wchar_t * image, int color);
+        Player(int x, int y, bool solid, const wchar_t * image, int color, FnPtr ptr);
         void getNextMove(int c, int arr[2]);
         
         void onCollision(Entity *ce);

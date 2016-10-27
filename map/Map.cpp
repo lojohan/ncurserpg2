@@ -58,10 +58,10 @@ void Map::parseMap(std::vector<Entity*> * tiles) {
                 
             if (!splitstrings.at(0).compare("Tile")) {
                 
-                putEntityInMap( new Tile(pos[0],pos[1],image,true,true, color), tiles);
+                putEntityInMap( new Tile(pos[0],pos[1],image,true,true, color, teleportEntity), tiles);
             }
             if (!splitstrings.at(0).compare("Player")) {
-                putEntityInMap( new Player(pos[0],pos[1], true, image, color), tiles);
+                putEntityInMap( new Player(pos[0],pos[1], true, image, color, teleportEntity), tiles);
             }
         }
     myfile.close();
@@ -81,6 +81,9 @@ void Map::getImageFromImageMap(const wchar_t ** wch, int i ) {
 	case 2:
             *wch = L"\u00A2";
 		break;
+	case 3:
+	        *wch = L"\u03C3";
+	    break;
 	default:
 		break;
     }
