@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <vector>
+#include <time.h>
+#include <ctime>
 #include "../entities/Entities.h"
 #include "../utilities/UtilityFunctions.h"
 #include "../map/Map.h"
@@ -37,6 +39,8 @@ class Game {
         
         const static int START_X = 0;
         const static int START_Y = 0;
+        
+        const static int time_passed = 15;
 
     public:
         Game();
@@ -50,7 +54,7 @@ class Game {
         void end();
         
         // run logic for entities
-        void updateMovables(int ch);
+        void updateMovables(int ch, int t);
         
         void getPlayerFromEntities(Player ** player);
         

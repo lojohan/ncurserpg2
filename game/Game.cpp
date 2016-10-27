@@ -10,6 +10,7 @@ Game::Game() {
     //entityList.push_back(player);
     
     while(true) {
+        
         this->draw();
         // placeholder
         int ch = playerInput(this->game_window);
@@ -18,8 +19,9 @@ Game::Game() {
         
         // run game logic here if not paused
         if(!game_paused) {
-            updateMovables(ch);
+            updateMovables(ch, time_passed);
         }
+        
     }
     
     this->end();
@@ -31,8 +33,8 @@ void Game::fillTileMap() {
 }
 
 // run logic for movables
-void Game::updateMovables(int ch) {
-    physicsLoop(ch, this->entityList);
+void Game::updateMovables(int ch, int t) {
+    physicsLoop(ch, this->entityList, t);
 }
 
 void Game::getPlayerFromEntities(Player ** player){

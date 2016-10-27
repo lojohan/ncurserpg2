@@ -8,10 +8,7 @@
 class Player : public Entity {
     
     public:
-        Player(int x, int y, bool solid, const wchar_t * image, int color, std::vector<FnPtr> ptrs);
-        void getNextMove(int c, int arr[2]);
-        
-        //void onCollision(Entity *ce);
+        Player(int x, int y, bool solid, const wchar_t * image, int color, std::vector<ColFnPtr> collision_ptrs, std::vector<MovFnPtr> movement_ptrs);
         
 };
 

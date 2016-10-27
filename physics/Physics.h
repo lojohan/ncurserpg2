@@ -5,8 +5,9 @@
 #include "../entities/Entities.h"
 #include <string.h>
 #include <vector>
+#include <time.h>
 
-void physicsLoop(int ch, std::vector<Entity*> entityList);
+void physicsLoop(int ch, std::vector<Entity*> entityList, int t);
 
 #endif
 

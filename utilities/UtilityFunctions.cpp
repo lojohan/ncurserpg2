@@ -4,29 +4,14 @@ void clearScreen() {
     printf(0,0,"\033c");
 }
 
+
 int kbhit(int t1,int t2) {
-  struct timeval        timeout;
-  fd_set                readfds;
-  int                   how;
-
-  /* look only at stdin (fd = 0) */
-  FD_ZERO(&readfds);
-  FD_SET(0, &readfds);
-
-  /* poll: return immediately */
-  timeout.tv_sec = t1;
-  timeout.tv_usec = t2;
-
-  how = select(1, &readfds, (fd_set *)NULL, (fd_set *)NULL, &timeout);
-  /* Change "&timeout" above to "(struct timeval *)0"       ^^^^^^^^
-   * if you want to wait until a key is hit
-   */
-
-  if ((how > 0) && FD_ISSET(0, &readfds))
-    return 1;
-  else
-    return 0;
   
+    struct timeval tv = { 0L, 0L };
+    fd_set fds;
+    FD_ZERO(&fds);
+    FD_SET(0, &fds);
+    return select(1, &fds, NULL, NULL, &tv);
 }
 
 int playerInput(WINDOW *menu_win) {

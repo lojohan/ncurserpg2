@@ -14,10 +14,12 @@
 class Map {
 
     protected:
-        typedef void (*FnPtr)(Entity* entity1, Entity* entity2);
+        typedef void (*ColFnPtr)(Entity* entity1, Entity* entity2);
+        typedef void (*MovFnPtr)(Entity * e, int c, int arr[2], int dt);
     
         std::string name;
-        std::map<std::string,FnPtr> functionMap;
+        std::map<std::string,ColFnPtr> collisionFunctionMap;
+        std::map<std::string,MovFnPtr> movementFunctionMap;
 
     public:
     

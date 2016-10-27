@@ -2,7 +2,7 @@
 
 // should be rewritten so that all moves are performed first, then move things
 // back, then perform onCollision;
-void physicsLoop(int ch, std::vector<Entity*> entityList) {
+void physicsLoop(int ch, std::vector<Entity*> entityList, int t) {
 
     for(std::vector<Entity*>::iterator it = entityList.begin(); it != entityList.end(); ++it) {
         int collision = 0;
@@ -12,7 +12,7 @@ void physicsLoop(int ch, std::vector<Entity*> entityList) {
         arr[0] = (*it)->getX();
         arr[1] = (*it)->getY();
         
-        (*it)->getNextMove(ch, arr);
+        (*it)->getNextMove(ch, arr, t);
         
         for(std::vector<Entity*>::iterator it2 = entityList.begin(); it2 != entityList.end(); ++it2) {
             if( *it == *it2 ) {

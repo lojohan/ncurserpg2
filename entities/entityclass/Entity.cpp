@@ -1,16 +1,20 @@
 #include "../entityheaders/Entity.h"
 
-Entity::Entity(int x, int y, bool solid, const wchar_t * image, int color, std::vector<FnPtr> ptrs) {
+Entity::Entity(int x, int y, bool solid, const wchar_t * image, int color, std::vector<ColFnPtr> collision_ptrs, std::vector<MovFnPtr> movement_ptrs) {
     this->image = image;
     this->solid = solid;
     this->setX(x);
     this->setY(y);
     this->color = color;
     
-    //this->myCollisionFunctionPointers = ptrs;
-    int l = ptrs.size();
-    for(int i = 0; i < l; i++) {
-        (this->myCollisionFunctionPointers).push_back( ptrs.at(i));
+    int l1 = collision_ptrs.size();
+    for(int i = 0; i < l1; i++) {
+        (this->myCollisionFunctionPointers).push_back( collision_ptrs.at(i));
+    }
+    
+    int l2 = movement_ptrs.size();
+    for(int i = 0; i < l2; i++) {
+        (this->movementPointers).push_back( movement_ptrs.at(i));
     }
 }
 
@@ -35,7 +39,12 @@ int Entity::getY(){
     return this->y;
 }
 
-void Entity::getNextMove(int c, int arr[2]) {
+void Entity::getNextMove(int c, int arr[2], int dt) {
+    int l = movementPointers.size();
+    
+    for(int i = 0; i < l; i++) {
+        (movementPointers.at(i))(this, c, arr, dt);
+    }
 }
 
 std::string Entity::getCurrentDirection() {
@@ -55,6 +64,10 @@ std::string Entity::getCurrentDirection() {
 	default:
 		return "";
     }
+}
+
+void Entity::setCurrentDirection(Direction dir) {
+    this->dir = dir;
 }
 
 void Entity::move(int arr[2]) {
