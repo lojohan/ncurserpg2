@@ -21,6 +21,7 @@ void Map::parseMap(std::vector<Entity*> * tiles) {
     
     std::string line;
     std::ifstream myfile ("../res/maps/map.txt");
+    myfile.imbue(std::locale("en_US.UTF8"));
     if (myfile.is_open())
     {
         while ( std::getline (myfile,line) )
@@ -119,6 +120,7 @@ void Map::getImageFromImageMap(const wchar_t ** wch, int i ) {
 	        *wch = L"\u03C3";
 	    break;
 	default:
+	        *wch = L"";
 		break;
     }
 }

@@ -2,3 +2,4 @@
 #include "entityheaders/Tile.h"
 #include "entityheaders/Player.h"
 #include "entityheaders/NPC.h"
+#include "entityheaders/Character.h"

@@ -7,6 +7,7 @@
 #include <string.h>
 #include <vector>
 #include <time.h>
+#include "Character.h"
 
 class Entity {
 
@@ -18,6 +19,8 @@ class Entity {
         std::vector<ColFnPtr> myCollisionFunctionPointers;
         
         std::vector<MovFnPtr> movementPointers;
+        
+        std::vector<Character> partyCharacters;
         
         int x, y;
         bool solid;

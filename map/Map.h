@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <wchar.h>
 #include "../entities/Entities.h"
 #include "../utilities/UtilityFunctions.h"
 #include "../utilities/FunctionPointerStuff.h"

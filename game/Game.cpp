@@ -6,8 +6,6 @@ Game::Game() {
     this->init();
     
     getPlayerFromEntities(&(this->player));
-    //player = new Player(10,10, true, L"\u03c3", COLOR_GREEN);
-    //entityList.push_back(player);
     
     while(true) {
         

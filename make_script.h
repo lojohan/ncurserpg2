@@ -6,6 +6,7 @@ g++ -c ./entities/entityclass/Entity.cpp
 g++ -c ./entities/entityclass/Tile.cpp
 g++ -c ./entities/entityclass/Player.cpp
 g++ -c ./entities/entityclass/NPC.cpp
+g++ -c ./entities/entityclass/Character.cpp
 
 g++ -c ./map/Map.cpp
 
