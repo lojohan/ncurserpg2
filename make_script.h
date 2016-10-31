@@ -18,7 +18,7 @@ g++ -c ./utilities/UtilityFunctions.cpp
 g++ -c ./utilities/FunctionPointerStuff.cpp
 
 
-g++ -o RPG *.o  -lncursesw
+g++ -o RPG *.o  -lncursesw -std=c++11
 
 rm *.o
 
