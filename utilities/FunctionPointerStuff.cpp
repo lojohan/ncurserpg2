@@ -2,14 +2,14 @@
 
 // functions to call on collision
 void teleportEntity(Entity * e1, Entity * e2) {
-    e1->setY(10);
+    e1->setY(9);
 }
 
 void doNothing(Entity * e1, Entity * e2) {
 }
 
 void changeColor(Entity * e1, Entity * e2) {
-    e1->setColor(7);
+    e1->setColor(6);
 }
 
 // functions to call on move

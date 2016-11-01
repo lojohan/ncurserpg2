@@ -9,7 +9,6 @@ Game::Game() {
     
     while(true) {
         
-        this->draw();
         // placeholder
         int ch = playerInput(this->game_window);
         
@@ -19,6 +18,8 @@ Game::Game() {
         if(!game_paused) {
             updateMovables(ch, time_passed);
         }
+        
+        this->draw();
         
     }
     
@@ -51,11 +52,16 @@ void Game::drawEntities() {
     for(std::vector<Entity*>::iterator it = entityList.begin(); it != entityList.end(); ++it) {
         // Array containing positions of entities relative to camera.
         int arr[2];
-        relativeCameraPos( *it, player, arr, GAME_HEIGHT, GAME_WIDTH);
+        relativeCameraPos( player, *it, arr, GAME_HEIGHT, GAME_WIDTH);
         
         // draws the entities in list of entities with the appropriate color.
         wattron(game_window, COLOR_PAIR( (*it)->getColor() ));
+        //pos relative to player
         (*it)->draw(game_window, arr[0], arr[1]);
+        
+        //pos relative to 0,0
+        //(*it)->draw(game_window, (*it)->getX(), (*it)->getY());
+        
         wattroff(game_window, COLOR_PAIR( (*it)->getColor() ));
     }
 }
