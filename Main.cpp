@@ -3,6 +3,9 @@
 
 using namespace std;
 
+Game * game;
+
 int main() {
-    Game g;
+    game = new Game();
+    game->start();
 }

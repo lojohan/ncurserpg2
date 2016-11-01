@@ -23,6 +23,10 @@ int playerInput(WINDOW *menu_win) {
     }
 }
 
+int playerInputBlocking(WINDOW * menu_win) {
+    return wgetch(menu_win);
+}
+
 void relativeCameraPos(Entity * centerentity, Entity * drawEntity, int arr[2], int height, int width) {
     arr[0] = height/2 - centerentity->getX() + drawEntity->getX();
     arr[1] = width/2 - centerentity->getY() + drawEntity->getY();

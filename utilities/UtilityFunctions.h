@@ -22,6 +22,8 @@ int kbhit(int t1,int t2);
 
 int playerInput(WINDOW *menu_win);
 
+int playerInputBlocking(WINDOW * menu_win);
+
 void gameLoopInputHandler(int ch, bool *game_paused);
 
 void relativeCameraPos(Entity * centerentity, Entity * drawEntity, int arr[2], int height, int width);

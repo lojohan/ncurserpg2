@@ -10,10 +10,12 @@
 #include "../map/Map.h"
 #include "../physics/Physics.h"
 
+class Map;
+
 class Game {
     private: 
         std::vector<Entity*> entityList;
-        Map map;
+        Map * map;
         Player * player;
         
         bool game_paused;
@@ -50,6 +52,8 @@ class Game {
         
         void init();
         
+        void start();
+        
         // closes all windows on close.
         void end();
         
@@ -66,16 +70,28 @@ class Game {
         void createWindows();
         
         // separate this drawing bit here
-        void clearBeforeDraw(WINDOW * win, int startX, int startY, int heigt, int width);
+        void clearBeforeDraw(WINDOW * win, int startX, int startY, int height, int width);
+        void clearGUI1();
+        void clearGameWindow();
+        void clearAll();
+        
         void drawEntities();
         void drawGUI1Elements();
         void drawGUI2Elements();
         void drawPause();
         void draw();
+        
         void refreshGameScreen();
         void refreshGUI1();
         void refreshGUI2();
+        void refreshAll();
+        
+        WINDOW * getGameWindow();
+        WINDOW * getGUI1Window();
              
 };
+
+// The Game pointer!
+extern Game * game;
 
 #endif

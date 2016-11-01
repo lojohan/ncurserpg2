@@ -116,3 +116,11 @@ void Entity::draw(WINDOW *win) {
 void Entity::draw(WINDOW * win, int x, int y) {
     mvwaddwstr(win, x, y, this->image);
 }
+
+void Entity::addPartyCharacter(Character * character) {
+    ( this-> partyCharacters ).push_back(character);
+}
+
+std::vector<Character * > Entity::getParty() {
+    return this->partyCharacters;
+}

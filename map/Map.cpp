@@ -6,6 +6,8 @@ Map::Map(){
     //collision stuff
     collisionFunctionMap["teleportEntity"] = teleportEntity;
     collisionFunctionMap["changeColor"] = changeColor;
+    collisionFunctionMap["displayDialogue"] = displayDialogue;
+    collisionFunctionMap["battle"] = battle;
     
     //movement stuff
     

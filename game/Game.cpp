@@ -1,8 +1,11 @@
 #include "Game.h"
 
 Game::Game() {
-    
-    map = *(new Map());
+}
+
+void Game::start() {
+
+    map = new Map();
     this->init();
     
     getPlayerFromEntities(&(this->player));
@@ -26,9 +29,10 @@ Game::Game() {
     this->end();
 }
 
+
 // build map, will also build entities.
 void Game::fillTileMap() {
-    (this->map).parseMap( &(this->entityList) );
+    this->map->parseMap( &(this->entityList) );
 }
 
 // run logic for movables
@@ -92,9 +96,7 @@ void Game::drawGUI2Elements() {
 
 // do all the drawing.
 void Game::draw() {
-    clearBeforeDraw(game_window, 0, 0, GAME_HEIGHT, GAME_WIDTH);
-    clearBeforeDraw(gui1_window, 1, 1, GUI1_HEIGHT-2, GUI1_WIDTH-2);
-    clearBeforeDraw(gui2_window, 1, 1, GUI2_HEIGHT-2, GUI2_WIDTH-2);
+    clearAll();
     
     drawEntities();
     
@@ -103,11 +105,7 @@ void Game::draw() {
     drawGUI1Elements();
     drawGUI2Elements();
     
-    wrefresh(super_window);
-    
-    refreshGUI1();
-    refreshGUI2();
-    refreshGameScreen();
+    refreshAll();
     
 }
 
@@ -118,6 +116,20 @@ void Game::clearBeforeDraw(WINDOW * win,int startX, int startY, int height, int 
             mvwprintw(win, i,j," ");
         }
     }
+}
+
+void Game::clearAll() {
+    clearGameWindow();
+    clearGUI1();
+    clearBeforeDraw(gui2_window, 1, 1, GUI2_HEIGHT-2, GUI2_WIDTH-2);
+}
+
+void Game::clearGUI1() {
+    clearBeforeDraw(gui1_window, 1, 1, GUI1_HEIGHT-2, GUI1_WIDTH-2);    
+}
+
+void Game::clearGameWindow() {
+    clearBeforeDraw(game_window, 0, 0, GAME_HEIGHT, GAME_WIDTH);
 }
 
 // refresh game_window
@@ -134,6 +146,14 @@ void Game::refreshGUI1() {
 // refresh gui2
 void Game::refreshGUI2() {
     wrefresh(gui2_window);
+}
+
+void Game::refreshAll() {
+    refreshGUI1();
+    refreshGUI2();
+    refreshGameScreen();
+    
+    wrefresh(super_window);
 }
 
 
@@ -166,11 +186,8 @@ void Game::initNCurses() {
     createWindows();
     
     keypad(game_window,true);
-    wrefresh(super_window);
     
-    refreshGUI1();
-    refreshGUI2();
-    refreshGameScreen();
+    refreshAll();
     
     clear();
 	noecho();
@@ -196,6 +213,14 @@ void Game::createWindows() {
     touchwin(gui1_window);
     touchwin(gui2_window);
     touchwin(game_window);
+}
+
+WINDOW * Game::getGameWindow() {
+    return this->game_window;
+}
+
+WINDOW * Game::getGUI1Window() {
+    return this->gui1_window;
 }
 
 // init color pairs

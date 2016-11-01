@@ -20,7 +20,7 @@ class Entity {
         
         std::vector<MovFnPtr> movementPointers;
         
-        std::vector<Character> partyCharacters;
+        std::vector<Character*> partyCharacters;
         
         int x, y;
         bool solid;
@@ -68,6 +68,10 @@ class Entity {
         
         virtual void draw(WINDOW * win);
         virtual void draw(WINDOW * win, int x, int y);
+        
+        // Party!!!
+        void addPartyCharacter(Character * character);
+        std::vector<Character * > getParty();
         
 };
 

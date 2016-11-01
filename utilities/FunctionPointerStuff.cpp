@@ -12,6 +12,56 @@ void changeColor(Entity * e1, Entity * e2) {
     e1->setColor(6);
 }
 
+void displayDialogue(Entity * e1, Entity * e2) {
+    game->clearGUI1();
+    mvwprintw(game->getGUI1Window(), 1, 1, "This is my Dialogue. Stay a while and listen.");
+    game->refreshAll();
+    playerInputBlocking(game->getGameWindow());
+    
+}
+
+void battle(Entity * e1, Entity * e2) {
+    if(Player* v = dynamic_cast<Player*>( e1 )) {
+        bool fight = true;
+        // vector containing all characters in this battle
+        std::vector<Character*> fighters;
+        
+        fighters.insert(fighters.end(), ( e1->getParty() ).begin(), ( e1->getParty() ).end());
+        
+        std::vector<std::string> battleLog;
+        battleLog.push_back("This is a battle log.");
+        WINDOW * log_window = game->getGUI1Window();
+        
+        while(fight) {
+            
+        
+            // Clear all windows
+            game->clearAll();
+            
+            // draw Main battle window
+            
+            // draw menu battle window
+            
+            // draw battle log window
+            for (int i= 0; i < battleLog.size(); i++) {
+                mvwprintw(log_window, 1+i, 1, battleLog.at(i).c_str());
+            }
+            
+            // loop all characters and find who acts next
+            
+            // blocking input for player
+            
+            // run NPC actions
+            
+            // refresh all windows
+            game->refreshAll();
+            
+            // check if battle is done
+        }
+    }
+}
+
+
 // functions to call on move
 
 void noMove(Entity * e, int c, int arr[2], int dt) {
