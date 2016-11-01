@@ -29,3 +29,7 @@ void Character::setMaxHp(int maxHp) {
 void Character::setCurrentHp(int currentHp) {
     this->currentHp = currentHp;
 }
+
+bool Character::isDead() {
+    return this->currentHp <= 0;
+}

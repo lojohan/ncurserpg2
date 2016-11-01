@@ -59,6 +59,13 @@ void battle(Entity * e1, Entity * e2) {
             game->refreshAll();
             
             // check if battle is done
+            if(e1->isPartyDead()) {
+                // finish the fight
+                fight = false;
+            } else if( e2->isPartyDead()) {
+                // finish the fight
+                fight = false;
+            }
         }
     }
 }

@@ -124,3 +124,16 @@ void Entity::addPartyCharacter(Character * character) {
 std::vector<Character * > Entity::getParty() {
     return this->partyCharacters;
 }
+
+bool Entity::isPartyDead() {
+    bool allDead = true;
+    for (int i= 0; i < this->getParty().size(); i++) {
+        if (!this->getParty().at(i)->isDead()) {
+            allDead= false;
+            break;
+        } 
+    }
+    return allDead;
+}
+
+

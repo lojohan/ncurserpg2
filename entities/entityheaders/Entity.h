@@ -72,6 +72,7 @@ class Entity {
         // Party!!!
         void addPartyCharacter(Character * character);
         std::vector<Character * > getParty();
+        bool isPartyDead();
         
 };
 

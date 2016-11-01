@@ -22,6 +22,8 @@ class Character {
         void setName(std::string name);
         void setMaxHp(int maxHp);
         void setCurrentHp(int currentHp);
+        
+        bool isDead();
 };
 
 #endif
