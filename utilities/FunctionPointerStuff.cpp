@@ -14,7 +14,7 @@ void changeColor(Entity * e1, Entity * e2) {
 
 void displayDialogue(Entity * e1, Entity * e2) {
     if(Player* v = dynamic_cast<Player*>( e1 )) {
-        game->clearGUI1();
+        game->clearGUI2();
         mvwprintw(game->getGUI2Window(), 0, 0, "This is my Dialogue. Stay a while and listen.");
         game->refreshAll();
         playerInputBlocking(game->getGameWindow());

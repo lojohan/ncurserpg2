@@ -98,6 +98,8 @@ void Game::drawGUI2Elements() {
 void Game::draw() {
     clearAll();
     
+    drawTitle();
+    
     drawEntities();
     
     drawPause();
@@ -107,6 +109,22 @@ void Game::draw() {
     
     refreshAll();
     
+}
+
+void Game::drawTitle() {
+
+    std::ifstream myfile ("../res/Title.txt");
+//    myfile.imbue(std::locale("en_US.UTF8"));
+    myfile.seekg(0, std::ios::end);
+    int len = myfile.tellg();
+    myfile.seekg(0);
+    char title[len+1];
+    if (myfile.is_open())
+    {
+        myfile.read(title, len);
+    }
+
+mvwprintw(title_window,0,0,title);
 }
 
 // clears window by drawing white spaces.
@@ -154,10 +172,16 @@ void Game::refreshGUI2() {
     wrefresh(gui2_window);
 }
 
+// refresh title
+void Game::refreshTitle() {
+    wrefresh(title_window);
+}
+
 void Game::refreshAll() {
     refreshGUI1();
     refreshGUI2();
     refreshGameScreen();
+    refreshTitle();
     
     wrefresh(super_window);
 }
@@ -203,21 +227,25 @@ void Game::initNCurses() {
 
 // creates windows and boxes.
 void Game::createWindows() {
-    super_window = newwin(GAME_HEIGHT+GUI2_HEIGHT+4,GAME_WIDTH+4+GUI1_WIDTH,0,0);
+    std::cout << "Creating windows";
+    super_window = newwin(GAME_HEIGHT+GUI2_HEIGHT+4+TITLE_HEIGHT+1,GAME_WIDTH+4+GUI1_WIDTH,0,0);
     
-    game_box = subwin(super_window, GAME_HEIGHT+2,GAME_WIDTH+2,0,0);
-    game_window = subwin(game_box, GAME_HEIGHT, GAME_WIDTH, 1, 1);
+    title_window = subwin(super_window,TITLE_HEIGHT, TITLE_WIDTH,0,0);
     
-    gui1_box = subwin(super_window, GUI1_HEIGHT+2, GUI1_WIDTH+2, 0, GAME_WIDTH+2);
-    gui1_window = subwin(gui1_box, GUI1_HEIGHT,GUI1_WIDTH,1,GAME_WIDTH+3);
+    game_box = subwin(super_window, GAME_HEIGHT+2,GAME_WIDTH+2,TITLE_HEIGHT,0);
+    game_window = subwin(game_box, GAME_HEIGHT, GAME_WIDTH, TITLE_HEIGHT+1, 1);
     
-    gui2_box = subwin(super_window, GUI2_HEIGHT+2,GUI2_WIDTH+2,GAME_HEIGHT+2,0);
-    gui2_window = subwin(gui2_box, GUI2_HEIGHT,GUI2_WIDTH,GAME_HEIGHT+3,1);
+    gui1_box = subwin(super_window, GUI1_HEIGHT+2, GUI1_WIDTH+2, TITLE_HEIGHT, GAME_WIDTH+2);
+    gui1_window = subwin(gui1_box, GUI1_HEIGHT,GUI1_WIDTH,TITLE_HEIGHT +1,GAME_WIDTH+3);
+    
+    gui2_box = subwin(super_window, GUI2_HEIGHT+2,GUI2_WIDTH+2,TITLE_HEIGHT+ GAME_HEIGHT+2,0);
+    gui2_window = subwin(gui2_box, GUI2_HEIGHT,GUI2_WIDTH,TITLE_HEIGHT + GAME_HEIGHT+3,1);
     
     box(game_box,0,0);
     box(gui1_box,0,0);
     box(gui2_box,0,0);
     
+    touchwin(title_window);
     touchwin(gui1_window);
     touchwin(gui2_window);
     touchwin(game_window);

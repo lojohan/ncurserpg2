@@ -34,7 +34,8 @@ void relativeCameraPos(Entity * centerentity, Entity * drawEntity, int arr[2], i
 
 void gameLoopInputHandler(int ch, bool *game_paused) {
     switch(ch)
-    {	case KEY_BACKSPACE:
+    {
+        case 'p':
             *game_paused = !(*game_paused);
 		break;
 	default:

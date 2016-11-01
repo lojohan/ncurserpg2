@@ -23,6 +23,8 @@ class Game {
         // should be in drawing bit
         WINDOW *super_window;
         
+        WINDOW *title_window;
+        
         WINDOW *game_box;
         WINDOW *game_window;
         
@@ -40,6 +42,9 @@ class Game {
         
         const static int GUI2_HEIGHT = 5;
         const static int GUI2_WIDTH = 62;
+        
+        const static int TITLE_HEIGHT = 2;
+        const static int TITLE_WIDTH = GUI2_WIDTH + 2;
         
         const static int START_X = 0;
         const static int START_Y = 0;
@@ -78,6 +83,7 @@ class Game {
         void clearGameWindow();
         void clearAll();
         
+        void drawTitle();
         void drawEntities();
         void drawGUI1Elements();
         void drawGUI2Elements();
@@ -87,6 +93,7 @@ class Game {
         void refreshGameScreen();
         void refreshGUI1();
         void refreshGUI2();
+        void refreshTitle();
         void refreshAll();
         
         WINDOW * getGameWindow();
