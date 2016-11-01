@@ -33,7 +33,8 @@ class Game {
 
         WINDOW *gui2_box;        
         WINDOW *gui2_window;
-        
+    
+    public:
         const static int GAME_HEIGHT = 15;
         const static int GAME_WIDTH = 30;
         
