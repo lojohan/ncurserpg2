@@ -26,8 +26,10 @@ class Game {
         WINDOW *game_box;
         WINDOW *game_window;
         
+        WINDOW *gui1_box;
         WINDOW *gui1_window;
-        
+
+        WINDOW *gui2_box;        
         WINDOW *gui2_window;
         
         const static int GAME_HEIGHT = 15;
@@ -72,6 +74,7 @@ class Game {
         // separate this drawing bit here
         void clearBeforeDraw(WINDOW * win, int startX, int startY, int height, int width);
         void clearGUI1();
+        void clearGUI2();
         void clearGameWindow();
         void clearAll();
         
@@ -88,6 +91,7 @@ class Game {
         
         WINDOW * getGameWindow();
         WINDOW * getGUI1Window();
+        WINDOW * getGUI2Window();
              
 };
 

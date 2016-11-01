@@ -82,16 +82,16 @@ void Game::drawPause() {
 // draw elements of GUI1
 void Game::drawGUI1Elements() {
     // placeholder
-    mvwprintw(gui1_window,1,1,"Currently facing: %s", (player->getCurrentDirection()).c_str() );
-    mvwprintw(gui1_window,2,1,"Player position: X=%d, Y=%d", player->getX(), player->getY() );
-    mvwprintw(gui1_window,3,1,"Game paused: %s", game_paused ? "true" : "false" );
-    mvwaddwstr(gui1_window,4,1,L"HP: ♥♥♥♥♥♥");
+    mvwprintw(gui1_window,0,0,"Currently facing: %s", (player->getCurrentDirection()).c_str() );
+    mvwprintw(gui1_window,1,0,"Player position: X=%d, Y=%d", player->getX(), player->getY() );
+    mvwprintw(gui1_window,2,0,"Game paused: %s", game_paused ? "true" : "false" );
+    mvwaddwstr(gui1_window,3,0,L"HP: ♥♥♥♥♥♥");
 }
 
 // draw elements of GUI2
 void Game::drawGUI2Elements() {
     // placeholder
-    mvwprintw(gui2_window,1,1,"Lorem Ipsum");
+    mvwprintw(gui2_window,0,0,"Lorem Ipsum");
 }
 
 // do all the drawing.
@@ -121,11 +121,15 @@ void Game::clearBeforeDraw(WINDOW * win,int startX, int startY, int height, int 
 void Game::clearAll() {
     clearGameWindow();
     clearGUI1();
-    clearBeforeDraw(gui2_window, 1, 1, GUI2_HEIGHT-2, GUI2_WIDTH-2);
+    clearGUI2();
 }
 
 void Game::clearGUI1() {
-    clearBeforeDraw(gui1_window, 1, 1, GUI1_HEIGHT-2, GUI1_WIDTH-2);    
+    clearBeforeDraw(gui1_window, 0, 0, GUI1_HEIGHT, GUI1_WIDTH);    
+}
+
+void Game::clearGUI2() {
+    clearBeforeDraw(gui2_window, 0, 0, GUI2_HEIGHT, GUI2_WIDTH);    
 }
 
 void Game::clearGameWindow() {
@@ -140,11 +144,13 @@ void Game::refreshGameScreen() {
 
 // refresh gui1
 void Game::refreshGUI1() {
+    wrefresh(gui2_box);
     wrefresh(gui1_window);
 }
 
 // refresh gui2
 void Game::refreshGUI2() {
+    wrefresh(gui2_box);
     wrefresh(gui2_window);
 }
 
@@ -202,13 +208,15 @@ void Game::createWindows() {
     game_box = subwin(super_window, GAME_HEIGHT+2,GAME_WIDTH+2,0,0);
     game_window = subwin(game_box, GAME_HEIGHT, GAME_WIDTH, 1, 1);
     
-    gui1_window = subwin(super_window, GUI1_HEIGHT+2,GUI1_WIDTH+2,0,GAME_WIDTH+2);
+    gui1_box = subwin(super_window, GUI1_HEIGHT+2, GUI1_WIDTH+2, 0, GAME_WIDTH+2);
+    gui1_window = subwin(gui1_box, GUI1_HEIGHT,GUI1_WIDTH,1,GAME_WIDTH+3);
     
-    gui2_window = subwin(super_window, GUI2_HEIGHT+2,GUI2_WIDTH+2,GAME_HEIGHT+2,0);
+    gui2_box = subwin(super_window, GUI2_HEIGHT+2,GUI2_WIDTH+2,GAME_HEIGHT+2,0);
+    gui2_window = subwin(gui2_box, GUI2_HEIGHT,GUI2_WIDTH,GAME_HEIGHT+3,1);
     
     box(game_box,0,0);
-    box(gui1_window,0,0);
-    box(gui2_window,0,0);
+    box(gui1_box,0,0);
+    box(gui2_box,0,0);
     
     touchwin(gui1_window);
     touchwin(gui2_window);
@@ -221,6 +229,10 @@ WINDOW * Game::getGameWindow() {
 
 WINDOW * Game::getGUI1Window() {
     return this->gui1_window;
+}
+
+WINDOW * Game::getGUI2Window() {
+    return this->gui2_window;
 }
 
 // init color pairs

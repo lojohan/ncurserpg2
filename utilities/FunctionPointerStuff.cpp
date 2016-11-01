@@ -14,7 +14,7 @@ void changeColor(Entity * e1, Entity * e2) {
 
 void displayDialogue(Entity * e1, Entity * e2) {
     game->clearGUI1();
-    mvwprintw(game->getGUI1Window(), 1, 1, "This is my Dialogue. Stay a while and listen.");
+    mvwprintw(game->getGUI2Window(), 0, 0, "This is my Dialogue. Stay a while and listen.");
     game->refreshAll();
     playerInputBlocking(game->getGameWindow());
     
@@ -44,7 +44,7 @@ void battle(Entity * e1, Entity * e2) {
             
             // draw battle log window
             for (int i= 0; i < battleLog.size(); i++) {
-                mvwprintw(log_window, 1+i, 1, battleLog.at(i).c_str());
+                mvwprintw(log_window, i, 0, battleLog.at(i).c_str());
             }
             
             // loop all characters and find who acts next
