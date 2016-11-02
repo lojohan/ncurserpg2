@@ -15,10 +15,13 @@ class Entity {
     
         typedef void (*ColFnPtr)(Entity* entity1, Entity* entity2);
         typedef void (*MovFnPtr)(Entity * e, int c, int arr[2], int dt);
+        typedef void (*UseFnPtr)(Entity* entity1, Entity* entity2);
     
         std::vector<ColFnPtr> myCollisionFunctionPointers;
         
         std::vector<MovFnPtr> movementPointers;
+        
+        std::vector<UseFnPtr> useKeyPointers;
         
         std::vector<Character*> partyCharacters;
         
@@ -26,6 +29,7 @@ class Entity {
         bool solid;
         const wchar_t * image;
         int color;
+        std::string name;
         
     public:
     
@@ -35,7 +39,7 @@ class Entity {
         
         int t;
         
-        Entity(int x, int y, bool solid, const wchar_t * image, int color, std::vector<ColFnPtr> collision_ptrs, std::vector<MovFnPtr> movement_ptrs);
+        Entity(int x, int y, bool solid, const wchar_t * image, std::string name, int color, std::vector<ColFnPtr> collision_ptrs, std::vector<MovFnPtr> movement_ptrs, std::vector<UseFnPtr> use_ptrs);
         
         virtual void setX(int x);
         virtual void setY(int y);
@@ -44,6 +48,8 @@ class Entity {
         virtual int getX();
         virtual int getY();
         
+        virtual std::string getName();
+        virtual std::string setName(std::string name);
         
         // Movement
         virtual void getNextMove(int c, int arr[2], int dt);
@@ -58,6 +64,8 @@ class Entity {
         bool getSolid();
         
         virtual void onCollision(Entity *e);
+        
+        virtual void onUse(Entity *e);
         
         // Drawing
         void setImage(const wchar_t * image);

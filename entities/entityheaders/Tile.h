@@ -11,7 +11,7 @@ class Tile : public Entity {
         bool walkable;
     
     public:
-        Tile(int x, int y, const wchar_t * image, bool walkable, bool solid, int color, std::vector<ColFnPtr> collision_ptrs, std::vector<MovFnPtr> movement_ptrs);
+        Tile(int x, int y, const wchar_t * image, std::string name, bool walkable, bool solid, int color, std::vector<ColFnPtr> collision_ptrs, std::vector<MovFnPtr> movement_ptrs, std::vector<UseFnPtr> use_ptrs);
         
         void setWalkable(bool walkable);
         

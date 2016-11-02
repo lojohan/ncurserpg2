@@ -35,6 +35,14 @@ void Game::fillTileMap() {
     this->map->parseMap( &(this->entityList) );
 }
 
+Map * Game::getMap() {
+    return this->map;
+}
+
+std::vector<Entity*> Game::getEntities() {
+    return this->entityList;
+}
+
 // run logic for movables
 void Game::updateMovables(int ch, int t) {
     physicsLoop(ch, this->entityList, t);

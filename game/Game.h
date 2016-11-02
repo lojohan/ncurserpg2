@@ -56,7 +56,8 @@ class Game {
         Game();
         
         void fillTileMap();
-        
+        Map * getMap();
+        std::vector<Entity*> getEntities();
         
         void init();
         

@@ -1,7 +1,8 @@
 #include "../entityheaders/Entity.h"
 
-Entity::Entity(int x, int y, bool solid, const wchar_t * image, int color, std::vector<ColFnPtr> collision_ptrs, std::vector<MovFnPtr> movement_ptrs) {
+Entity::Entity(int x, int y, bool solid, const wchar_t * image, std::string name, int color, std::vector<ColFnPtr> collision_ptrs, std::vector<MovFnPtr> movement_ptrs, std::vector<UseFnPtr> use_ptrs) {
     this->image = image;
+    this->name = name;
     this->solid = solid;
     this->setX(x);
     this->setY(y);
@@ -16,6 +17,11 @@ Entity::Entity(int x, int y, bool solid, const wchar_t * image, int color, std::
     for(int i = 0; i < l2; i++) {
         (this->movementPointers).push_back( movement_ptrs.at(i));
     }
+    
+    int l3 = use_ptrs.size();
+    for(int i = 0; i < l3; i++) {
+        (this->useKeyPointers).push_back( use_ptrs.at(i));
+    }
 }
 
 void Entity::setX(int x) {
@@ -24,6 +30,14 @@ void Entity::setX(int x) {
 
 void Entity::setY(int y){
     this->y = y;
+}
+
+std::string Entity::getName() {
+    return this->name;
+}
+
+std::string Entity::setName(std::string name) {
+    this->name = name;
 }
 
 void Entity::setCoords(int x, int y){
@@ -88,6 +102,14 @@ void Entity::onCollision(Entity *e) {
     
     for(int i = 0; i < l; i++) {
         (myCollisionFunctionPointers.at(i))(e,this);
+    }
+}
+
+void Entity::onUse(Entity * e) {
+    int l = useKeyPointers.size();
+    
+    for(int i = 0; i < l; i++) {
+        (useKeyPointers.at(i))(e,this);
     }
 }
 

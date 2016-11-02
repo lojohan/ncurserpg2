@@ -14,6 +14,10 @@ Map::Map(){
     movementFunctionMap["noMove"] = noMove;
     movementFunctionMap["playerControl"] = playerControl;
     movementFunctionMap["randomAI"] = randomAI;
+    
+    //use stuff
+    useFunctionMap["displayDialogue"] = displayDialogue;
+    useFunctionMap["changeColor"] = changeColor;
 }
 
 //TODO: clean and split into smaller functions.
@@ -37,12 +41,19 @@ void Map::parseMap(std::vector<Entity*> * tiles) {
             int color;
             std::vector<ColFnPtr> collisionpointers;
             std::vector<MovFnPtr> movementpointers;
+            std::vector<UseFnPtr> usepointers;
+            std::string name;
             
             // Gets various parameters from map file and constructs an object.
             for(int i = 1; i < splitstrings.size(); i++) {
                 
                 switch(i)
                 {	case 1 :
+                    {
+                        name = splitstrings.at(i);
+                    break;
+                    }
+                case 2 :
                     {
                         std::vector<std::string> coords;
                         splitString( splitstrings.at(i), &coords, ',');
@@ -53,19 +64,19 @@ void Map::parseMap(std::vector<Entity*> * tiles) {
                         
                     break;
                     }
-                case 2:
+                case 3:
                     {
                         int value = atoi( splitstrings.at(i).c_str());
                         
                         getImageFromImageMap(&image,value);
                     break;
                     }
-                case 3:
+                case 4:
                     {
                         color = atoi( splitstrings.at(i).c_str());
                     break;
                     }
-                case 4:
+                case 5:
                     {
                         std::vector<std::string> functionstrings;
                         splitString( splitstrings.at(i), &functionstrings, ',');
@@ -75,13 +86,23 @@ void Map::parseMap(std::vector<Entity*> * tiles) {
                         }
                     break;
                     }
-                case 5:
+                case 6:
                     {
                         std::vector<std::string> functionstrings;
                         splitString( splitstrings.at(i), &functionstrings, ',');
                         
                         for(std::vector<std::string>::iterator it = functionstrings.begin(); it != functionstrings.end(); ++it) {
                             movementpointers.push_back(movementFunctionMap[ (*it) ]);
+                        }
+                    break;
+                    }
+                case 7:
+                    {
+                        std::vector<std::string> functionstrings;
+                        splitString( splitstrings.at(i), &functionstrings, ',');
+                        
+                        for(std::vector<std::string>::iterator it = functionstrings.begin(); it != functionstrings.end(); ++it) {
+                            usepointers.push_back(useFunctionMap[ (*it) ]);
                         }
                     break;
                     }
@@ -92,13 +113,13 @@ void Map::parseMap(std::vector<Entity*> * tiles) {
             }
                 
             if (!splitstrings.at(0).compare("Tile")) {
-                putEntityInMap( new Tile(pos[0],pos[1],image,true,true, color, collisionpointers, movementpointers), tiles);
+                putEntityInMap( new Tile(pos[0],pos[1],image,name,true,true, color, collisionpointers, movementpointers, usepointers), tiles);
             }
             if (!splitstrings.at(0).compare("Player")) {
-                putEntityInMap( new Player(pos[0],pos[1], true, image, color, collisionpointers, movementpointers), tiles);
+                putEntityInMap( new Player(pos[0],pos[1], true, image, name, color, collisionpointers, movementpointers, usepointers), tiles);
             }
             if (!splitstrings.at(0).compare("NPC")) {
-                putEntityInMap( new NPC(pos[0],pos[1], true, image, color, collisionpointers, movementpointers), tiles);
+                putEntityInMap( new NPC(pos[0],pos[1], true, image, name, color, collisionpointers, movementpointers, usepointers), tiles);
             }
         }
     myfile.close();
