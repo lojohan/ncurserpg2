@@ -9,7 +9,8 @@ void doNothing(Entity * e1, Entity * e2) {
 }
 
 void changeColor(Entity * e1, Entity * e2) {
-    e1->setColor(6);
+    int currentColor = e1->getColor(); 
+    e1->setColor( (currentColor + 1) % 7 + 1 );
 }
 
 void displayDialogue(Entity * e1, Entity * e2) {
@@ -85,70 +86,7 @@ void noMove(Entity * e, int c, int arr[2], int dt) {
 }
 
 void playerControl(Entity * e, int c, int arr[2], int dt) {
-    switch(c)
-    {	case KEY_UP:
-        {
-            arr[0] = e->getX() - 1;
-            e->dir = Entity::NORTH;
-		break;
-		}
-	case KEY_DOWN:
-	{
-            arr[0] = e->getX() + 1;
-            e->dir = Entity::SOUTH;
-		break;
-    }
-	case KEY_LEFT:
-	{
-	        arr[1] = e->getY() - 1;
-	        e->dir = Entity::WEST;
-		break;
-	}
-	case KEY_RIGHT:
-	{
-	        arr[1] = e->getY() + 1;
-	        e->dir = Entity::EAST;
-		break;
-	}
-	case 'e':
-	{
-	
-        std::vector<Entity*> ents( game->getEntities() );
-        int len = ents.size();
-        
-        for(int i = 0; i < len; i++) {
-	        switch(e->dir)
-	        {
-	            case Entity::NORTH:
-                    if(ents.at(i)->getX() == e->getX()-1 && ents.at(i)->getY() == e->getY()) {
-                        ents.at(i)->onUse(e);
-                    }
-	            break;
-	            case Entity::SOUTH:
-                    if(ents.at(i)->getX() == e->getX()+1 && ents.at(i)->getY() == e->getY()) {
-                        ents.at(i)->onUse(e);
-                    }
-	            break;
-	            case Entity::EAST:
-                    if(ents.at(i)->getX() == e->getX() && ents.at(i)->getY() == e->getY()+1) {
-                        ents.at(i)->onUse(e);
-                    }
-	            break;
-	            case Entity::WEST:
-                    if(ents.at(i)->getX() == e->getX() && ents.at(i)->getY() == e->getY()-1) {
-                        ents.at(i)->onUse(e);
-                    }
-	            break;
-	            default:
-	                break;
-	        }
-	    }
-	    
-	    break;
-	}
-	default:
-		break;
-    }
+    gameLoopInputHandler(e, c, arr, dt);
 }
 
 void randomAI(Entity * e, int c, int arr[2], int dt) {

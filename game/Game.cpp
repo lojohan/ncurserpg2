@@ -15,8 +15,6 @@ void Game::start() {
         // placeholder
         int ch = playerInput(this->game_window);
         
-        gameLoopInputHandler(ch, &game_paused);
-        
         // run game logic here if not paused
         if(!game_paused) {
             updateMovables(ch, time_passed);
@@ -277,6 +275,10 @@ void Game::initColors() {
     for(int i = COLOR_RED; i <= COLOR_WHITE; i++) {
         init_pair(i, i, COLOR_BLACK);
     }
+}
+
+void Game::togglePause() {
+    this->game_paused = !(this->game_paused);
 }
 
 // closes all windows on close.

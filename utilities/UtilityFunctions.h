@@ -13,6 +13,7 @@
 #include <unistd.h>
 #include <ncurses.h>
 #include "../entities/Entities.h"
+#include "../game/Game.h"
 
 void clearScreen();
 
@@ -24,10 +25,12 @@ int playerInput(WINDOW *menu_win);
 
 int playerInputBlocking(WINDOW * menu_win);
 
-void gameLoopInputHandler(int ch, bool *game_paused);
+void gameLoopInputHandler(Entity * e, int c, int arr[2], int dt);
 
 void relativeCameraPos(Entity * centerentity, Entity * drawEntity, int arr[2], int height, int width);
 
 void splitString(std::string str_to_split, std::vector< std::string > * splits, char delimiter);
+
+void useKeyBehaviour(Entity * e);
 
 #endif

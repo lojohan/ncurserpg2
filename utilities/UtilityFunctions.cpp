@@ -32,12 +32,42 @@ void relativeCameraPos(Entity * centerentity, Entity * drawEntity, int arr[2], i
     arr[1] = width/2 - centerentity->getY() + drawEntity->getY();
 }
 
-void gameLoopInputHandler(int ch, bool *game_paused) {
-    switch(ch)
-    {
-        case 'p':
-            *game_paused = !(*game_paused);
+void gameLoopInputHandler(Entity * e, int c, int arr[2], int dt) {
+    switch(c)
+    {	case KEY_UP:
+        {
+            arr[0] = e->getX() - 1;
+            e->dir = Entity::NORTH;
 		break;
+		}
+	case KEY_DOWN:
+	{
+            arr[0] = e->getX() + 1;
+            e->dir = Entity::SOUTH;
+		break;
+    }
+	case KEY_LEFT:
+	{
+	        arr[1] = e->getY() - 1;
+	        e->dir = Entity::WEST;
+		break;
+	}
+	case KEY_RIGHT:
+	{
+	        arr[1] = e->getY() + 1;
+	        e->dir = Entity::EAST;
+		break;
+	}
+	case 'e':
+	{
+	    useKeyBehaviour(e);
+	    break;
+	}
+    case 'p':
+    {
+        game->togglePause();
+		break;
+	}
 	default:
 		break;
     }
@@ -53,6 +83,39 @@ void splitString(std::string str_to_split, std::vector< std::string > * splits, 
             prevsplit = i+1;
         } else if (i == str_to_split.length() -1 ) {
             (*splits).push_back( str_to_split.substr(prevsplit,i-prevsplit+1) );
+        }
+    }
+}
+
+void useKeyBehaviour(Entity * e) {
+    std::vector<Entity*> ents( game->getEntities() );
+    int len = ents.size();
+    
+    for(int i = 0; i < len; i++) {
+        switch(e->dir)
+        {
+            case Entity::NORTH:
+                if(ents.at(i)->getX() == e->getX()-1 && ents.at(i)->getY() == e->getY()) {
+                    ents.at(i)->onUse(e);
+                }
+            break;
+            case Entity::SOUTH:
+                if(ents.at(i)->getX() == e->getX()+1 && ents.at(i)->getY() == e->getY()) {
+                    ents.at(i)->onUse(e);
+                }
+            break;
+            case Entity::EAST:
+                if(ents.at(i)->getX() == e->getX() && ents.at(i)->getY() == e->getY()+1) {
+                    ents.at(i)->onUse(e);
+                }
+            break;
+            case Entity::WEST:
+                if(ents.at(i)->getX() == e->getX() && ents.at(i)->getY() == e->getY()-1) {
+                    ents.at(i)->onUse(e);
+                }
+            break;
+            default:
+                break;
         }
     }
 }

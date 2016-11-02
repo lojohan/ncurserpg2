@@ -5,6 +5,7 @@
 #include <string>
 #include <stdlib.h>
 #include <ncurses.h>
+#include "../utilities/UtilityFunctions.h"
 #include "../entities/Entities.h"
 #include "../game/Game.h"
 

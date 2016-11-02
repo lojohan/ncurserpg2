@@ -66,6 +66,8 @@ class Game {
         // closes all windows on close.
         void end();
         
+        void togglePause();
+        
         // run logic for entities
         void updateMovables(int ch, int t);
         
