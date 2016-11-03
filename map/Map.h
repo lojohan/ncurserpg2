@@ -15,8 +15,17 @@
 #include "../utilities/FunctionPointerStuff.h"
 #include "../utilities/typedefs.h"
 
-class Map {
+#define CLASS_NAME 0
+#define ENTITY_NAME 1
+#define POSITION 2
+#define IMAGE 3
+#define COLOR 4
+#define COLLISION 5
+#define MOVEMENT 6
+#define USE 7
 
+
+class Map {
     protected:
     
         std::string name;
@@ -24,7 +33,7 @@ class Map {
         std::map<std::string,MovFnPtr_unbound> movementFunctionMap;
         std::map<std::string,UseFnPtr_unbound> useFunctionMap;
         
-        bool parseFunctionString();
+        int * parseFunctionString(std::string * s, std::string * fname, int * count);
 
     public:
     
