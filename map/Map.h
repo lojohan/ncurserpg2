@@ -12,13 +12,11 @@
 #include "../entities/Entities.h"
 #include "../utilities/UtilityFunctions.h"
 #include "../utilities/FunctionPointerStuff.h"
+#include "../utilities/typedefs.h"
 
 class Map {
 
     protected:
-        typedef void (*ColFnPtr)(Entity* entity1, Entity* entity2);
-        typedef void (*MovFnPtr)(Entity * e, int c, int arr[2], int dt);
-        typedef void (*UseFnPtr)(Entity* entity1, Entity* entity2);
     
         std::string name;
         std::map<std::string,ColFnPtr> collisionFunctionMap;

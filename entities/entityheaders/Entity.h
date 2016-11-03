@@ -8,14 +8,12 @@
 #include <vector>
 #include <time.h>
 #include "Character.h"
+#include "../../utilities/typedefs.h"
 
 class Entity {
 
     protected:
-    
-        typedef void (*ColFnPtr)(Entity* entity1, Entity* entity2);
-        typedef void (*MovFnPtr)(Entity * e, int c, int arr[2], int dt);
-        typedef void (*UseFnPtr)(Entity* entity1, Entity* entity2);
+
     
         std::vector<ColFnPtr> myCollisionFunctionPointers;
         
