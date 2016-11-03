@@ -117,6 +117,7 @@ void playerControl(Entity * e, int c, int arr[2], int dt) {
 	        e->dir = Entity::EAST;
 		break;
 	}
+	// ctrl+left
 	case 540:
 	{
 	        e->setCurrentDirection( Entity::WEST );

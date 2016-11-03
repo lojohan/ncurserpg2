@@ -25,10 +25,12 @@ void Game::start() {
         this->draw();
         
         // Debugging key
+        /*
         if (ch != -1) {
             mvwprintw(game_window, 0,0,"%d",ch);
             refreshAll();
         }
+        */
         
     }
     
@@ -99,6 +101,7 @@ void Game::drawGUI1Elements() {
     mvwprintw(gui1_window,1,0,"Player position: X=%d, Y=%d", player->getX(), player->getY() );
     mvwprintw(gui1_window,2,0,"Game paused: %s", game_paused ? "true" : "false" );
     mvwaddwstr(gui1_window,3,0,L"HP: ♥♥♥♥♥♥");
+    
 }
 
 // draw elements of GUI2
