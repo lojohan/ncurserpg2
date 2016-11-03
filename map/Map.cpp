@@ -36,6 +36,10 @@ void Map::parseMap(std::vector<Entity*> * tiles) {
             if (line[0] == '#' || line.length() == 0)
                 continue;
 
+            boost::regex expr("\\s*");
+            if(boost::regex_match(line,expr)) 
+                continue;
+
             std::vector<std::string> splitstrings;
             
             splitString(line, &splitstrings, ';');

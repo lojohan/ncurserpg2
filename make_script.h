@@ -19,7 +19,7 @@ g++ -c ./utilities/UtilityFunctions.cpp
 g++ -c ./utilities/FunctionPointerStuff.cpp 
 
 
-g++ -o RPG *.o  -lncursesw -std=c++11
+g++ -o RPG *.o  -lncursesw  -l boost_system -lboost_regex -std=c++11
 
 rm *.o
 
