@@ -63,17 +63,16 @@ void Game::drawEntities() {
         // Array containing positions of entities relative to camera.
         int arr[2];
         relativeCameraPos( player, *it, arr, GAME_HEIGHT, GAME_WIDTH);
-        
-        // draws the entities in list of entities with the appropriate color.
-        wattron(game_window, COLOR_PAIR( (*it)->getColor() ));
-        //pos relative to player
-        (*it)->draw(game_window, arr[0], arr[1]);
-        
-        //pos relative to 0,0
-        //(*it)->draw(game_window, (*it)->getX(), (*it)->getY());
-        
-        wattroff(game_window, COLOR_PAIR( (*it)->getColor() ));
+        drawEntity(game_window, *it, arr[0], arr[1]);
+
     }
+}
+
+void Game::drawEntity(WINDOW * window, Entity * e, int x, int y) {
+    // draws the entities in list of entities with the appropriate color.
+    wattron(window, COLOR_PAIR( e->getColor() ));
+    e->draw(window, x, y);
+    wattroff(window, COLOR_PAIR( e->getColor() ));    
 }
 
 void Game::drawPause() {

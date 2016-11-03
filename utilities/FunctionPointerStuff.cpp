@@ -16,7 +16,12 @@ void changeColor(Entity * e1, Entity * e2) {
 void displayDialogue(Entity * e1, Entity * e2) {
     if(Player* v = dynamic_cast<Player*>( e1 )) {
         game->clearGUI2();
-        mvwprintw(game->getGUI2Window(), 0, 0, "%s: This is my Dialogue. Stay a while and listen.", e2->getName().c_str());
+        
+        
+        game->drawEntity(game->getGUI2Window(), e2, 0,0);
+        
+        
+        mvwprintw(game->getGUI2Window(), 0, 1, " %s: This is my Dialogue. Stay a while and listen.", e2->getName().c_str());
         mvwprintw(game->getGUI2Window(), Game::GUI2_HEIGHT-1, 0, "▼");
         game->refreshAll();
         int c = 0;

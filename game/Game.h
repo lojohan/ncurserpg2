@@ -89,6 +89,7 @@ class Game {
         
         void drawTitle();
         void drawEntities();
+        void drawEntity(WINDOW * window, Entity * e, int x, int y);
         void drawGUI1Elements();
         void drawGUI2Elements();
         void drawPause();

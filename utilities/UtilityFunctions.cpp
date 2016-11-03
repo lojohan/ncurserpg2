@@ -87,6 +87,7 @@ void splitString(std::string str_to_split, std::vector< std::string > * splits, 
     }
 }
 
+// could use a map over all entities to determine neighbours
 void useKeyBehaviour(Entity * e) {
     std::vector<Entity*> ents( game->getEntities() );
     int len = ents.size();
