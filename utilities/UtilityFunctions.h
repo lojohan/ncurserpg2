@@ -25,7 +25,7 @@ int playerInput(WINDOW *menu_win);
 
 int playerInputBlocking(WINDOW * menu_win);
 
-void gameLoopInputHandler(Entity * e, int c, int arr[2], int dt);
+void gameLoopInputHandler(int c);
 
 void relativeCameraPos(Entity * centerentity, Entity * drawEntity, int arr[2], int height, int width);
 

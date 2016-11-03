@@ -26,7 +26,7 @@ void Map::parseMap(std::vector<Entity*> * tiles) {
     // placeholder
     
     std::string line;
-    std::ifstream myfile ("../res/maps/map.txt");
+    std::ifstream myfile ("res/maps/map.txt");
     myfile.imbue(std::locale("en_US.UTF8"));
     if (myfile.is_open())
     {

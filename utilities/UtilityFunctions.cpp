@@ -32,44 +32,13 @@ void relativeCameraPos(Entity * centerentity, Entity * drawEntity, int arr[2], i
     arr[1] = width/2 - centerentity->getY() + drawEntity->getY();
 }
 
-void gameLoopInputHandler(Entity * e, int c, int arr[2], int dt) {
-    switch(c)
-    {	case KEY_UP:
+void gameLoopInputHandler(int c) {
+    switch(c)  {
+        case 'p':
         {
-            arr[0] = e->getX() - 1;
-            e->dir = Entity::NORTH;
-		break;
-		}
-	case KEY_DOWN:
-	{
-            arr[0] = e->getX() + 1;
-            e->dir = Entity::SOUTH;
-		break;
-    }
-	case KEY_LEFT:
-	{
-	        arr[1] = e->getY() - 1;
-	        e->dir = Entity::WEST;
-		break;
-	}
-	case KEY_RIGHT:
-	{
-	        arr[1] = e->getY() + 1;
-	        e->dir = Entity::EAST;
-		break;
-	}
-	case 'e':
-	{
-	    useKeyBehaviour(e);
-	    break;
-	}
-    case 'p':
-    {
-        game->togglePause();
-		break;
-	}
-	default:
-		break;
+            game->togglePause();
+		    break;
+	    }
     }
 }
 

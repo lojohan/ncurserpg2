@@ -15,12 +15,20 @@ void Game::start() {
         // placeholder
         int ch = playerInput(this->game_window);
         
+        gameLoopInputHandler(ch);
+        
         // run game logic here if not paused
         if(!game_paused) {
             updateMovables(ch, time_passed);
         }
         
         this->draw();
+        
+        // Debugging key
+        if (ch != -1) {
+            mvwprintw(game_window, 0,0,"%d",ch);
+            refreshAll();
+        }
         
     }
     
@@ -118,7 +126,7 @@ void Game::draw() {
 
 void Game::drawTitle() {
 
-    std::ifstream myfile ("../res/Title.txt");
+    std::ifstream myfile ("res/Title.txt");
 //    myfile.imbue(std::locale("en_US.UTF8"));
     myfile.seekg(0, std::ios::end);
     int len = myfile.tellg();

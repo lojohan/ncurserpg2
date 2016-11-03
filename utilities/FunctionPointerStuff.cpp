@@ -91,7 +91,60 @@ void noMove(Entity * e, int c, int arr[2], int dt) {
 }
 
 void playerControl(Entity * e, int c, int arr[2], int dt) {
-    gameLoopInputHandler(e, c, arr, dt);
+    switch(c)
+    {
+    case KEY_UP:
+        {
+            arr[0] = e->getX() - 1;
+            e->dir = Entity::NORTH;
+		break;
+		}
+	case KEY_DOWN:
+	{
+            arr[0] = e->getX() + 1;
+            e->dir = Entity::SOUTH;
+		break;
+    }
+	case KEY_LEFT:
+	{
+	        arr[1] = e->getY() - 1;
+	        e->dir = Entity::WEST;
+		break;
+	}
+	case KEY_RIGHT:
+	{
+	        arr[1] = e->getY() + 1;
+	        e->dir = Entity::EAST;
+		break;
+	}
+	case 540:
+	{
+	        e->setCurrentDirection( Entity::WEST );
+		break;
+	}
+	case 555:
+	{
+	        e->setCurrentDirection( Entity::EAST );
+		break;
+	}
+	case 561:
+	{
+	        e->setCurrentDirection( Entity::NORTH );
+		break;
+	}
+	case 520:
+	{
+	        e->setCurrentDirection( Entity::SOUTH );
+		break;
+	}
+	case 'e':
+	{
+	    useKeyBehaviour(e);
+	    break;
+	}
+	default:
+		break;
+    }
 }
 
 void randomAI(Entity * e, int c, int arr[2], int dt) {
