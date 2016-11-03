@@ -6,7 +6,7 @@ Map::Map(){
     //collision stuff
     collisionFunctionMap["teleportEntity"] = teleportEntity;
     collisionFunctionMap["changeColor"] = changeColor;
-    collisionFunctionMap["displayDialogue"] = displayDialogue;
+    //collisionFunctionMap["displayDialogue"] = displayDialogue;
     collisionFunctionMap["battle"] = battle;
     
     //movement stuff
@@ -17,7 +17,11 @@ Map::Map(){
     
     //use stuff
     useFunctionMap["displayDialogue"] = displayDialogue;
-    useFunctionMap["changeColor"] = changeColor;
+    //useFunctionMap["changeColor"] = changeColor;
+}
+
+bool Map::parseFunctionString() {
+    
 }
 
 //TODO: clean and split into smaller functions.
@@ -90,7 +94,29 @@ void Map::parseMap(std::vector<Entity*> * tiles) {
                         splitString( splitstrings.at(i), &functionstrings, ',');
                         
                         for(std::vector<std::string>::iterator it = functionstrings.begin(); it != functionstrings.end(); ++it) {
-                            collisionpointers.push_back(collisionFunctionMap[ (*it) ]);
+                            boost::regex expr("([^(]+)(?:\\((.*?)\\))?");
+                            boost::smatch matches;
+                            if (boost::regex_search(*it, matches, expr)) {
+                                std::string fname = matches[1];
+                                std::string paramsStr = matches[2];
+                                
+                                std::vector<std::string> paramsStrs;
+                                splitString( paramsStr, &paramsStrs, ' ');
+                                
+                                int * paramsInts = (int*) calloc(paramsStrs.size(), sizeof(int));
+                                
+                                for (int j = 0; j < paramsStrs.size(); j++) {
+                                    paramsInts[j] = atoi( paramsStrs[j].c_str() );
+                                }
+                                
+                                //FILE * LOG_FILE = fopen("log.log", "a");
+                                //fprintf(LOG_FILE, "fname=%s, paramsStr=%s\n", fname.c_str(), paramsStr.c_str());
+                                //fclose(LOG_FILE);
+                              
+                                ColFnPtr_unbound f = collisionFunctionMap[ fname ];
+                                ColFnPtr f_bound = boost::bind(f, _1, _2, paramsStrs.size(), paramsInts);
+                                collisionpointers.push_back(f_bound);
+                            }
                         }
                     break;
                     }
@@ -100,7 +126,29 @@ void Map::parseMap(std::vector<Entity*> * tiles) {
                         splitString( splitstrings.at(i), &functionstrings, ',');
                         
                         for(std::vector<std::string>::iterator it = functionstrings.begin(); it != functionstrings.end(); ++it) {
-                            movementpointers.push_back(movementFunctionMap[ (*it) ]);
+                            boost::regex expr("([^(]+)(?:\\((.*?)\\))?");
+                            boost::smatch matches;
+                            if (boost::regex_search(*it, matches, expr)) {
+                                std::string fname = matches[1];
+                                std::string paramsStr = matches[2];
+                                
+                                std::vector<std::string> paramsStrs;
+                                splitString( paramsStr, &paramsStrs, ' ');
+                                
+                                int * paramsInts = (int*) calloc(paramsStrs.size(), sizeof(int));
+                                
+                                for (int j = 0; j < paramsStrs.size(); j++) {
+                                    paramsInts[j] = atoi( paramsStrs[j].c_str() );
+                                }
+                                
+                                //FILE * LOG_FILE = fopen("log.log", "a");
+                                //fprintf(LOG_FILE, "fname=%s, paramsStr=%s\n", fname.c_str(), paramsStr.c_str());
+                                //fclose(LOG_FILE);
+                              
+                                MovFnPtr_unbound f = movementFunctionMap[ fname ];
+                                MovFnPtr f_bound = boost::bind(f, _1, _2, _3, _4, paramsStrs.size(), paramsInts);
+                                movementpointers.push_back(f_bound);
+                            }
                         }
                     break;
                     }
@@ -110,7 +158,29 @@ void Map::parseMap(std::vector<Entity*> * tiles) {
                         splitString( splitstrings.at(i), &functionstrings, ',');
                         
                         for(std::vector<std::string>::iterator it = functionstrings.begin(); it != functionstrings.end(); ++it) {
-                            usepointers.push_back(useFunctionMap[ (*it) ]);
+                            boost::regex expr("([^(]+)(?:\\((.*?)\\))?");
+                            boost::smatch matches;
+                            if (boost::regex_search(*it, matches, expr)) {
+                                std::string fname = matches[1];
+                                std::string paramsStr = matches[2];
+                                
+                                std::vector<std::string> paramsStrs;
+                                splitString( paramsStr, &paramsStrs, ' ');
+                                
+                                int * paramsInts = (int*) calloc(paramsStrs.size(), sizeof(int));
+                                
+                                for (int j = 0; j < paramsStrs.size(); j++) {
+                                    paramsInts[j] = atoi( paramsStrs[j].c_str() );
+                                }
+                                
+                                //FILE * LOG_FILE = fopen("log.log", "a");
+                                //fprintf(LOG_FILE, "fname=%s, paramsStr=%s\n", fname.c_str(), paramsStr.c_str());
+                                //fclose(LOG_FILE);
+                              
+                                UseFnPtr_unbound f = useFunctionMap[ fname ];
+                                UseFnPtr f_bound = boost::bind(f, _1, _2, paramsStrs.size(), paramsInts);
+                                usepointers.push_back(f_bound);
+                            }
                         }
                     break;
                     }

@@ -9,6 +9,7 @@
 #include <map>
 #include <wchar.h>
 #include <boost/regex.hpp>
+#include <boost/bind.hpp>
 #include "../entities/Entities.h"
 #include "../utilities/UtilityFunctions.h"
 #include "../utilities/FunctionPointerStuff.h"
@@ -19,9 +20,11 @@ class Map {
     protected:
     
         std::string name;
-        std::map<std::string,ColFnPtr> collisionFunctionMap;
-        std::map<std::string,MovFnPtr> movementFunctionMap;
-        std::map<std::string,UseFnPtr> useFunctionMap;
+        std::map<std::string,ColFnPtr_unbound> collisionFunctionMap;
+        std::map<std::string,MovFnPtr_unbound> movementFunctionMap;
+        std::map<std::string,UseFnPtr_unbound> useFunctionMap;
+        
+        bool parseFunctionString();
 
     public:
     

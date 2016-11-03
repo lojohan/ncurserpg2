@@ -1,19 +1,24 @@
 #include "FunctionPointerStuff.h"
 
 // functions to call on collision
-void teleportEntity(Entity * e1, Entity * e2) {
-    e1->setY(9);
+void teleportEntity(Entity * e1, Entity * e2, int count, int * params) {
+    if(count != 2) {
+       e1->setY(9);
+    } else {
+       e1->setX(params[0]);
+       e1->setY(params[1]);
+    }
 }
 
-void doNothing(Entity * e1, Entity * e2) {
+void doNothing(Entity * e1, Entity * e2, int count, int * params) {
 }
 
-void changeColor(Entity * e1, Entity * e2) {
+void changeColor(Entity * e1, Entity * e2, int count, int * params) {
     int currentColor = e1->getColor(); 
     e1->setColor( (currentColor + 1) % 7 + 1 );
 }
 
-void displayDialogue(Entity * e1, Entity * e2) {
+void displayDialogue(Entity * e1, Entity * e2, int count, int * params) {
     if(Player* v = dynamic_cast<Player*>( e1 )) {
         game->clearGUI2();
         
@@ -33,7 +38,7 @@ void displayDialogue(Entity * e1, Entity * e2) {
     
 }
 
-void battle(Entity * e1, Entity * e2) {
+void battle(Entity * e1, Entity * e2, int count, int * params) {
     if(Player* v = dynamic_cast<Player*>( e1 )) {
         bool fight = true;
         // vector containing all characters in this battle
@@ -87,10 +92,10 @@ void battle(Entity * e1, Entity * e2) {
 
 // functions to call on move
 
-void noMove(Entity * e, int c, int arr[2], int dt) {
+void noMove(Entity * e, int c, int arr[2], int dt, int count, int * params) {
 }
 
-void playerControl(Entity * e, int c, int arr[2], int dt) {
+void playerControl(Entity * e, int c, int arr[2], int dt, int count, int * params) {
     switch(c)
     {
     case KEY_UP:
@@ -148,7 +153,7 @@ void playerControl(Entity * e, int c, int arr[2], int dt) {
     }
 }
 
-void randomAI(Entity * e, int c, int arr[2], int dt) {
+void randomAI(Entity * e, int c, int arr[2], int dt, int count, int * params) {
 
     e->t += dt;
     if(e->t > 250000) {
