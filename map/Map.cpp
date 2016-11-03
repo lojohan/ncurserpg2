@@ -31,7 +31,11 @@ void Map::parseMap(std::vector<Entity*> * tiles) {
     if (myfile.is_open())
     {
         while ( std::getline (myfile,line) )
-        {   
+        {
+            // skip comments
+            if (line[0] == '#' || line.length() == 0)
+                continue;
+
             std::vector<std::string> splitstrings;
             
             splitString(line, &splitstrings, ';');

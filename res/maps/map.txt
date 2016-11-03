@@ -1,3 +1,4 @@
+# Map tiles
 Tile;;4,9;1;7;
 Tile;;5,9;1;7;
 Tile;;6,9;1;7;
