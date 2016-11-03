@@ -16,6 +16,8 @@ g++ -c ./game/Game.cpp
 
 g++ -c ./utilities/UtilityFunctions.cpp
 
+g++ -c ./utilities/DialogueManager.cpp
+
 g++ -c ./utilities/FunctionPointerStuff.cpp 
 
 

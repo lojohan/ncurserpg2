@@ -18,6 +18,7 @@ Map::Map(){
     //use stuff
     useFunctionMap["displayDialogue"] = displayDialogue;
     //useFunctionMap["changeColor"] = changeColor;
+    
 }
 
 static boost::regex functionParseExpr("([^(]+)(?:\\((.*?)\\))?");
@@ -203,3 +204,6 @@ void Map::getImageFromImageMap(const wchar_t ** wch, int i ) {
 		break;
     }
 }
+
+
+

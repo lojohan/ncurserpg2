@@ -32,7 +32,7 @@ class Map {
         std::map<std::string,ColFnPtr_unbound> collisionFunctionMap;
         std::map<std::string,MovFnPtr_unbound> movementFunctionMap;
         std::map<std::string,UseFnPtr_unbound> useFunctionMap;
-        
+
         int * parseFunctionString(std::string * s, std::string * fname, int * count);
 
     public:

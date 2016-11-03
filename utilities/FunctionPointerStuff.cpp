@@ -1,5 +1,8 @@
 #include "FunctionPointerStuff.h"
 
+#include "../map/Map.h"
+#include "DialogueManager.h"
+
 // functions to call on collision
 void teleportEntity(Entity * e1, Entity * e2, int count, int * params) {
     if(count != 2) {
@@ -19,23 +22,27 @@ void changeColor(Entity * e1, Entity * e2, int count, int * params) {
 }
 
 void displayDialogue(Entity * e1, Entity * e2, int count, int * params) {
-    if(Player* v = dynamic_cast<Player*>( e1 )) {
-        game->clearGUI2();
+    if (count != 1) {
         
-        
-        game->drawEntity(game->getGUI2Window(), e2, 0,0);
-        
-        
-        mvwprintw(game->getGUI2Window(), 0, 1, " %s: This is my Dialogue. Stay a while and listen.", e2->getName().c_str());
-        mvwprintw(game->getGUI2Window(), Game::GUI2_HEIGHT-1, 0, "▼");
-        game->refreshAll();
-        int c = 0;
-        
-        while( c != KEY_ENTER && c != ' ') {
-            c = playerInputBlocking(game->getGameWindow());
+    } else {
+        if(Player* v = dynamic_cast<Player*>( e1 )) {
+            game->clearGUI2();
+            
+            game->drawEntity(game->getGUI2Window(), e2, 0,0);
+            
+            std::string dialog = DialogueManager::getDialogue(params[0]);
+            
+            mvwprintw(game->getGUI2Window(), 0, 1, " %s: %s", e2->getName().c_str(), dialog.c_str());
+            mvwprintw(game->getGUI2Window(), Game::GUI2_HEIGHT-1, 0, "▼");
+            game->refreshAll();
+            int c = 0;
+            
+            while( c != KEY_ENTER && c != ' ') {
+                c = playerInputBlocking(game->getGameWindow());
+            }
         }
     }
-    
+
 }
 
 void battle(Entity * e1, Entity * e2, int count, int * params) {
