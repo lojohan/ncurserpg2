@@ -212,6 +212,8 @@ void Game::refreshAll() {
 // TODO: should also create entities on map.
 void Game::init() {
 
+    srand (time(NULL));
+
     game_paused = false;
     fillTileMap();
     

@@ -30,7 +30,7 @@ void displayDialogue(Entity * e1, Entity * e2, int count, int * params) {
             
             game->drawEntity(game->getGUI2Window(), e2, 0,0);
             
-            std::string dialog = DialogueManager::getDialogue(params[0]);
+            std::string dialog = params[0] == 0 ? DialogueManager::getRandomDialogue() : DialogueManager::getDialogue(params[0]);
             
             mvwprintw(game->getGUI2Window(), 0, 1, " %s: %s", e2->getName().c_str(), dialog.c_str());
             mvwprintw(game->getGUI2Window(), Game::GUI2_HEIGHT-1, 0, "▼");
@@ -164,8 +164,6 @@ void randomAI(Entity * e, int c, int arr[2], int dt, int count, int * params) {
 
     e->t += dt;
     if(e->t > 250000) {
-        srand (time(NULL));
-
         int output = (rand() % (int)(4));
         
         switch(output)

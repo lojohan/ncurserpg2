@@ -11,6 +11,7 @@
 
 namespace DialogueManager {
     std::string getDialogue(int id);
+    std::string getRandomDialogue();
 };
 
 #endif
