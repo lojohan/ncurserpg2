@@ -5,9 +5,10 @@
 #include <string>
 #include <stdlib.h>
 #include <ncurses.h>
-#include "../utilities/UtilityFunctions.h"
+#include "../ui/ui.h"
 #include "../entities/Entities.h"
 #include "../game/Game.h"
+
 
 // functions which can be called on collision
 void teleportEntity(Entity * e1, Entity * e2, int count, int * params);
