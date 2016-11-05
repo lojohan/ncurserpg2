@@ -45,51 +45,86 @@ void displayDialogue(Entity * e1, Entity * e2, int count, int * params) {
 
 }
 
+static std::vector<std::string> battleLog;
+
+void drawBattleLog(WINDOW * log_window) {
+	wclear(log_window);
+	for (int i= 0; i < battleLog.size(); i++) {
+		mvwprintw(log_window, i, 0, battleLog.at(i).c_str());
+	}
+}
+
 void battle(Entity * e1, Entity * e2, int count, int * params) {
     if(Player* v = dynamic_cast<Player*>( e1 )) {
         bool fight = true;
+
         // vector containing all characters in this battle
         std::vector<Character*> fighters;
         
         fighters.insert(fighters.end(), ( e1->getParty() ).begin(), ( e1->getParty() ).end());
         fighters.insert(fighters.end(), ( e2->getParty() ).begin(), ( e2->getParty() ).end());
         
-        std::vector<std::string> battleLog;
         battleLog.push_back("This is a battle log.");
+
+        unsigned int currentlySelectedMenuItem = 0;
+
         WINDOW * log_window = game->getGUI1Window();
+        WINDOW * menu_window = game->getGUI2Window();
+        WINDOW * main_window = game->getGameWindow();
         
+        const char * items[] = { "Attack!", "Run!" };
+        Menu battleMenu(menu_window, items, 2, 0);
+
         while(fight) {
             
         
             // Clear all windows
             game->clearAll();
             
-            // draw Main battle window
-            
-            // draw menu battle window
-            
             // draw battle log window
-            for (int i= 0; i < battleLog.size(); i++) {
-                mvwprintw(log_window, i, 0, battleLog.at(i).c_str());
+            drawBattleLog(log_window);
+
+            // draw Main battle window
+            {
+				int my,mx;
+				getmaxyx(main_window, my, mx);
+				mvwprintw(main_window, 0, 0, e2->getName().c_str());
+				mvwprintw(main_window, 2, 0, "[Insert party here]");
+				mvwprintw(main_window, my-1, 0, e1->getName().c_str());
+				mvwprintw(main_window, my-1-2, 0, "[Insert party here]");
             }
             
+            // draw battle menu window
+            // not yet, do it when its players turn
+
             // loop all characters and find who acts next
             
             // blocking input for player
+            while (!battleMenu.getInput()) {
+            	// still selecting...
+            }
+            int selectedItem = battleMenu.getCurrentItemIndex();
+            if (selectedItem == 0) battleLog.push_back("You tried to Attack! But you missed..:(");
+            else if (selectedItem == 1) {
+            	battleLog.push_back("You ran away!");
+            	fight = false;
+            }
+            else ;
             
             // run NPC actions
-            
+
             // refresh all windows
             game->refreshAll();
-            
+
+
             // check if battle is done
-            if(e1->isPartyDead()) {
-                // finish the fight
-                fight = false;
-            } else if( e2->isPartyDead()) {
-                // finish the fight
-                fight = false;
-            }
+//            if(e1->isPartyDead()) {
+//                // finish the fight
+//                fight = false;
+//            } else if( e2->isPartyDead()) {
+//                // finish the fight
+//                fight = false;
+//            }
         }
     }
 }
