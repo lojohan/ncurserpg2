@@ -80,6 +80,10 @@ void Map::parseMap(std::vector<Entity*> * tiles, std::vector<Zone*> * zones) {
             std::vector<UseFnPtr> usepointers;
             std::string name;
             
+            std::string zone_name = "";
+            int arr1[2];
+            int arr2[2];
+            
             std::string className = splitstrings.at(CLASS_NAME);
             
             if(!className.compare("Player") || !className.compare("NPC") || !className.compare("Tile")) {
@@ -183,10 +187,47 @@ void Map::parseMap(std::vector<Entity*> * tiles, std::vector<Zone*> * zones) {
                     putEntityInMap( new NPC(pos[0],pos[1], true, image, name, color, collisionpointers, movementpointers, usepointers), tiles);
                 }
             } else if(!className.compare("Zone")) {
-                int arr1[2] = {0,0};
-                int arr2[2] = {10,10};
                 
-                putZoneInList( new Zone("Village of Fucks", arr1, arr2), zones);
+                for(int i = 1; i < splitstrings.size(); i++) {
+                    
+                    
+                    switch(i) {
+                        case ZONE_NAME :
+                        {
+                            zone_name = splitstrings.at(i);
+                            break;
+                        }
+                        case ZONE_POSITION1 : 
+                        {
+                            std::vector<std::string> coords;
+                            splitString( splitstrings.at(i), &coords, ',');
+                            
+                            
+                            arr1[0] = atoi( coords.at(0).c_str());
+                            arr2[1] = atoi( coords.at(1).c_str());
+                            break;
+                        }
+                        case ZONE_POSITION2 :
+                        {
+                            std::vector<std::string> coords;
+                            splitString( splitstrings.at(i), &coords, ',');
+                            
+                            
+                            arr2[0] = atoi( coords.at(0).c_str());
+                            arr2[1] = atoi( coords.at(1).c_str());
+                            break;
+                        }
+                        default :
+                        {
+                            break;
+                        }
+                        
+                    }
+                    
+                }
+                
+                putZoneInList( new Zone(zone_name, arr1, arr2), zones);
+                
             }
         }
     myfile.close();
