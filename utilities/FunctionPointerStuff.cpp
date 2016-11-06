@@ -198,7 +198,7 @@ void playerControl(Entity * e, int c, int arr[2], int dt, int count, int * param
 void randomAI(Entity * e, int c, int arr[2], int dt, int count, int * params) {
 
     e->t += dt;
-    if(e->t > 250000) {
+    if(e->t > 75000) {
         int output = (rand() % (int)(4));
         
         switch(output)
