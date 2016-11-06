@@ -2,7 +2,6 @@
 #define ENTITY_H
 
 #include <iostream>
-#include <ncurses.h>
 #include <ncursesw/ncurses.h>
 #include <string.h>
 #include <vector>
