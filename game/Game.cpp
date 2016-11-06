@@ -40,7 +40,7 @@ void Game::start() {
 
 // build map, will also build entities.
 void Game::fillTileMap() {
-    this->map->parseMap( &(this->entityList) );
+    this->map->parseMap( &(this->entityList), &(this->zoneList));
 }
 
 Map * Game::getMap() {
@@ -94,13 +94,19 @@ void Game::drawPause() {
     
 }
 
+Zone * Game::getCurrentZoneforPlayer() {
+    return zoneList.at(0);
+}
+
 // draw elements of GUI1
 void Game::drawGUI1Elements() {
     // placeholder
-    mvwprintw(gui1_window,0,0,"Currently facing: %s", (player->getCurrentDirection()).c_str() );
-    mvwprintw(gui1_window,1,0,"Player position: X=%d, Y=%d", player->getX(), player->getY() );
-    mvwprintw(gui1_window,2,0,"Game paused: %s", game_paused ? "true" : "false" );
-    mvwaddwstr(gui1_window,3,0,L"HP: ♥♥♥♥♥♥");
+    mvwprintw(gui1_window,0,0,"Currently in: ");
+    mvwprintw(gui1_window,1,0,"%s", getCurrentZoneforPlayer()->getName().c_str());
+    mvwprintw(gui1_window,2,0,"Currently facing: %s", (player->getCurrentDirection()).c_str() );
+    mvwprintw(gui1_window,3,0,"Player position: X=%d, Y=%d", player->getX(), player->getY() );
+    mvwprintw(gui1_window,4,0,"Game paused: %s", game_paused ? "true" : "false" );
+    mvwaddwstr(gui1_window,5,0,L"HP: ♥♥♥♥♥♥");
     
 }
 

@@ -14,6 +14,7 @@
 #include "../utilities/UtilityFunctions.h"
 #include "../utilities/FunctionPointerStuff.h"
 #include "../utilities/typedefs.h"
+#include "Zone.h"
 
 #define CLASS_NAME 0
 #define ENTITY_NAME 1
@@ -39,9 +40,11 @@ class Map {
     
         Map();
         
-        void parseMap(std::vector<Entity*> * tiles);
+        void parseMap(std::vector<Entity*> * tiles, std::vector<Zone*> * zones);
         
         void putEntityInMap(Entity * entity, std::vector<Entity*> * entities);
+        
+        void putZoneInList(Zone * zone, std::vector<Zone*> * zones);
         
         Entity* getEntityAtIndex(int i);
         

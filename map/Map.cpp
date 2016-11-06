@@ -49,7 +49,7 @@ int * Map::parseFunctionString(std::string * s, std::string * fname, int * count
 }
 
 //TODO: clean and split into smaller functions.
-void Map::parseMap(std::vector<Entity*> * tiles) {
+void Map::parseMap(std::vector<Entity*> * tiles, std::vector<Zone*> * zones) {
     
     // placeholder
     
@@ -80,103 +80,113 @@ void Map::parseMap(std::vector<Entity*> * tiles) {
             std::vector<UseFnPtr> usepointers;
             std::string name;
             
+            std::string className = splitstrings.at(CLASS_NAME);
+            
+            if(!className.compare("Player") || !className.compare("NPC") || !className.compare("Tile")) {
+            
             // Gets various parameters from map file and constructs an object.
-            for(int i = 1; i < splitstrings.size(); i++) {
-                
-                switch(i)
-                {	case ENTITY_NAME :
-                    {
-                        name = splitstrings.at(i);
-                    break;
-                    }
-                case POSITION :
-                    {
-                        std::vector<std::string> coords;
-                        splitString( splitstrings.at(i), &coords, ',');
-                        
-                        
-                        pos[0] = atoi( coords.at(0).c_str());
-                        pos[1] = atoi( coords.at(1).c_str());
-                        
-                    break;
-                    }
-                case IMAGE:
-                    {
-                        int value = atoi( splitstrings.at(i).c_str());
-                        
-                        getImageFromImageMap(&image,value);
-                    break;
-                    }
-                case COLOR:
-                    {
-                        color = atoi( splitstrings.at(i).c_str());
-                    break;
-                    }
-                case COLLISION:
-                    {
-                        std::vector<std::string> functionstrings;
-                        splitString( splitstrings.at(i), &functionstrings, ',');
-                        
-                        for(std::vector<std::string>::iterator it = functionstrings.begin(); it != functionstrings.end(); ++it) {
-                            std::string fname;
-                            int count;
-                            int * paramsInts;
-                            if ( (paramsInts = parseFunctionString(&*it, &fname, &count)) != NULL) {                            
-                                ColFnPtr_unbound f = collisionFunctionMap[ fname ];
-                                ColFnPtr f_bound = boost::bind(f, _1, _2, count, paramsInts);
-                                collisionpointers.push_back(f_bound);
-                            }
+                for(int i = 1; i < splitstrings.size(); i++) {
+                    
+                    switch(i)
+                    {	case ENTITY_NAME :
+                        {
+                            name = splitstrings.at(i);
+                        break;
                         }
-                    break;
-                    }
-                case MOVEMENT:
-                    {
-                        std::vector<std::string> functionstrings;
-                        splitString( splitstrings.at(i), &functionstrings, ',');
-                        
-                        for(std::vector<std::string>::iterator it = functionstrings.begin(); it != functionstrings.end(); ++it) {
-                            std::string fname;
-                            int count;
-                            int * paramsInts;
-                            if ( (paramsInts = parseFunctionString(&*it, &fname, &count)) != NULL) {                            
-                                MovFnPtr_unbound f = movementFunctionMap[ fname ];
-                                MovFnPtr f_bound = boost::bind(f, _1, _2, _3, _4, count, paramsInts);
-                                movementpointers.push_back(f_bound);
-                            }
+                    case POSITION :
+                        {
+                            std::vector<std::string> coords;
+                            splitString( splitstrings.at(i), &coords, ',');
+                            
+                            
+                            pos[0] = atoi( coords.at(0).c_str());
+                            pos[1] = atoi( coords.at(1).c_str());
+                            
+                        break;
                         }
-                    break;
-                    }
-                case USE:
-                    {
-                        std::vector<std::string> functionstrings;
-                        splitString( splitstrings.at(i), &functionstrings, ',');
-                        
-                        for(std::vector<std::string>::iterator it = functionstrings.begin(); it != functionstrings.end(); ++it) {
-                            std::string fname;
-                            int count;
-                            int * paramsInts;
-                            if ( (paramsInts = parseFunctionString(&*it, &fname, &count)) != NULL) {                            
-                                UseFnPtr_unbound f = useFunctionMap[ fname ];
-                                UseFnPtr f_bound = boost::bind(f, _1, _2, count, paramsInts);
-                                usepointers.push_back(f_bound);
-                            }
+                    case IMAGE:
+                        {
+                            int value = atoi( splitstrings.at(i).c_str());
+                            
+                            getImageFromImageMap(&image,value);
+                        break;
                         }
-                    break;
+                    case COLOR:
+                        {
+                            color = atoi( splitstrings.at(i).c_str());
+                        break;
+                        }
+                    case COLLISION:
+                        {
+                            std::vector<std::string> functionstrings;
+                            splitString( splitstrings.at(i), &functionstrings, ',');
+                            
+                            for(std::vector<std::string>::iterator it = functionstrings.begin(); it != functionstrings.end(); ++it) {
+                                std::string fname;
+                                int count;
+                                int * paramsInts;
+                                if ( (paramsInts = parseFunctionString(&*it, &fname, &count)) != NULL) {                            
+                                    ColFnPtr_unbound f = collisionFunctionMap[ fname ];
+                                    ColFnPtr f_bound = boost::bind(f, _1, _2, count, paramsInts);
+                                    collisionpointers.push_back(f_bound);
+                                }
+                            }
+                        break;
+                        }
+                    case MOVEMENT:
+                        {
+                            std::vector<std::string> functionstrings;
+                            splitString( splitstrings.at(i), &functionstrings, ',');
+                            
+                            for(std::vector<std::string>::iterator it = functionstrings.begin(); it != functionstrings.end(); ++it) {
+                                std::string fname;
+                                int count;
+                                int * paramsInts;
+                                if ( (paramsInts = parseFunctionString(&*it, &fname, &count)) != NULL) {                            
+                                    MovFnPtr_unbound f = movementFunctionMap[ fname ];
+                                    MovFnPtr f_bound = boost::bind(f, _1, _2, _3, _4, count, paramsInts);
+                                    movementpointers.push_back(f_bound);
+                                }
+                            }
+                        break;
+                        }
+                    case USE:
+                        {
+                            std::vector<std::string> functionstrings;
+                            splitString( splitstrings.at(i), &functionstrings, ',');
+                            
+                            for(std::vector<std::string>::iterator it = functionstrings.begin(); it != functionstrings.end(); ++it) {
+                                std::string fname;
+                                int count;
+                                int * paramsInts;
+                                if ( (paramsInts = parseFunctionString(&*it, &fname, &count)) != NULL) {                            
+                                    UseFnPtr_unbound f = useFunctionMap[ fname ];
+                                    UseFnPtr f_bound = boost::bind(f, _1, _2, count, paramsInts);
+                                    usepointers.push_back(f_bound);
+                                }
+                            }
+                        break;
+                        }
+                    default:
+                        break;
                     }
-                default:
-                    break;
-                }
 
-            }
+                }
+                    
+                if (!className.compare("Tile")) {
+                    putEntityInMap( new Tile(pos[0],pos[1],image,name,true,true, color, collisionpointers, movementpointers, usepointers), tiles);
+                }
+                if (!className.compare("Player")) {
+                    putEntityInMap( new Player(pos[0],pos[1], true, image, name, color, collisionpointers, movementpointers, usepointers), tiles);
+                }
+                if (!className.compare("NPC")) {
+                    putEntityInMap( new NPC(pos[0],pos[1], true, image, name, color, collisionpointers, movementpointers, usepointers), tiles);
+                }
+            } else if(!className.compare("Zone")) {
+                int arr1[2] = {0,0};
+                int arr2[2] = {10,10};
                 
-            if (!splitstrings.at(CLASS_NAME).compare("Tile")) {
-                putEntityInMap( new Tile(pos[0],pos[1],image,name,true,true, color, collisionpointers, movementpointers, usepointers), tiles);
-            }
-            if (!splitstrings.at(CLASS_NAME).compare("Player")) {
-                putEntityInMap( new Player(pos[0],pos[1], true, image, name, color, collisionpointers, movementpointers, usepointers), tiles);
-            }
-            if (!splitstrings.at(CLASS_NAME).compare("NPC")) {
-                putEntityInMap( new NPC(pos[0],pos[1], true, image, name, color, collisionpointers, movementpointers, usepointers), tiles);
+                putZoneInList( new Zone("Village of Fucks", arr1, arr2), zones);
             }
         }
     myfile.close();
@@ -186,6 +196,10 @@ void Map::parseMap(std::vector<Entity*> * tiles) {
 
 void Map::putEntityInMap(Entity * entity, std::vector<Entity*> * entities) {
     entities->push_back(entity);
+}
+
+void Map::putZoneInList(Zone * zone, std::vector<Zone*> * zones) {
+    zones->push_back(zone);
 }
 
 void Map::getImageFromImageMap(const wchar_t ** wch, int i ) {

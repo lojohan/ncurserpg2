@@ -8,6 +8,7 @@
 #include "../entities/Entities.h"
 #include "../utilities/UtilityFunctions.h"
 #include "../map/Map.h"
+#include "../map/Zone.h"
 #include "../physics/Physics.h"
 
 class Map;
@@ -15,6 +16,7 @@ class Map;
 class Game {
     private: 
         std::vector<Entity*> entityList;
+        std::vector<Zone*> zoneList;
         Map * map;
         Player * player;
         
@@ -36,13 +38,13 @@ class Game {
     
     public:
         const static int GAME_HEIGHT = 15;
-        const static int GAME_WIDTH = 30;
+        const static int GAME_WIDTH = 40;
         
         const static int GUI1_HEIGHT = 15;
-        const static int GUI1_WIDTH = 30;
+        const static int GUI1_WIDTH = 40;
         
         const static int GUI2_HEIGHT = 5;
-        const static int GUI2_WIDTH = 62;
+        const static int GUI2_WIDTH = GAME_WIDTH + GUI1_WIDTH +2;
         
         const static int TITLE_HEIGHT = 2;
         const static int TITLE_WIDTH = GUI2_WIDTH + 2;
@@ -67,6 +69,8 @@ class Game {
         void end();
         
         void togglePause();
+        
+        Zone * getCurrentZoneforPlayer();
         
         // run logic for entities
         void updateMovables(int ch, int t);
