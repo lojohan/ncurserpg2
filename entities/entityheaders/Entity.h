@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <ncurses.h>
-#include <ncursesw/ncurses.h>
 #include <string.h>
 #include <vector>
 #include <time.h>
