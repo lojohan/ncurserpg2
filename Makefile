@@ -1,5 +1,5 @@
 CFLAGS=-Wall -std=c++0x
-LDLIBS=-lncursesw  -l boost_system -lboost_regex
+LDLIBS=-lncursesw -lboost_regex
 BIN=output/RPG
 BUILD_DIR=build
 DEPS_DIR=$(BUILD_DIR)
@@ -11,7 +11,7 @@ DEPS:=$(addprefix $(DEPS_DIR)/, $(CPP_FILES:.cpp=.d))
 $(BIN): $(OBJS)
 	@echo ">>>> Building $@"
 	@echo -------------------------------------------------------------------------------- 
-	g++ $(LDLIBS) $(OBJS) -o $(BIN)
+	g++ -o $(BIN) $(OBJS) $(LDLIBS) 
 	@echo -------------------------------------------------------------------------------- 
 
 all: $(BIN)

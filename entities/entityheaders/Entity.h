@@ -2,10 +2,10 @@
 #define ENTITY_H
 
 #include <iostream>
-#include <ncurses.h>
 #include <string.h>
 #include <vector>
 #include <time.h>
+#include <ncursesw/ncurses.h>
 #include "Character.h"
 #include "../../utilities/typedefs.h"
 

@@ -25,6 +25,9 @@
 #define MOVEMENT 6
 #define USE 7
 
+#define ZONE_NAME 1
+#define ZONE_POSITION1 2
+#define ZONE_POSITION2 3
 
 class Map {
     protected:

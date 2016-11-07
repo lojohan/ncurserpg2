@@ -32,7 +32,12 @@ void displayDialogue(Entity * e1, Entity * e2, int count, int * params) {
             
             std::string dialog = params[0] == 0 ? DialogueManager::getRandomDialogue() : DialogueManager::getDialogue(params[0]);
             
-            mvwprintw(game->getGUI2Window(), 0, 1, " %s: %s", e2->getName().c_str(), dialog.c_str());
+                            
+            wattron(game->getGUI2Window(), COLOR_PAIR( e2->getColor() ));
+            mvwprintw(game->getGUI2Window(), 0, 1, " %s: ", e2->getName().c_str());
+            wattroff(game->getGUI2Window(), COLOR_PAIR( e2->getColor() ));
+            
+            wprintw(game->getGUI2Window(), "%s",  dialog.c_str());
             mvwprintw(game->getGUI2Window(), Game::GUI2_HEIGHT-1, 0, "▼");
             game->refreshAll();
             int c = 0;
@@ -57,6 +62,21 @@ void drawBattleLog(WINDOW * log_window) {
 void battle(Entity * e1, Entity * e2, int count, int * params) {
     if(Player* v = dynamic_cast<Player*>( e1 )) {
         bool fight = true;
+        
+        WINDOW * log_window = game->getGUI1Window();
+        WINDOW * menu_window = game->getGUI2Window();
+        WINDOW * main_window = game->getGameWindow();
+        
+        mvwprintw(menu_window, 0, 0, "You are under attack by ");
+        
+        wattron(menu_window, COLOR_PAIR( e2->getColor() ));
+        wprintw(menu_window, "%s", e2->getName().c_str());
+        wattroff(menu_window, COLOR_PAIR( e2->getColor() ));
+        wprintw(menu_window, "!");
+        
+        game->refreshAll();
+        
+        wgetch(menu_window);
 
         // vector containing all characters in this battle
         std::vector<Character*> fighters;
@@ -64,13 +84,10 @@ void battle(Entity * e1, Entity * e2, int count, int * params) {
         fighters.insert(fighters.end(), ( e1->getParty() ).begin(), ( e1->getParty() ).end());
         fighters.insert(fighters.end(), ( e2->getParty() ).begin(), ( e2->getParty() ).end());
         
-        battleLog.push_back("This is a battle log.");
+        battleLog.push_back("You have entered battle!");
 
         unsigned int currentlySelectedMenuItem = 0;
 
-        WINDOW * log_window = game->getGUI1Window();
-        WINDOW * menu_window = game->getGUI2Window();
-        WINDOW * main_window = game->getGameWindow();
         
         const char * items[] = { "Attack!", "Run!" };
         Menu battleMenu(menu_window, items, 2, 0);
@@ -113,9 +130,9 @@ void battle(Entity * e1, Entity * e2, int count, int * params) {
             
             // run NPC actions
 
+            drawBattleLog(log_window);
             // refresh all windows
             game->refreshAll();
-
 
             // check if battle is done
 //            if(e1->isPartyDead()) {
@@ -126,7 +143,9 @@ void battle(Entity * e1, Entity * e2, int count, int * params) {
 //                fight = false;
 //            }
         }
+        wgetch(main_window);
     }
+    battleLog.clear();
 }
 
 // functions to call when used
@@ -198,7 +217,7 @@ void playerControl(Entity * e, int c, int arr[2], int dt, int count, int * param
 void randomAI(Entity * e, int c, int arr[2], int dt, int count, int * params) {
 
     e->t += dt;
-    if(e->t > 250000) {
+    if(e->t > 75000) {
         int output = (rand() % (int)(4));
         
         switch(output)

@@ -70,7 +70,7 @@ class Game {
         
         void togglePause();
         
-        Zone * getCurrentZoneforPlayer();
+        std::string getCurrentZoneNameforPlayer();
         
         // run logic for entities
         void updateMovables(int ch, int t);
