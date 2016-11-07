@@ -3,7 +3,6 @@
 
 #include "Entity.h"
 #include <iostream>
-#include <ncurses.h>
 #include <string.h>
 
 class Tile : public Entity {

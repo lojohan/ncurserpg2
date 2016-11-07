@@ -11,7 +11,7 @@
 #include <sys/time.h>
 #include <sys/types.h>
 #include <unistd.h>
-#include <ncurses.h>
+#include <ncursesw/ncurses.h>
 #include "../entities/Entities.h"
 #include "../game/Game.h"
 
