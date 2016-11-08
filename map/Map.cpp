@@ -204,7 +204,7 @@ void Map::parseMap(std::vector<Entity*> * tiles, std::vector<Zone*> * zones) {
                             
                             
                             arr1[0] = atoi( coords.at(0).c_str());
-                            arr2[1] = atoi( coords.at(1).c_str());
+                            arr1[1] = atoi( coords.at(1).c_str());
                             break;
                         }
                         case ZONE_POSITION2 :
