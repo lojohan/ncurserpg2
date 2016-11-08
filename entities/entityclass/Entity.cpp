@@ -36,7 +36,7 @@ std::string Entity::getName() {
     return this->name;
 }
 
-std::string Entity::setName(std::string name) {
+void Entity::setName(std::string name) {
     this->name = name;
 }
 
@@ -149,7 +149,7 @@ std::vector<Character * > Entity::getParty() {
 
 bool Entity::isPartyDead() {
     bool allDead = true;
-    for (int i= 0; i < this->getParty().size(); i++) {
+    for (size_t i = 0; i < this->getParty().size(); i++) {
         if (!this->getParty().at(i)->isDead()) {
             allDead= false;
             break;
