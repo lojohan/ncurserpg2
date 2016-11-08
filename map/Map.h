@@ -7,9 +7,11 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <unordered_map>
 #include <wchar.h>
 #include <boost/regex.hpp>
 #include <boost/bind.hpp>
+#include <sstream>
 #include "../entities/Entities.h"
 #include "../utilities/UtilityFunctions.h"
 #include "../utilities/FunctionPointerStuff.h"
@@ -43,9 +45,9 @@ class Map {
     
         Map();
         
-        void parseMap(std::vector<Entity*> * tiles, std::vector<Zone*> * zones);
+        void parseMap(std::vector<Entity*> * tiles, std::vector<Zone*> * zones,  std::unordered_map< std::string,std::vector<Entity*> > * entityMap);
         
-        void putEntityInMap(Entity * entity, std::vector<Entity*> * entities);
+        void putEntityInMap(Entity * entity, std::vector<Entity*> * entities, std::unordered_map< std::string,std::vector<Entity*> > * entityMap);
         
         void putZoneInList(Zone * zone, std::vector<Zone*> * zones);
         

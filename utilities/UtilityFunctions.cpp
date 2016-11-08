@@ -90,4 +90,12 @@ void useKeyBehaviour(Entity * e) {
     }
 }
 
+void LOG(const char * tag, const char * msg) {
+    FILE * LOG_FILE = fopen("log.log", "a");
+    fprintf(LOG_FILE, "%s: ", tag);
+    fprintf(LOG_FILE, "%s \n", msg);
+    fclose(LOG_FILE);
+}
+
+
 

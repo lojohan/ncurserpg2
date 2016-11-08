@@ -33,4 +33,6 @@ void splitString(std::string str_to_split, std::vector< std::string > * splits, 
 
 void useKeyBehaviour(Entity * e);
 
+void LOG(const char * tag, const char * msg);
+
 #endif

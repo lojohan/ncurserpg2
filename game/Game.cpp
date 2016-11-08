@@ -40,7 +40,7 @@ void Game::start() {
 
 // build map, will also build entities.
 void Game::fillTileMap() {
-    this->map->parseMap( &(this->entityList), &(this->zoneList));
+    this->map->parseMap( &(this->entityList), &(this->zoneList), &(this->entityMap));
 }
 
 Map * Game::getMap() {
@@ -53,7 +53,7 @@ std::vector<Entity*> Game::getEntities() {
 
 // run logic for movables
 void Game::updateMovables(int ch, int t) {
-    physicsLoop(ch, this->entityList, t);
+    physicsLoop(ch, this->entityList, this->entityMap,t);
 }
 
 void Game::getPlayerFromEntities(Player ** player){

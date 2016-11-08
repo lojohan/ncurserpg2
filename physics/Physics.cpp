@@ -1,12 +1,48 @@
 #include "Physics.h"
 
+void removeEntityFromMap(std::unordered_map< std::string, std::vector<Entity*>> & entityMap, Entity* entity) {
+
+    std::stringstream s;
+    s << entity->getX() << "," << entity->getY();
+    std::string newCoords = s.str();
+    
+    if(entityMap.find(newCoords) != entityMap.end()) {
+        std::vector<Entity*> * entities = &(entityMap.find(newCoords)->second);
+        
+        
+        for (int i = 0; i < entities->size(); i++) {
+            if (entities->at(i) == entity) {
+                entities->erase(entities->begin() + i);
+                if (entities->size() == 0) {
+                    entityMap.erase(entityMap.find(newCoords));
+                }
+                break;
+            }
+        }
+    }
+}
+
+void addEntityToMap(std::unordered_map< std::string, std::vector<Entity*>> & entityMap, Entity* entity) {
+    std::stringstream s;
+    s << entity->getX() << "," << entity->getY();
+    std::string pos = s.str();
+    
+    if(entityMap.find(pos) != entityMap.end()) {
+        std::vector<Entity*> * entitiesAtPoint = &(entityMap.find(pos)->second);
+        entitiesAtPoint->push_back(entity);
+    } else {
+        std::vector<Entity*> entitiesAtPoint;
+        entitiesAtPoint.push_back(entity);
+        entityMap.insert({pos,entitiesAtPoint}); 
+    }
+
+}
+
 // should be rewritten so that all moves are performed first, then move things
 // back, then perform onCollision;
-void physicsLoop(int ch, std::vector<Entity*> entityList, int t) {
+void physicsLoop(int ch, std::vector<Entity*> entityList, std::unordered_map< std::string,std::vector<Entity*> >  & entityMap, int t) {
 
     for(std::vector<Entity*>::iterator it = entityList.begin(); it != entityList.end(); ++it) {
-        int collision = 0;
-        Entity * collidee[1024];
         
         int arr[2];
         arr[0] = (*it)->getX();
@@ -14,26 +50,33 @@ void physicsLoop(int ch, std::vector<Entity*> entityList, int t) {
         
         (*it)->getNextMove(ch, arr, t);
         
-        for(std::vector<Entity*>::iterator it2 = entityList.begin(); it2 != entityList.end(); ++it2) {
-            if( *it == *it2 ) {
-                continue;
-            }
-            if((*it)->getSolid() && (*it2)->getSolid() ) {
-                if(arr[0] == (*it2)->getX() && arr[1] == (*it2)->getY()) {
-                    collidee[collision++] = *it2;
-                }  
-           }
-        }
+        if(arr[0] == (*it)->getX() && arr[1] == (*it)->getY()) 
+            continue;
         
-        if(collision != 0) {
-            for (int i = 0; i < collision; i++) {
-                collidee[i]->onCollision( *it );
+        std::stringstream s;
+        s << arr[0] << "," << arr[1];
+        std::string newCoords = s.str();
+        
+        if(entityMap.find(newCoords) != entityMap.end()) {
+            std::vector<Entity*> collidees = entityMap.find(newCoords)->second;
+            
+            
+            for (int i = 0; i < collidees.size(); i++) {
+                collidees[i]->onCollision( *it );
                 //TODO: all onCollision calls now happen at least twice. fix
-                (*it)->onCollision(collidee[i]);
+                (*it)->onCollision(collidees[i]);
                 
             }
         } else {
+            
+            removeEntityFromMap(entityMap, *it);
+            
             (*it)->move(arr);
+            
+            addEntityToMap(entityMap, *it);
+            
+            
         }
     }
 }
+

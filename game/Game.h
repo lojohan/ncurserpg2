@@ -5,6 +5,8 @@
 #include <vector>
 #include <time.h>
 #include <ctime>
+#include <unordered_map>
+#include "../utilities/Point.h"
 #include "../entities/Entities.h"
 #include "../utilities/UtilityFunctions.h"
 #include "../map/Map.h"
@@ -17,6 +19,8 @@ class Game {
     private: 
         std::vector<Entity*> entityList;
         std::vector<Zone*> zoneList;
+        std::unordered_map< std::string,std::vector<Entity*> > entityMap;
+        
         Map * map;
         Player * player;
         
