@@ -1,6 +1,7 @@
 #include "FunctionPointerStuff.h"
 
 #include "../map/Map.h"
+#include <sstream>
 #include "DialogueManager.h"
 
 // functions to call on collision
@@ -60,7 +61,9 @@ void drawBattleLog(WINDOW * log_window) {
 }
 
 void battle(Entity * e1, Entity * e2, int count, int * params) {
-    if(Player* v = dynamic_cast<Player*>( e1 )) {
+    if(Player* player = dynamic_cast<Player*>( e1 )) {
+    	LOG << "Start battle between " << e1->getName() << " and " << e2->getName() << "\n";
+
         bool fight = true;
         
         WINDOW * log_window = game->getGUI1Window();
@@ -79,19 +82,43 @@ void battle(Entity * e1, Entity * e2, int count, int * params) {
         wgetch(menu_window);
 
         // vector containing all characters in this battle
-        std::vector<Character*> fighters;
+        //std::vector<Character*> fighters;
         
-        fighters.insert(fighters.end(), ( e1->getParty() ).begin(), ( e1->getParty() ).end());
-        fighters.insert(fighters.end(), ( e2->getParty() ).begin(), ( e2->getParty() ).end());
+        if (player->getParty().size() < 1) {
+        	LOG << "error Players party is size " << player->getParty().size() << "!\n";
+        	return;
+        } else {
+        	LOG << "Players party: " << player->getParty() << "\n";
+        }
+        if (e1->getParty().size() < 1) {
+			LOG << "error Opponenets party is size " << e2->getParty().size() << "!\n";
+			return;
+		} else {
+			LOG << "Opponents party: " << e2->getParty() << "\n";
+		}
+
+        //fighters.insert(fighters.end(), ( e1->getParty() ).begin(), ( e1->getParty() ).end());
+        //fighters.insert(fighters.end(), ( e2->getParty() ).begin(), ( e2->getParty() ).end());
         
         battleLog.push_back("You have entered battle!");
         
-        const char * items[] = { "Attack!", "Run!" };
-        Menu battleMenu(menu_window, items, 2, 0);
+        const char * items[] = { "Attack!", "Run!", "Meditate" };
+        Menu battleMenu(menu_window, items, sizeof(items)/sizeof(char*), 0);
+
+        int meditateCount = 0;
 
         while(fight) {
-            
-        
+
+            // check if battle is done
+            if(player->isPartyDead()) {
+            	battleLog.push_back(player->getName() + "'s party died...");
+                break;
+            }
+            if(e2->isPartyDead()) {
+            	battleLog.push_back(e2->getName() + "'s party died...");
+                break;
+            }
+
             // Clear all windows
             game->clearAll();
             
@@ -118,11 +145,31 @@ void battle(Entity * e1, Entity * e2, int count, int * params) {
             	// still selecting...
             }
             int selectedItem = battleMenu.getCurrentItemIndex();
-            if (selectedItem == 0) battleLog.push_back("You tried to Attack! But you missed..:(");
+            if (selectedItem == 0) {
+            	//battleLog.push_back("You tried to Attack! But you missed..:(");
+
+            	Character * target = e2->getParty()[0];
+
+            	int dmgTaken = target->getMaxHp();
+            	e2->getParty()[0]->setCurrentHp(0);
+
+            	std::stringstream ss;
+            	ss << e2->getName() << " took " << dmgTaken << " damage.";
+            	battleLog.push_back(ss.str());
+            }
             else if (selectedItem == 1) {
             	battleLog.push_back("You ran away!");
             	fight = false;
+            	if (meditateCount == 3) {
+            		for (int i = 0; i < player->getParty().size(); i++) {
+            			player->getParty()[i]->setCurrentHp(0);
+            		}
+            	}
             }
+            else if (selectedItem == 2) {
+				battleLog.push_back(e1->getName() + " is meditating on the meaning of life.");
+				meditateCount++;
+			}
             else ;
             
             // run NPC actions
@@ -130,17 +177,27 @@ void battle(Entity * e1, Entity * e2, int count, int * params) {
             drawBattleLog(log_window);
             // refresh all windows
             game->refreshAll();
-
-            // check if battle is done
-//            if(e1->isPartyDead()) {
-//                // finish the fight
-//                fight = false;
-//            } else if( e2->isPartyDead()) {
-//                // finish the fight
-//                fight = false;
-//            }
         }
+
+        wclear(log_window);
+        wclear(menu_window);
+
+        // draw battle log window
+        drawBattleLog(log_window);
+        //mvwprintw(menu_window, 0, 0, );
+
+        game->refreshAll();
+
         wgetch(main_window);
+
+        if (player->isPartyDead()) {
+        	LOG << "Players party died! " << player->getParty() << "\n";
+        	game->removeEntity(player);
+		}
+        if (e2->isPartyDead()) {
+        	LOG << "Opponents party died! " << e2->getParty() << "\n";
+        	game->removeEntity(e2);
+        }
     }
     battleLog.clear();
 }

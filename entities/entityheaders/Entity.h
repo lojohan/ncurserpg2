@@ -7,6 +7,7 @@
 #include <time.h>
 #include <ncursesw/ncurses.h>
 #include "Character.h"
+#include "../../game/Party.h"
 #include "../../utilities/typedefs.h"
 
 class Entity {
@@ -20,8 +21,8 @@ class Entity {
         
         std::vector<UseFnPtr> useKeyPointers;
         
-        std::vector<Character*> partyCharacters;
-        
+        Party party;
+
         int x, y;
         bool solid;
         const wchar_t * image;
@@ -50,7 +51,7 @@ class Entity {
         
         // Movement
         virtual void getNextMove(int c, int arr[2], int dt);
-        std::string getCurrentDirection();
+        const std::string getCurrentDirection();
         void setCurrentDirection(Direction dir);
     
         void move(int arr[2]);
@@ -75,10 +76,9 @@ class Entity {
         virtual void draw(WINDOW * win, int x, int y);
         
         // Party!!!
-        void addPartyCharacter(Character * character);
-        std::vector<Character * > getParty();
+        Party &getParty();
         bool isPartyDead();
-        
+
 };
 
 #endif

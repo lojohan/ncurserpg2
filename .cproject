@@ -55,14 +55,15 @@
 			<resource resourceType="PROJECT" workspacePath="/ncurserpg2"/>
 		</configuration>
 	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
+	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
 	<storageModule moduleId="scannerConfiguration">
 		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		<scannerConfigBuildInfo instanceId="cdt.managedbuild.toolchain.gnu.base.587987529;cdt.managedbuild.toolchain.gnu.base.587987529.991624110;cdt.managedbuild.tool.gnu.c.compiler.base.329482079;cdt.managedbuild.tool.gnu.c.compiler.input.992039547">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		</scannerConfigBuildInfo>
 		<scannerConfigBuildInfo instanceId="cdt.managedbuild.toolchain.gnu.base.587987529;cdt.managedbuild.toolchain.gnu.base.587987529.991624110;cdt.managedbuild.tool.gnu.cpp.compiler.base.1476291005;cdt.managedbuild.tool.gnu.cpp.compiler.input.1349822110">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+			<autodiscovery enabled="false" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.make.core.GCCStandardMakePerFileProfile"/>
 		</scannerConfigBuildInfo>
 	</storageModule>
-	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 </cproject>

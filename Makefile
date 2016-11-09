@@ -1,4 +1,4 @@
-CFLAGS=-Wall -Wno-error=unused-variable -std=c++0x
+CFLAGS=-Wall -g -Wno-error=unused-variable -std=c++0x
 LDLIBS=-lncursesw -lboost_regex
 BIN=output/RPG
 BUILD_DIR=build

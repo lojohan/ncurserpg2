@@ -1,5 +1,14 @@
 #include "../entityheaders/NPC.h"
+#include "../entityheaders/Character.h"
 
-NPC::NPC(int x, int y, bool solid, const wchar_t * image, std::string name, int color,std::vector<ColFnPtr> collision_ptrs, std::vector<MovFnPtr> movement_ptrs, std::vector<UseFnPtr> use_ptrs) : Entity(x, y, solid, image, name,color, collision_ptrs, movement_ptrs, use_ptrs){
+NPC::NPC(int x, int y, bool solid, const wchar_t * image, std::string name, int color,std::vector<ColFnPtr> collision_ptrs, std::vector<MovFnPtr> movement_ptrs, std::vector<UseFnPtr> use_ptrs)
+: Entity(x, y, solid, image, name,color, collision_ptrs, movement_ptrs, use_ptrs) {
     this-> t = 0;
+
+    if(party.size() == 0) {
+    	std::string name = "Doggy";
+    	int maxHp = 100;
+    	Character * c = new Character(name, maxHp);
+    	getParty().addCharacter(c);
+    }
 }

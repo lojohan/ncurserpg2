@@ -64,6 +64,9 @@ class Game {
         void fillTileMap();
         Map * getMap();
         std::vector<Entity*> getEntities();
+        void removeEntity(Entity * entity);
+        void removeEntityFromMap(std::unordered_map< std::string, std::vector<Entity*>> & entityMap, Entity* entity);
+        void addEntityToMap(std::unordered_map< std::string, std::vector<Entity*>> & entityMap, Entity* entity);
         
         void init();
         

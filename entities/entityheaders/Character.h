@@ -2,6 +2,7 @@
 #define CHARACTER_H
 
 #include <string>
+#include <ostream>
 
 class Character {
 
@@ -13,7 +14,7 @@ class Character {
 
     public:
     
-        Character(std::string name, int maxHp, int currentHp);
+        Character(std::string name, int maxHp);
         
         std::string getName();
         int getMaxHp();
@@ -21,9 +22,12 @@ class Character {
         
         void setName(std::string name);
         void setMaxHp(int maxHp);
+        void takeDamage(int dHp);
         void setCurrentHp(int currentHp);
         
         bool isDead();
 };
+
+std::ostream& operator<<(std::ostream &strm, Character &c);
 
 #endif
