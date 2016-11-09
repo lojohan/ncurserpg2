@@ -24,6 +24,7 @@ Entity::Entity(int x, int y, bool solid, const wchar_t * image, std::string name
     }
 }
 
+
 void Entity::setX(int x) {
     this->x = x;
 }
@@ -61,7 +62,7 @@ void Entity::getNextMove(int c, int arr[2], int dt) {
     }
 }
 
-std::string Entity::getCurrentDirection() {
+const std::string Entity::getCurrentDirection() {
     switch(dir)
     {	case NORTH:
             return "NORTH";
@@ -139,23 +140,14 @@ void Entity::draw(WINDOW * win, int x, int y) {
     mvwaddwstr(win, x, y, this->image);
 }
 
-void Entity::addPartyCharacter(Character * character) {
-    ( this-> partyCharacters ).push_back(character);
-}
-
-std::vector<Character * > Entity::getParty() {
-    return this->partyCharacters;
+Party &Entity::getParty() {
+    return party;
 }
 
 bool Entity::isPartyDead() {
-    bool allDead = true;
-    for (size_t i = 0; i < this->getParty().size(); i++) {
-        if (!this->getParty().at(i)->isDead()) {
-            allDead= false;
-            break;
-        } 
-    }
-    return allDead;
+    return party.isAllDead();
 }
+
+
 
 
