@@ -151,15 +151,28 @@ std::string Game::getCurrentZoneNameforPlayer() {
     return "";
 }
 
+bool Game::getCurrentZoneFriendly() {
+    int l = zoneList.size();
+    
+    for(int i = 0; i < l; i++ ) {
+        if(player->getX() >= zoneList.at(i)->x_upperleft  && player->getX() <= zoneList.at(i)->x_lowerright
+            && player->getY() >= zoneList.at(i)->y_upperleft  && player->getY() <= zoneList.at(i)->y_lowerright) {
+            return zoneList.at(i)->friendly;
+        } 
+    }
+    return false;
+}
+
 // draw elements of GUI1
 void Game::drawGUI1Elements() {
     // placeholder
     mvwprintw(gui1_window,0,0,"Currently in: ");
     mvwprintw(gui1_window,1,0,"%s", getCurrentZoneNameforPlayer().c_str());
-    mvwprintw(gui1_window,2,0,"Currently facing: %s", (player->getCurrentDirection()).c_str() );
-    mvwprintw(gui1_window,3,0,"Player position: X=%d, Y=%d", player->getX(), player->getY() );
-    mvwprintw(gui1_window,4,0,"Game paused: %s", game_paused ? "true" : "false" );
-    mvwaddwstr(gui1_window,5,0,L"HP: ♥♥♥♥♥♥");
+    mvwprintw(gui1_window,2,0,"Current Area is friendly: %s", getCurrentZoneFriendly() ? "true" : "false" );
+    mvwprintw(gui1_window,3,0,"Currently facing: %s", (player->getCurrentDirection()).c_str() );
+    mvwprintw(gui1_window,4,0,"Player position: X=%d, Y=%d", player->getX(), player->getY() );
+    mvwprintw(gui1_window,5,0,"Game paused: %s", game_paused ? "true" : "false" );
+    mvwaddwstr(gui1_window,6,0,L"HP: ♥♥♥♥♥♥");
     
 }
 

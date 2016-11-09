@@ -79,6 +79,8 @@ class Game {
         
         std::string getCurrentZoneNameforPlayer();
         
+        bool getCurrentZoneFriendly();
+        
         // run logic for entities
         void updateMovables(int ch, int t);
         

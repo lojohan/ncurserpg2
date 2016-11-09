@@ -1,11 +1,12 @@
 #include "Zone.h"
 
-Zone::Zone(std::string name, int upperleft[2], int lowerright[2]) {
+Zone::Zone(std::string name, int upperleft[2], int lowerright[2], bool friendly) {
     this->name = name;
     this->x_upperleft = upperleft[0];
     this->y_upperleft = upperleft[1];
     this->x_lowerright = lowerright[0];
     this->y_lowerright = lowerright[1];
+    this->friendly = friendly;
 }
         
 std::string Zone::getName() {
