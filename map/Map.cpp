@@ -83,6 +83,7 @@ void Map::parseMap(std::vector<Entity*> * tiles, std::vector<Zone*> * zones, std
             std::string zone_name = "";
             int arr1[2];
             int arr2[2];
+            bool friendlyArea = false;
             
             std::string className = splitstrings.at(CLASS_NAME);
             
@@ -217,6 +218,15 @@ void Map::parseMap(std::vector<Entity*> * tiles, std::vector<Zone*> * zones, std
                             arr2[1] = atoi( coords.at(1).c_str());
                             break;
                         }
+                        case ZONE_FRIENDLY :
+                        {
+                            std::string friendly_string = splitstrings.at(i);
+                            int friendly_int = atoi( friendly_string.c_str() );
+                            
+                            if(friendly_int != 0)
+                                friendlyArea = true;
+                            break;
+                        }
                         default :
                         {
                             break;
@@ -226,7 +236,7 @@ void Map::parseMap(std::vector<Entity*> * tiles, std::vector<Zone*> * zones, std
                     
                 }
                 
-                putZoneInList( new Zone(zone_name, arr1, arr2), zones);
+                putZoneInList( new Zone(zone_name, arr1, arr2, friendlyArea), zones);
                 
             }
         }

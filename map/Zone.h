@@ -14,7 +14,9 @@ class Zone {
         int x_lowerright;
         int y_lowerright;
         
-        Zone(std::string name, int x_upperleft[2], int lowerright[2]);
+        bool friendly;
+        
+        Zone(std::string name, int x_upperleft[2], int lowerright[2], bool friendly);
         
         std::string getName();
         void setName(std::string name);

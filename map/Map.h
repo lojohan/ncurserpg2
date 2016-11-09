@@ -30,6 +30,7 @@
 #define ZONE_NAME 1
 #define ZONE_POSITION1 2
 #define ZONE_POSITION2 3
+#define ZONE_FRIENDLY 4
 
 class Map {
     protected:
