@@ -3,7 +3,7 @@
 
 NPC::NPC(int x, int y, bool solid, const wchar_t * image, std::string name, int color,std::vector<ColFnPtr> collision_ptrs, std::vector<MovFnPtr> movement_ptrs, std::vector<UseFnPtr> use_ptrs)
 : Entity(x, y, solid, image, name,color, collision_ptrs, movement_ptrs, use_ptrs) {
-    this-> t = 0;
+    this-> t = rand() % 75000;
 
     if(party.size() == 0) {
     	std::string name = "Doggy";
