@@ -1,8 +1,10 @@
 #include "UtilityFunctions.h"
 
-void clearScreen() {
-    printf(0,0,"\033c");
-}
+std::ofstream LOG;
+
+//void clearScreen() {
+//    printf(0,0,"\033c");
+//}
 
 
 int kbhit(int t1,int t2) {
@@ -45,7 +47,7 @@ void gameLoopInputHandler(int c) {
 void splitString(std::string str_to_split, std::vector< std::string > * splits, char delimiter) {
     int prevsplit = 0;
     
-    for(int i = 0; i < str_to_split.length(); i++) {
+    for(size_t i = 0; i < str_to_split.length(); i++) {
         char c = str_to_split[i];
         if(c == delimiter) {
             (*splits).push_back( str_to_split.substr(prevsplit,i-prevsplit) );
@@ -88,13 +90,6 @@ void useKeyBehaviour(Entity * e) {
                 break;
         }
     }
-}
-
-void LOG(const char * tag, const char * msg) {
-    FILE * LOG_FILE = fopen("log.log", "a");
-    fprintf(LOG_FILE, "%s: ", tag);
-    fprintf(LOG_FILE, "%s \n", msg);
-    fclose(LOG_FILE);
 }
 
 

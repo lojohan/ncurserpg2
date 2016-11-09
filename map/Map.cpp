@@ -34,7 +34,7 @@ int * Map::parseFunctionString(std::string * s, std::string * fname, int * count
         
         int * paramsInts = (int*) calloc(paramsStrs.size(), sizeof(int));
         
-        for (int j = 0; j < paramsStrs.size(); j++) {
+        for (size_t j = 0; j < paramsStrs.size(); j++) {
             paramsInts[j] = atoi( paramsStrs[j].c_str() );
         }
         
@@ -90,7 +90,7 @@ void Map::parseMap(std::vector<Entity*> * tiles, std::vector<Zone*> * zones, std
             if(!className.compare("Player") || !className.compare("NPC") || !className.compare("Tile")) {
             
             // Gets various parameters from map file and constructs an object.
-                for(int i = 1; i < splitstrings.size(); i++) {
+                for(size_t i = 1; i < splitstrings.size(); i++) {
                     
                     switch(i)
                     {	case ENTITY_NAME :
@@ -189,7 +189,7 @@ void Map::parseMap(std::vector<Entity*> * tiles, std::vector<Zone*> * zones, std
                 }
             } else if(!className.compare("Zone")) {
                 
-                for(int i = 1; i < splitstrings.size(); i++) {
+                for(size_t i = 1; i < splitstrings.size(); i++) {
                     
                     
                     switch(i) {

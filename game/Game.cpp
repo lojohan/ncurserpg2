@@ -239,6 +239,8 @@ void Game::refreshAll() {
 // TODO: should also create entities on map.
 void Game::init() {
 
+	LOG.open("log.log", std::ofstream::out | std::ofstream::trunc);
+
     srand (time(NULL));
 
     game_paused = false;

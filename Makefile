@@ -1,4 +1,4 @@
-CFLAGS=-Wall -std=c++0x
+CFLAGS=-Wall -Wno-error=unused-variable -std=c++0x
 LDLIBS=-lncursesw -lboost_regex
 BIN=output/RPG
 BUILD_DIR=build
@@ -21,7 +21,7 @@ all: $(BIN)
 # Make dependency files
 $(DEPS_DIR)/%.d: %.cpp
 	@mkdir -p $(dir $@)
-	@g++ -MM -MP -MT $(BUILD_DIR)/$(patsubst %.cpp,%.o,$<) -MT $@ -MF $@ $<
+	@g++ -std=c++0x -MM -MP -MT $(BUILD_DIR)/$(patsubst %.cpp,%.o,$<) -MT $@ -MF $@ $<
 
 # Make object files
 $(BUILD_DIR)/%.o: %.cpp

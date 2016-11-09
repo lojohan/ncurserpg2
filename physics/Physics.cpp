@@ -10,7 +10,7 @@ void removeEntityFromMap(std::unordered_map< std::string, std::vector<Entity*>> 
         std::vector<Entity*> * entities = &(entityMap.find(newCoords)->second);
         
         
-        for (int i = 0; i < entities->size(); i++) {
+        for (size_t i = 0; i < entities->size(); i++) {
             if (entities->at(i) == entity) {
                 entities->erase(entities->begin() + i);
                 if (entities->size() == 0) {
@@ -61,7 +61,7 @@ void physicsLoop(int ch, std::vector<Entity*> entityList, std::unordered_map< st
             std::vector<Entity*> collidees = entityMap.find(newCoords)->second;
             
             
-            for (int i = 0; i < collidees.size(); i++) {
+            for (size_t i = 0; i < collidees.size(); i++) {
                 collidees[i]->onCollision( *it );
                 //TODO: all onCollision calls now happen at least twice. fix
                 (*it)->onCollision(collidees[i]);

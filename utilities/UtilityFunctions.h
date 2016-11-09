@@ -2,6 +2,7 @@
 #define UTILITYFUNCTIONS_H
 
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <string>
 #include <stdio.h>
@@ -15,7 +16,9 @@
 #include "../entities/Entities.h"
 #include "../game/Game.h"
 
-void clearScreen();
+extern std::ofstream LOG;
+
+//void clearScreen();
 
 bool kbhit();
 
@@ -32,7 +35,5 @@ void relativeCameraPos(Entity * centerentity, Entity * drawEntity, int arr[2], i
 void splitString(std::string str_to_split, std::vector< std::string > * splits, char delimiter);
 
 void useKeyBehaviour(Entity * e);
-
-void LOG(const char * tag, const char * msg);
 
 #endif

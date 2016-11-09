@@ -54,7 +54,7 @@ static std::vector<std::string> battleLog;
 
 void drawBattleLog(WINDOW * log_window) {
 	wclear(log_window);
-	for (int i= 0; i < battleLog.size(); i++) {
+	for (size_t i= 0; i < battleLog.size(); i++) {
 		mvwprintw(log_window, i, 0, battleLog.at(i).c_str());
 	}
 }
@@ -85,9 +85,6 @@ void battle(Entity * e1, Entity * e2, int count, int * params) {
         fighters.insert(fighters.end(), ( e2->getParty() ).begin(), ( e2->getParty() ).end());
         
         battleLog.push_back("You have entered battle!");
-
-        unsigned int currentlySelectedMenuItem = 0;
-
         
         const char * items[] = { "Attack!", "Run!" };
         Menu battleMenu(menu_window, items, 2, 0);

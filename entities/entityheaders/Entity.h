@@ -46,7 +46,7 @@ class Entity {
         virtual int getY();
         
         virtual std::string getName();
-        virtual std::string setName(std::string name);
+        virtual void setName(std::string name);
         
         // Movement
         virtual void getNextMove(int c, int arr[2], int dt);
