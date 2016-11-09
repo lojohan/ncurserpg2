@@ -41,6 +41,22 @@ void gameLoopInputHandler(int c) {
             game->togglePause();
 		    break;
 	    }
+        case KEY_F(1):
+		{
+        	game->clearAll();
+
+        	mvwaddwstr(game->getGameWindow(), 0,0,L"");
+        	for (int i = 1; i < 1000; i++) {
+				const wchar_t * str;
+				game->getMap()->getImageFromImageMap(&str, i);
+				if (*str == '\0')
+					break;
+				waddwstr(game->getGameWindow(),str);
+        	}
+        	game->refreshAll();
+        	playerInputBlocking(game->getGameWindow());
+			break;
+		}
     }
 }
 
