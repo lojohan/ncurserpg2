@@ -127,15 +127,27 @@ void battle(Entity * e1, Entity * e2, int count, int * params) {
 
             // draw Main battle window
             {
-				int my,mx;
-				getmaxyx(main_window, my, mx);
+				int max_col,max_row;
+				getmaxyx(main_window, max_row, max_col);
 				mvwprintw(main_window, 0, 0, e2->getName().c_str());
+				int row = 2;
+				int col = 0;
 				for (int i = 0; i < e2->getParty().size(); i++) {
-					mvwprintw(main_window, 2 + i, 0, e2->getParty()[i]->getName().c_str());
+					std::string name = e2->getParty()[i]->getName();
+					if (col + (signed)name.length() > max_col) {
+						if (col == 0) {
+							name.resize(max_col);
+						} else {
+							row += 1;
+							col = 0;
+						}
+					}
+					mvwprintw(main_window, row, col, name.c_str());
+					col += name.length() + 1;
 				}
-				mvwprintw(main_window, my-1, 0, e1->getName().c_str());
+				mvwprintw(main_window, max_col-1, 0, e1->getName().c_str());
 				for (int i = 0; i < e1->getParty().size(); i++) {
-					mvwprintw(main_window, my - 2 - e1->getParty().size() + i, 0, e1->getParty()[i]->getName().c_str());
+					mvwprintw(main_window, max_col - 2 - e1->getParty().size() + i, 0, e1->getParty()[i]->getName().c_str());
 				}
             }
             
@@ -152,14 +164,16 @@ void battle(Entity * e1, Entity * e2, int count, int * params) {
             if (selectedItem == 0) {
             	//battleLog.push_back("You tried to Attack! But you missed..:(");
 
-            	Character * target = e2->getParty()[0];
+            	for (size_t i = 0; i < e2->getParty().size(); i++) {
+					Character * target = e2->getParty()[i];
 
-            	int dmgTaken = target->getMaxHp();
-            	e2->getParty()[0]->setCurrentHp(0);
+					int dmgTaken = target->getMaxHp();
+					target->setCurrentHp(0);
 
-            	std::stringstream ss;
-            	ss << e2->getName() << " took " << dmgTaken << " damage.";
-            	battleLog.push_back(ss.str());
+					std::stringstream ss;
+					ss << target->getName() << " took " << dmgTaken << " damage.";
+					battleLog.push_back(ss.str());
+            	}
             }
             else if (selectedItem == 1) {
             	battleLog.push_back("You ran away!");

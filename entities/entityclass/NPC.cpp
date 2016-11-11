@@ -6,9 +6,11 @@ NPC::NPC(int x, int y, bool solid, const wchar_t * image, std::string name, int 
     this-> t = rand() % 75000;
 
     if(party.size() == 0) {
-    	std::string name = "Doggy";
-    	int maxHp = 100;
-    	Character * c = new Character(name, maxHp);
-    	getParty().addCharacter(c);
+    	for (int i = 0; i < 10; i++) {
+			std::string name = "Doggy";
+			int maxHp = 100;
+			Character * c = new Character(name, maxHp);
+			getParty().addCharacter(c);
+    	}
     }
 }
