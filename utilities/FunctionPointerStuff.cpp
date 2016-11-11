@@ -130,9 +130,13 @@ void battle(Entity * e1, Entity * e2, int count, int * params) {
 				int my,mx;
 				getmaxyx(main_window, my, mx);
 				mvwprintw(main_window, 0, 0, e2->getName().c_str());
-				mvwprintw(main_window, 2, 0, "[Insert party here]");
+				for (int i = 0; i < e2->getParty().size(); i++) {
+					mvwprintw(main_window, 2 + i, 0, e2->getParty()[i]->getName().c_str());
+				}
 				mvwprintw(main_window, my-1, 0, e1->getName().c_str());
-				mvwprintw(main_window, my-1-2, 0, "[Insert party here]");
+				for (int i = 0; i < e1->getParty().size(); i++) {
+					mvwprintw(main_window, my - 2 - e1->getParty().size() + i, 0, e1->getParty()[i]->getName().c_str());
+				}
             }
             
             // draw battle menu window
