@@ -8,6 +8,7 @@ void Game::start() {
     map = new Map();
     this->init();
     
+    this->player = NULL; // initialize in case player is not found
     getPlayerFromEntities(&(this->player));
     
     while(true) {
@@ -99,6 +100,11 @@ void Game::addEntityToMap(std::unordered_map< std::string, std::vector<Entity*>>
 // run logic for movables
 void Game::updateMovables(int ch, int t) {
     physicsLoop(ch, this->entityList, this->entityMap,t);
+}
+
+
+Player * Battle::getPlayer() {
+	return player;
 }
 
 void Game::getPlayerFromEntities(Player ** player){

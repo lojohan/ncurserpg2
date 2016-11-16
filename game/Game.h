@@ -83,7 +83,7 @@ class Game {
         
         // run logic for entities
         void updateMovables(int ch, int t);
-        
+        Player * getPlayer();
         void getPlayerFromEntities(Player ** player);
         
         // inits things related to ncurses (graphics)
