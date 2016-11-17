@@ -103,7 +103,7 @@ void Game::updateMovables(int ch, int t) {
 }
 
 
-Player * Battle::getPlayer() {
+Player * Game::getPlayer() {
 	return player;
 }
 
