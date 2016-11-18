@@ -36,6 +36,48 @@ void Battle::drawBattleLog() {
 	}
 }
 
+void Battle::printTopParty(Entity * e) {
+	int max_col,max_row;
+	getmaxyx(main_window, max_row, max_col);
+	mvwprintw(main_window, 0, 0, e->getName().c_str());
+	int row = 2;
+	int col = 0;
+	for (int i = 0; i < e->getParty().size(); i++) {
+		std::string name = e->getParty()[i]->getName();
+		if (col + (signed)name.length() > max_col) {
+			if (col == 0) {
+				name.resize(max_col);
+			} else {
+				row += 1;
+				col = 0;
+			}
+		}
+		mvwprintw(main_window, row, col, name.c_str());
+		col += name.length() + 1;
+	}
+}
+
+void Battle::printBottomParty(Entity * e) {
+	int max_col,max_row;
+	getmaxyx(main_window, max_row, max_col);
+	mvwprintw(main_window, max_row-1, 0, e->getName().c_str());
+	int row = max_row - 3;
+	int col = 0;
+	for (int i = 0; i < e->getParty().size(); i++) {
+		std::string name = e->getParty()[i]->getName();
+		if (col + (signed)name.length() > max_col) {
+			if (col == 0) {
+				name.resize(max_col);
+			} else {
+				row -= 1;
+				col = 0;
+			}
+		}
+		mvwprintw(main_window, row, col, name.c_str());
+		col += name.length() + 1;
+	}
+}
+
 void Battle::commence() {
 
 	LOG << "Start battle between " << e1->getName() << " and " << e2->getName() << "\n";
@@ -90,28 +132,8 @@ void Battle::commence() {
 
 		// draw Main battle window
 		{
-			int max_col,max_row;
-			getmaxyx(main_window, max_row, max_col);
-			mvwprintw(main_window, 0, 0, e2->getName().c_str());
-			int row = 2;
-			int col = 0;
-			for (int i = 0; i < e2->getParty().size(); i++) {
-				std::string name = e2->getParty()[i]->getName();
-				if (col + (signed)name.length() > max_col) {
-					if (col == 0) {
-						name.resize(max_col);
-					} else {
-						row += 1;
-						col = 0;
-					}
-				}
-				mvwprintw(main_window, row, col, name.c_str());
-				col += name.length() + 1;
-			}
-			mvwprintw(main_window, max_col-1, 0, e1->getName().c_str());
-			for (int i = 0; i < e1->getParty().size(); i++) {
-				mvwprintw(main_window, max_col - 2 - e1->getParty().size() + i, 0, e1->getParty()[i]->getName().c_str());
-			}
+			printTopParty(e2);
+			printBottomParty(e1);
 		}
 
 		// draw battle menu window

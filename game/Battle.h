@@ -23,6 +23,9 @@ private:
 	bool checkPartySize(Entity * e1);
 	void drawBattleLog();
 
+	void printTopParty(Entity * e);
+	void printBottomParty(Entity * e);
+
 public:
 	Battle(Entity * e1, Entity * e2);
 	virtual ~Battle();
