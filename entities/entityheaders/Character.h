@@ -3,6 +3,8 @@
 
 #include <string>
 #include <ostream>
+#include <vector>
+#include "../../utilities/typedefs.h"
 
 class Character {
 
@@ -10,6 +12,8 @@ class Character {
         std::string name;
         int maxHp;
         int currentHp;
+        std::vector<std::string> attackOptionsNames;
+        std::vector<AttackFnPtr> attackOptionsFns;
         
 
     public:
@@ -26,6 +30,9 @@ class Character {
         void setCurrentHp(int currentHp);
         
         bool isDead();
+
+        const std::vector<std::string> getAttackOptionsNames();
+        const std::vector<AttackFnPtr> getAttackOptionsFns();
 };
 
 std::ostream& operator<<(std::ostream &strm, Character &c);
