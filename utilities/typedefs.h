@@ -3,6 +3,8 @@
 
 #include <boost/function.hpp>
 
+class Character;
+
 class Entity;
 
 typedef boost::function<void(Entity* entity1, Entity* entity2)> ColFnPtr;
@@ -13,5 +15,7 @@ typedef boost::function<void(Entity * e, int c, int arr[2], int dt, int count, i
 
 typedef boost::function<void(Entity* entity1, Entity* entity2)> UseFnPtr;
 typedef boost::function<void(Entity* entity1, Entity* entity2, int count, int * params)> UseFnPtr_unbound;
+
+typedef boost::function<void(std::vector<Character*> attackers, std::vector<Character*> targets)> AttackFnPtr;
 
 #endif

@@ -147,16 +147,28 @@ void Battle::commence() {
 		}
 		int selectedItem = battleMenu.getCurrentItemIndex();
 		if (selectedItem == 0) {
-			//battleLog.push_back("You tried to Attack! But you missed..:(");
+			// user selected attack, select attacking character.
 
-			for (size_t i = 0; i < e2->getParty().size(); i++) {
+			Character * attacker = e1->getParty()[0];
+			attacker->getAttackOptionsFns()[0];
+
+			for (int i = 0; i < e2->getParty().size(); i++) {
 				Character * target = e2->getParty()[i];
 
-				int dmgTaken = target->getMaxHp();
-				target->setCurrentHp(0);
+				int attackIndex = 0;
+
+				const std::vector<Character*> attackers{attacker};
+				const std::vector<Character*> targets{target};
+				attacker->getAttackOptionsFns()[attackIndex](attackers, targets);
 
 				std::stringstream ss;
-				ss << target->getName() << " took " << dmgTaken << " damage.";
+				for (auto it = attackers.begin(); it != attackers.end(); it++) {
+					ss << (*it)->getName();
+					if (it != attackers.end() - 1) {
+						ss << ", ";
+					}
+				}
+				ss << " used " << attacker->getAttackOptionsNames()[attackIndex] << " on " << target->getName();
 				battleLog.push_back(ss.str());
 			}
 		}
