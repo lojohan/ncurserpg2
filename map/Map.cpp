@@ -75,6 +75,7 @@ void Map::parseMap(std::vector<Entity*> * tiles, std::vector<Zone*> * zones, std
             const wchar_t * image;
             int pos[2];
             int color;
+            bool solid = true;
             std::vector<ColFnPtr> collisionpointers;
             std::vector<MovFnPtr> movementpointers;
             std::vector<UseFnPtr> usepointers;
@@ -108,6 +109,12 @@ void Map::parseMap(std::vector<Entity*> * tiles, std::vector<Zone*> * zones, std
                             pos[1] = atoi( coords.at(1).c_str());
                             
                         break;
+                        }
+                    case SOLID :
+                        {
+                            int sol = atoi(splitstrings.at(i).c_str());
+                            if( sol == 0 ) solid = false;
+                            break;
                         }
                     case IMAGE:
                         {
@@ -179,13 +186,13 @@ void Map::parseMap(std::vector<Entity*> * tiles, std::vector<Zone*> * zones, std
                 }
                     
                 if (!className.compare("Tile")) {
-                    putEntityInMap( new Tile(pos[0],pos[1],image,name,true,true, color, collisionpointers, movementpointers, usepointers), tiles, entityMap);
+                    putEntityInMap( new Tile(pos[0],pos[1],image,name,true,solid, color, collisionpointers, movementpointers, usepointers), tiles, entityMap);
                 }
                 if (!className.compare("Player")) {
-                    putEntityInMap( new Player(pos[0],pos[1], true, image, name, color, collisionpointers, movementpointers, usepointers), tiles, entityMap);
+                    putEntityInMap( new Player(pos[0],pos[1], solid, image, name, color, collisionpointers, movementpointers, usepointers), tiles, entityMap);
                 }
                 if (!className.compare("NPC")) {
-                    putEntityInMap( new NPC(pos[0],pos[1], true, image, name, color, collisionpointers, movementpointers, usepointers), tiles, entityMap);
+                    putEntityInMap( new NPC(pos[0],pos[1], solid, image, name, color, collisionpointers, movementpointers, usepointers), tiles, entityMap);
                 }
             } else if(!className.compare("Zone")) {
                 

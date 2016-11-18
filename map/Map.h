@@ -21,11 +21,12 @@
 #define CLASS_NAME 0
 #define ENTITY_NAME 1
 #define POSITION 2
-#define IMAGE 3
-#define COLOR 4
-#define COLLISION 5
-#define MOVEMENT 6
-#define USE 7
+#define SOLID 3
+#define IMAGE 4
+#define COLOR 5
+#define COLLISION 6
+#define MOVEMENT 7
+#define USE 8
 
 #define ZONE_NAME 1
 #define ZONE_POSITION1 2
