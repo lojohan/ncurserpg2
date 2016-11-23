@@ -298,6 +298,9 @@ void Map::getImageFromImageMap(const wchar_t ** wch, int i ) {
 	case 7:
 	    *wch = L"\u2593";
 	    break;
+	case 8:
+	    *wch = L"\u2302";
+	    break;
 	default:
 	        *wch = L"";
 		break;
