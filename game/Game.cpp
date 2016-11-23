@@ -43,7 +43,7 @@ void Game::start() {
 
 // build map, will also build entities.
 void Game::fillTileMap() {
-    this->map->parseMap( &(this->entityList), &(this->zoneList), &(this->entityMap));
+    this->map->parseMap( &(this->entityList), &(this->zoneList));
 }
 
 Map * Game::getMap() {

@@ -47,9 +47,9 @@ class Map {
     
         Map();
         
-        void parseMap(std::vector<Entity*> * tiles, std::vector<Zone*> * zones,  std::unordered_map< std::string,std::vector<Entity*> > * entityMap);
+        void parseMap(std::vector<Entity*> * tiles, std::vector<Zone*> * zones);
         
-        void putEntityInMap(Entity * entity, std::vector<Entity*> * entities, std::unordered_map< std::string,std::vector<Entity*> > * entityMap);
+        void putEntityInMap(Entity * entity, std::vector<Entity*> * entities);
         
         void putZoneInList(Zone * zone, std::vector<Zone*> * zones);
         

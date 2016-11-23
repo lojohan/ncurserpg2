@@ -49,7 +49,7 @@ int * Map::parseFunctionString(std::string * s, std::string * fname, int * count
 }
 
 //TODO: clean and split into smaller functions.
-void Map::parseMap(std::vector<Entity*> * tiles, std::vector<Zone*> * zones, std::unordered_map< std::string,std::vector<Entity*> > * entityMap) {
+void Map::parseMap(std::vector<Entity*> * tiles, std::vector<Zone*> * zones) {
     
     // placeholder
     
@@ -186,13 +186,13 @@ void Map::parseMap(std::vector<Entity*> * tiles, std::vector<Zone*> * zones, std
                 }
                     
                 if (!className.compare("Tile")) {
-                    putEntityInMap( new Tile(pos[0],pos[1],image,name,true,solid, color, collisionpointers, movementpointers, usepointers), tiles, entityMap);
+                    putEntityInMap( new Tile(pos[0],pos[1],image,name,true,solid, color, collisionpointers, movementpointers, usepointers), tiles);
                 }
                 if (!className.compare("Player")) {
-                    putEntityInMap( new Player(pos[0],pos[1], solid, image, name, color, collisionpointers, movementpointers, usepointers), tiles, entityMap);
+                    putEntityInMap( new Player(pos[0],pos[1], solid, image, name, color, collisionpointers, movementpointers, usepointers), tiles);
                 }
                 if (!className.compare("NPC")) {
-                    putEntityInMap( new NPC(pos[0],pos[1], solid, image, name, color, collisionpointers, movementpointers, usepointers), tiles, entityMap);
+                    putEntityInMap( new NPC(pos[0],pos[1], solid, image, name, color, collisionpointers, movementpointers, usepointers), tiles);
                 }
             } else if(!className.compare("Zone")) {
                 
@@ -252,25 +252,8 @@ void Map::parseMap(std::vector<Entity*> * tiles, std::vector<Zone*> * zones, std
 
 }
 
-void Map::putEntityInMap(Entity * entity, std::vector<Entity*> * entities, std::unordered_map< std::string,std::vector<Entity*> > * entityMap) {
+void Map::putEntityInMap(Entity * entity, std::vector<Entity*> * entities) {
     entities->push_back(entity);
-    /*
-    std::stringstream s;
-    s << entity->getX() << "," << entity->getY();
-    std::string pos = s.str();
-    
-    //LOG("putEntityInMap",pos.c_str()); 
-    
-    if(entityMap->find(pos) != entityMap->end()) {
-        //LOG("putEntityInMap2",pos.c_str()); 
-        std::vector<Entity*> * entitiesAtPoint = &(entityMap->find(pos)->second);
-        entitiesAtPoint->push_back(entity);
-    } else {
-        std::vector<Entity*> entitiesAtPoint;
-        entitiesAtPoint.push_back(entity);
-        entityMap->insert({pos,entitiesAtPoint}); 
-    }
-    */
 }
 
 void Map::putZoneInList(Zone * zone, std::vector<Zone*> * zones) {
