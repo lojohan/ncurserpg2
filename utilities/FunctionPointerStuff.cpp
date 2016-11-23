@@ -65,7 +65,7 @@ void enterLevel(Entity * e1, Entity * e2, int count, int * params) {
     
     } else {
         if(Player* v = dynamic_cast<Player*>( e1 )) {
-            game->switchLevel(params[0],params[1],params[2]);
+            game->switchLevel(std::to_string((long long int) params[0]),params[1],params[2]);
         }
     }
 }

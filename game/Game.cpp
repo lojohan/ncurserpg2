@@ -7,7 +7,7 @@ void Game::start() {
 
     map = new Map();
     this->init();
-    currentLevelID = 0;
+    currentLevelID = "0";
     // placeholder
     this->entityList = entityLists.at(currentLevelID);
     this->zoneList = zoneLists.at(currentLevelID);
@@ -125,7 +125,7 @@ void Game::clearEntityMap() {
 }
 
 // needs to handle adding player to the new level
-void Game::switchLevel(int id, int newPlayerX, int newPlayerY) {
+void Game::switchLevel(std::string id, int newPlayerX, int newPlayerY) {
     LOG << "Entering level " << id <<  " at " << newPlayerX<<"," << newPlayerY  << std::endl;
     detachEntity(this->player);
     
@@ -139,7 +139,7 @@ void Game::switchLevel(int id, int newPlayerX, int newPlayerY) {
     entityLists.at(currentLevelID) = entityList;
     zoneLists.at(currentLevelID) = zoneList;
     currentLevelID = id;
-    if (id < 0 || (unsigned)id >= entityLists.size()) 
+    if (entityLists.find(id) == entityLists.end()) 
         LOG << "Map id " << id << " does not exist!" << std::endl;
     entityList = entityLists.at(id);
     zoneList = zoneLists.at(id);

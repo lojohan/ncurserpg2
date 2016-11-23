@@ -17,9 +17,9 @@ class Map;
 
 class Game {
     private: 
-        std::vector< std::vector<Entity*> > entityLists;
+        std::unordered_map<std::string, std::vector<Entity*> > entityLists;
         std::vector<Entity*> entityList;
-        std::vector< std::vector<Zone*> > zoneLists;
+        std::unordered_map<std::string, std::vector<Zone*> > zoneLists;
         std::vector<Zone*> zoneList;
         std::unordered_map< std::string,std::vector<Entity*> > entityMap;
         
@@ -28,7 +28,7 @@ class Game {
         
         bool game_paused;
         
-        int currentLevelID;
+        std::string currentLevelID;
 
         // should be in drawing bit
         WINDOW *super_window;
@@ -74,7 +74,7 @@ class Game {
         void addEntityToMap(std::unordered_map< std::string, std::vector<Entity*>> & entityMap, Entity* entity);
         void addEntitiesToMap(std::unordered_map< std::string, std::vector<Entity*>> & entityMap, std::vector<Entity*> entities);
         void clearEntityMap();
-        void switchLevel(int id, int newPlayerX, int newPlayerY);
+        void switchLevel(std::string id, int newPlayerX, int newPlayerY);
         
         void init();
         
