@@ -68,11 +68,12 @@ class Game {
         Map * getMap();
         std::vector<Entity*> getEntities();
         void removeEntity(Entity * entity);
+        void detachEntity(Entity * entity);
         void removeEntityFromMap(std::unordered_map< std::string, std::vector<Entity*>> & entityMap, Entity* entity);
         void addEntityToMap(std::unordered_map< std::string, std::vector<Entity*>> & entityMap, Entity* entity);
         void addEntitiesToMap(std::unordered_map< std::string, std::vector<Entity*>> & entityMap, std::vector<Entity*> entities);
         void clearEntityMap();
-        void switchLevel(int id);
+        void switchLevel(int id, int newPlayerX, int newPlayerY);
         
         void init();
         

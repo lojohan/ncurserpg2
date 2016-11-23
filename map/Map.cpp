@@ -8,6 +8,7 @@ Map::Map(){
     collisionFunctionMap["changeColor"] = changeColor;
     //collisionFunctionMap["displayDialogue"] = displayDialogue;
     collisionFunctionMap["battle"] = battle;
+    collisionFunctionMap["enterLevel"] = enterLevel;
     
     //movement stuff
     
@@ -50,9 +51,6 @@ int * Map::parseFunctionString(std::string * s, std::string * fname, int * count
 
 //TODO: clean and split into smaller functions.
 void Map::parseMap(std::vector<std::vector<Entity*> > * entityLists, std::vector<Zone*> * zones) {
-    
-    //std::vector<Entity*> tiles;
-    // placeholder
     
     std::string line;
     std::ifstream myfile ("res/maps/randommap.txt");

@@ -58,12 +58,16 @@ std::vector<Entity*> Game::getEntities() {
 }
 
 void Game::removeEntity(Entity * entity) {
+    detachEntity(entity);
+	delete entity;
+}
+
+void Game::detachEntity(Entity * entity) {
 	removeEntityFromMap(entityMap, entity);
 	for (auto it = entityList.begin(); it != entityList.end(); it++) {
 		if (*it == entity)
 			entityList.erase(it);
 	}
-	delete entity;
 }
 
 void Game::removeEntityFromMap(std::unordered_map< std::string, std::vector<Entity*>> & entityMap, Entity* entity) {
@@ -111,18 +115,36 @@ void Game::addEntitiesToMap(std::unordered_map< std::string, std::vector<Entity*
 }
 
 void Game::clearEntityMap() {
+    LOG << "Clearing entity map..." << std::endl;
     this->entityMap.clear();
 }
 
-// needs to handle adding player to the new level, or maybe not? Spawn player in each level?
-void Game::switchLevel(int id) {
+// needs to handle adding player to the new level
+void Game::switchLevel(int id, int newPlayerX, int newPlayerY) {
+    LOG << "Entering level " << id <<  " at " << newPlayerX<<"," << newPlayerY  << std::endl;
+    detachEntity(this->player);
+    
+    LOG << "Removed player from previous list " << std::endl;
+    
+    this->player->setX(newPlayerX);
+    this->player->setY(newPlayerY);
+    
+    LOG << "Set new coords for player " << std::endl;
+    
     entityLists.at(currentLevelID) = entityList;
+    currentLevelID = id;
     entityList = entityLists.at(id);
+    
+    entityList.insert(entityList.begin(),player);
+    
     clearEntityMap();
+    
+    LOG << "Cleared entity map " << std::endl;
+    
     addEntitiesToMap(this->entityMap, this->entityList);
     
-    this->player = NULL; // initialize in case player is not found
-    getPlayerFromEntities(&(this->player));
+    LOG << "Added new entities to entity map " << std::endl;
+
 }
 
 // run logic for movables
