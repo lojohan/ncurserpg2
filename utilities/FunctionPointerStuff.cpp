@@ -59,6 +59,16 @@ void battle(Entity * e1, Entity * e2, int count, int * params) {
     }
 }
 
+void enterLevel(Entity * e1, Entity * e2, int count, int * params) {
+    if( count != 1) {
+    
+    } else {
+        if(Player* v = dynamic_cast<Player*>( e1 )) {
+            game->switchLevel(params[0]);
+        }
+    }
+}
+
 // functions to call when used
 
 

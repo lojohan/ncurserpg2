@@ -20,6 +20,8 @@ void displayDialogue(Entity * e1, Entity * e2, int count, int * params);
 
 void battle(Entity * e1, Entity * e2, int count, int * params);
 
+void enterLevel(Entity * e1, Entity * e2, int count, int * params);
+
 // functions to call on move
 void noMove(Entity * e, int c, int arr[2], int dt, int count, int * params);
 

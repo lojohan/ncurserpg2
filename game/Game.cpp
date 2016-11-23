@@ -114,6 +114,17 @@ void Game::clearEntityMap() {
     this->entityMap.clear();
 }
 
+// needs to handle adding player to the new level, or maybe not? Spawn player in each level?
+void Game::switchLevel(int id) {
+    entityLists.at(currentLevelID) = entityList;
+    entityList = entityLists.at(id);
+    clearEntityMap();
+    addEntitiesToMap(this->entityMap, this->entityList);
+    
+    this->player = NULL; // initialize in case player is not found
+    getPlayerFromEntities(&(this->player));
+}
+
 // run logic for movables
 void Game::updateMovables(int ch, int t) {
     physicsLoop(ch, this->entityList, this->entityMap,t);

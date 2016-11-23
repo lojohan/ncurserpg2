@@ -26,6 +26,8 @@ class Game {
         Player * player;
         
         bool game_paused;
+        
+        int currentLevelID;
 
         // should be in drawing bit
         WINDOW *super_window;
@@ -70,6 +72,7 @@ class Game {
         void addEntityToMap(std::unordered_map< std::string, std::vector<Entity*>> & entityMap, Entity* entity);
         void addEntitiesToMap(std::unordered_map< std::string, std::vector<Entity*>> & entityMap, std::vector<Entity*> entities);
         void clearEntityMap();
+        void switchLevel(int id);
         
         void init();
         
