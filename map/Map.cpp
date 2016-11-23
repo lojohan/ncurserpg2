@@ -254,6 +254,7 @@ void Map::parseMap(std::vector<Entity*> * tiles, std::vector<Zone*> * zones, std
 
 void Map::putEntityInMap(Entity * entity, std::vector<Entity*> * entities, std::unordered_map< std::string,std::vector<Entity*> > * entityMap) {
     entities->push_back(entity);
+    /*
     std::stringstream s;
     s << entity->getX() << "," << entity->getY();
     std::string pos = s.str();
@@ -269,6 +270,7 @@ void Map::putEntityInMap(Entity * entity, std::vector<Entity*> * entities, std::
         entitiesAtPoint.push_back(entity);
         entityMap->insert({pos,entitiesAtPoint}); 
     }
+    */
 }
 
 void Map::putZoneInList(Zone * zone, std::vector<Zone*> * zones) {

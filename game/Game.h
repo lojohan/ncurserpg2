@@ -17,6 +17,7 @@ class Map;
 
 class Game {
     private: 
+        std::vector< std::vector<Entity*>* > entityLists;
         std::vector<Entity*> entityList;
         std::vector<Zone*> zoneList;
         std::unordered_map< std::string,std::vector<Entity*> > entityMap;
@@ -67,6 +68,8 @@ class Game {
         void removeEntity(Entity * entity);
         void removeEntityFromMap(std::unordered_map< std::string, std::vector<Entity*>> & entityMap, Entity* entity);
         void addEntityToMap(std::unordered_map< std::string, std::vector<Entity*>> & entityMap, Entity* entity);
+        void addEntitiesToMap(std::unordered_map< std::string, std::vector<Entity*>> & entityMap, std::vector<Entity*> entities);
+        void clearEntityMap();
         
         void init();
         

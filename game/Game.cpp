@@ -11,6 +11,8 @@ void Game::start() {
     this->player = NULL; // initialize in case player is not found
     getPlayerFromEntities(&(this->player));
     
+    addEntitiesToMap(this->entityMap, this->entityList);
+    
     while(true) {
         
         // placeholder
@@ -95,6 +97,18 @@ void Game::addEntityToMap(std::unordered_map< std::string, std::vector<Entity*>>
         entityMap.insert({pos,entitiesAtPoint});
     }
 
+}
+
+void Game::addEntitiesToMap(std::unordered_map< std::string, std::vector<Entity*>> & entityMap, std::vector<Entity*> entities) {
+    int len = entities.size();
+    
+    for(int i = 0; i < len; i++) {
+        addEntityToMap(entityMap,entities.at(i));
+    }
+}
+
+void Game::clearEntityMap() {
+    this->entityMap.clear();
 }
 
 // run logic for movables
