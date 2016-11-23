@@ -50,13 +50,14 @@ int * Map::parseFunctionString(std::string * s, std::string * fname, int * count
 }
 
 //TODO: clean and split into smaller functions.
-void Map::parseMap(std::vector<std::vector<Entity*> > * entityLists, std::vector<Zone*> * zones) {
+void Map::parseMap(std::vector<std::vector<Entity*> > * entityLists, std::vector<std::vector<Zone*> > * zoneLists) {
     
     std::string line;
     std::ifstream myfile ("res/maps/randommap.txt");
     myfile.imbue(std::locale("en_US.UTF8"));
     if (myfile.is_open())
     {
+        int levelid = 0;
         while ( std::getline (myfile,line) )
         {
             // skip comments
@@ -80,8 +81,6 @@ void Map::parseMap(std::vector<std::vector<Entity*> > * entityLists, std::vector
             std::vector<UseFnPtr> usepointers;
             std::string name;
             
-            int levelid = 0;
-            
             std::string zone_name = "";
             int arr1[2];
             int arr2[2];
@@ -90,7 +89,8 @@ void Map::parseMap(std::vector<std::vector<Entity*> > * entityLists, std::vector
             // will be used to determine the id of the level and the index of the vector to add to.
             if(isdigit(line[0])) {
                 levelid = atoi(line.c_str());
-                entityLists->push_back(std::vector<Entity*>());
+                entityLists->insert(entityLists->begin()+levelid,std::vector<Entity*>());
+                zoneLists->insert(zoneLists->begin()+levelid,std::vector<Zone*>());
             }
             
             std::string className = splitstrings.at(CLASS_NAME);
@@ -250,7 +250,7 @@ void Map::parseMap(std::vector<std::vector<Entity*> > * entityLists, std::vector
                     
                 }
                 
-                putZoneInList( new Zone(zone_name, arr1, arr2, friendlyArea), zones);
+                putZoneInList( new Zone(zone_name, arr1, arr2, friendlyArea), &(zoneLists->at(levelid)));
                 
             }
         }

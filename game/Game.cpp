@@ -7,9 +7,10 @@ void Game::start() {
 
     map = new Map();
     this->init();
-    
+    currentLevelID = 0;
     // placeholder
-    this->entityList = entityLists.at(0);
+    this->entityList = entityLists.at(currentLevelID);
+    this->zoneList = zoneLists.at(currentLevelID);
     
     this->player = NULL; // initialize in case player is not found
     getPlayerFromEntities(&(this->player));
@@ -46,7 +47,7 @@ void Game::start() {
 
 // build map, will also build entities.
 void Game::fillTileMap() {
-    this->map->parseMap( &(this->entityLists), &(this->zoneList));
+    this->map->parseMap( &(this->entityLists), &(this->zoneLists));
 }
 
 Map * Game::getMap() {
@@ -64,10 +65,14 @@ void Game::removeEntity(Entity * entity) {
 
 void Game::detachEntity(Entity * entity) {
 	removeEntityFromMap(entityMap, entity);
+	//LOG << "Removed entity from map " << std::endl;
 	for (auto it = entityList.begin(); it != entityList.end(); it++) {
-		if (*it == entity)
+		if (*it == entity) {
 			entityList.erase(it);
+			break;
+		}
 	}
+	//LOG << "Removed entity from entity list " << std::endl;
 }
 
 void Game::removeEntityFromMap(std::unordered_map< std::string, std::vector<Entity*>> & entityMap, Entity* entity) {
@@ -115,7 +120,7 @@ void Game::addEntitiesToMap(std::unordered_map< std::string, std::vector<Entity*
 }
 
 void Game::clearEntityMap() {
-    LOG << "Clearing entity map..." << std::endl;
+    //LOG << "Clearing entity map..." << std::endl;
     this->entityMap.clear();
 }
 
@@ -132,10 +137,18 @@ void Game::switchLevel(int id, int newPlayerX, int newPlayerY) {
     LOG << "Set new coords for player " << std::endl;
     
     entityLists.at(currentLevelID) = entityList;
+    zoneLists.at(currentLevelID) = zoneList;
     currentLevelID = id;
+    if (id < 0 || (unsigned)id >= entityLists.size()) 
+        LOG << "Map id " << id << " does not exist!" << std::endl;
     entityList = entityLists.at(id);
+    zoneList = zoneLists.at(id);
     
-    entityList.insert(entityList.begin(),player);
+    LOG << "Fetched new level " << std::endl;
+    
+    entityList.push_back(player);
+    
+    LOG << "Inserted player into new level " << std::endl;
     
     clearEntityMap();
     

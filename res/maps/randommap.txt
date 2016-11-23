@@ -3593,11 +3593,11 @@ Tile;;-90,50;1;1;7;
 Zone;Fatale Towns;-90,34;-78,50;1;
 Zone;Domestic Claribel River;-78,34;-68,44;0;
 Zone;Crooky Towns;-68,34;-58,50;0;
-Tile;;-60,47;1;8;7;enterLevel(0 30 30)
-Tile;;-64,42;1;8;7;enterLevel(0 30 30)
-Tile;;-60,49;1;8;7;enterLevel(0 30 30)
-Tile;;-64,44;1;8;7;enterLevel(0 30 30)
-Tile;;-63,41;1;8;7;enterLevel(0 30 30)
+Tile;;-60,47;1;8;7;enterLevel(1 30 30)
+Tile;;-64,42;1;8;7;enterLevel(1 30 30)
+Tile;;-60,49;1;8;7;enterLevel(1 30 30)
+Tile;;-64,44;1;8;7;enterLevel(1 30 30)
+Tile;;-63,41;1;8;7;enterLevel(1 30 30)
 Tile;;-68,34;1;1;7;
 Tile;;-68,35;1;1;7;
 Tile;;-68,36;1;1;7;
@@ -3822,13 +3822,13 @@ Tile;grass;-69,40;0;6;2;
 Tile;grass;-69,41;0;6;2;
 Tile;grass;-69,42;0;6;2;
 Tile;grass;-69,43;0;6;2;
-Tile;;-84,39;1;8;7;enterLevel(0 30 30)
-Tile;;-84,49;1;8;7;enterLevel(0 30 30)
-Tile;;-86,41;1;8;7;enterLevel(0 30 30)
-Tile;;-86,46;1;8;7;enterLevel(0 30 30)
-Tile;;-81,40;1;8;7;enterLevel(0 30 30)
-Tile;;-82,41;1;8;7;enterLevel(0 30 30)
-Tile;;-83,45;1;8;7;enterLevel(0 30 30)
+Tile;;-84,39;1;8;7;enterLevel(1 30 30)
+Tile;;-84,49;1;8;7;enterLevel(1 30 30)
+Tile;;-86,41;1;8;7;enterLevel(1 30 30)
+Tile;;-86,46;1;8;7;enterLevel(1 30 30)
+Tile;;-81,40;1;8;7;enterLevel(1 30 30)
+Tile;;-82,41;1;8;7;enterLevel(1 30 30)
+Tile;;-83,45;1;8;7;enterLevel(1 30 30)
 Tile;;-90,34;1;1;7;
 Tile;;-90,35;1;1;7;
 Tile;;-90,36;1;1;7;
@@ -6579,9 +6579,9 @@ Zone;Caves of Hmph;4,36;12,46;0;
 Zone;Town of Guerilla;12,36;26,46;0;
 Zone;River Rejoicing Beadon's;26,36;32,46;1;
 Zone;Harassings Towns;32,36;42,48;0;
-Tile;;41,40;1;8;7;enterLevel(0 30 30)
-Tile;;35,45;1;8;7;enterLevel(0 30 30)
-Tile;;34,42;1;8;7;enterLevel(0 30 30)
+Tile;;41,40;1;8;7;enterLevel(1 30 30)
+Tile;;35,45;1;8;7;enterLevel(1 30 30)
+Tile;;34,42;1;8;7;enterLevel(1 30 30)
 Tile;;32,36;1;1;7;
 Tile;;32,37;1;1;7;
 Tile;;32,39;1;1;7;
@@ -6630,7 +6630,7 @@ Tile;;40,36;1;1;7;
 Tile;;41,36;1;1;7;
 Tile;;42,36;1;1;7;
 Zone;Village of Civil Throbs;26,28;36,36;0;
-Tile;;31,35;1;8;7;enterLevel(0 30 30)
+Tile;;31,35;1;8;7;enterLevel(1 30 30)
 Tile;;26,28;1;1;7;
 Tile;;26,29;1;1;7;
 Tile;;26,30;1;1;7;
@@ -6715,10 +6715,10 @@ Tile;grass;31,42;0;6;2;
 Tile;grass;31,43;0;6;2;
 Tile;grass;31,44;0;6;2;
 Tile;grass;31,45;0;6;2;
-Tile;;25,42;1;8;7;enterLevel(0 30 30)
-Tile;;15,42;1;8;7;enterLevel(0 30 30)
-Tile;;18,45;1;8;7;enterLevel(0 30 30)
-Tile;;15,44;1;8;7;enterLevel(0 30 30)
+Tile;;25,42;1;8;7;enterLevel(1 30 30)
+Tile;;15,42;1;8;7;enterLevel(1 30 30)
+Tile;;18,45;1;8;7;enterLevel(1 30 30)
+Tile;;15,44;1;8;7;enterLevel(1 30 30)
 Tile;;12,36;1;1;7;
 Tile;;12,37;1;1;7;
 Tile;;12,38;1;1;7;
@@ -7420,13 +7420,13 @@ Tile;grass;-17,46;0;6;2;
 Tile;grass;-17,47;0;6;2;
 Tile;grass;-17,48;0;6;2;
 Tile;grass;-17,49;0;6;2;
-Tile;;-26,67;1;8;7;enterLevel(0 30 30)
-Tile;;-23,63;1;8;7;enterLevel(0 30 30)
-Tile;;-22,58;1;8;7;enterLevel(0 30 30)
-Tile;;-18,58;1;8;7;enterLevel(0 30 30)
-Tile;;-23,62;1;8;7;enterLevel(0 30 30)
-Tile;;-20,63;1;8;7;enterLevel(0 30 30)
-Tile;;-17,63;1;8;7;enterLevel(0 30 30)
+Tile;;-26,67;1;8;7;enterLevel(1 30 30)
+Tile;;-23,63;1;8;7;enterLevel(1 30 30)
+Tile;;-22,58;1;8;7;enterLevel(1 30 30)
+Tile;;-18,58;1;8;7;enterLevel(1 30 30)
+Tile;;-23,62;1;8;7;enterLevel(1 30 30)
+Tile;;-20,63;1;8;7;enterLevel(1 30 30)
+Tile;;-17,63;1;8;7;enterLevel(1 30 30)
 Tile;;-28,50;1;1;7;
 Tile;;-28,52;1;1;7;
 Tile;;-28,53;1;1;7;
@@ -12175,11 +12175,11 @@ Tile;grass;49,212;0;6;2;
 Tile;grass;49,213;0;6;2;
 Zone;Mounded Villages;46,174;54,180;0;
 Zone;Just Treating Town;46,180;62,190;0;
-Tile;;54,186;1;8;7;enterLevel(0 30 30)
-Tile;;49,189;1;8;7;enterLevel(0 30 30)
-Tile;;56,185;1;8;7;enterLevel(0 30 30)
-Tile;;56,184;1;8;7;enterLevel(0 30 30)
-Tile;;50,183;1;8;7;enterLevel(0 30 30)
+Tile;;54,186;1;8;7;enterLevel(1 30 30)
+Tile;;49,189;1;8;7;enterLevel(1 30 30)
+Tile;;56,185;1;8;7;enterLevel(1 30 30)
+Tile;;56,184;1;8;7;enterLevel(1 30 30)
+Tile;;50,183;1;8;7;enterLevel(1 30 30)
 Tile;;46,180;1;1;7;
 Tile;;46,181;1;1;7;
 Tile;;46,182;1;1;7;
@@ -13803,7 +13803,7 @@ Zone;Town of Mettle;90,112;102,130;0;
 Zone;Village of Bluebottle;102,112;112,118;0;
 Zone;Disarming Ganglial Field;102,118;114,130;0;
 Zone;Molina Village;102,130;112,138;0;
-Tile;;104,132;1;8;7;enterLevel(0 30 30)
+Tile;;104,132;1;8;7;enterLevel(1 30 30)
 Tile;;102,130;1;1;7;
 Tile;;102,131;1;1;7;
 Tile;;102,132;1;1;7;
@@ -14196,14 +14196,14 @@ Tile;;109,112;1;1;7;
 Tile;;110,112;1;1;7;
 Tile;;111,112;1;1;7;
 Tile;;112,112;1;1;7;
-Tile;;97,119;1;8;7;enterLevel(0 30 30)
-Tile;;93,119;1;8;7;enterLevel(0 30 30)
-Tile;;99,117;1;8;7;enterLevel(0 30 30)
-Tile;;100,122;1;8;7;enterLevel(0 30 30)
-Tile;;98,114;1;8;7;enterLevel(0 30 30)
-Tile;;101,115;1;8;7;enterLevel(0 30 30)
-Tile;;100,128;1;8;7;enterLevel(0 30 30)
-Tile;;96,125;1;8;7;enterLevel(0 30 30)
+Tile;;97,119;1;8;7;enterLevel(1 30 30)
+Tile;;93,119;1;8;7;enterLevel(1 30 30)
+Tile;;99,117;1;8;7;enterLevel(1 30 30)
+Tile;;100,122;1;8;7;enterLevel(1 30 30)
+Tile;;98,114;1;8;7;enterLevel(1 30 30)
+Tile;;101,115;1;8;7;enterLevel(1 30 30)
+Tile;;100,128;1;8;7;enterLevel(1 30 30)
+Tile;;96,125;1;8;7;enterLevel(1 30 30)
 Tile;;90,112;1;1;7;
 Tile;;90,113;1;1;7;
 Tile;;90,114;1;1;7;
@@ -14965,7 +14965,7 @@ Zone;Domain of Henri;120,62;142,90;0;
 Zone;Forests of Mural;142,62;156,74;0;
 Zone;Ocean of Rousing Precedent;142,74;172,104;0;
 Zone;Tampered Village;142,104;150,112;0;
-Tile;;148,111;1;8;7;enterLevel(0 30 30)
+Tile;;148,111;1;8;7;enterLevel(1 30 30)
 Tile;;142,104;1;1;7;
 Tile;;142,105;1;1;7;
 Tile;;142,106;1;1;7;
@@ -17246,17 +17246,17 @@ Tile;;91,70;1;1;7;
 Tile;;92,70;1;1;7;
 Tile;;93,70;1;1;7;
 Tile;;94,70;1;1;7;
-Tile;;74,76;1;8;7;enterLevel(0 30 30)
-Tile;;74,78;1;8;7;enterLevel(0 30 30)
-Tile;;82,76;1;8;7;enterLevel(0 30 30)
-Tile;;79,77;1;8;7;enterLevel(0 30 30)
-Tile;;73,85;1;8;7;enterLevel(0 30 30)
-Tile;;83,77;1;8;7;enterLevel(0 30 30)
-Tile;;73,72;1;8;7;enterLevel(0 30 30)
-Tile;;83,79;1;8;7;enterLevel(0 30 30)
-Tile;;84,76;1;8;7;enterLevel(0 30 30)
-Tile;;82,78;1;8;7;enterLevel(0 30 30)
-Tile;;75,78;1;8;7;enterLevel(0 30 30)
+Tile;;74,76;1;8;7;enterLevel(1 30 30)
+Tile;;74,78;1;8;7;enterLevel(1 30 30)
+Tile;;82,76;1;8;7;enterLevel(1 30 30)
+Tile;;79,77;1;8;7;enterLevel(1 30 30)
+Tile;;73,85;1;8;7;enterLevel(1 30 30)
+Tile;;83,77;1;8;7;enterLevel(1 30 30)
+Tile;;73,72;1;8;7;enterLevel(1 30 30)
+Tile;;83,79;1;8;7;enterLevel(1 30 30)
+Tile;;84,76;1;8;7;enterLevel(1 30 30)
+Tile;;82,78;1;8;7;enterLevel(1 30 30)
+Tile;;75,78;1;8;7;enterLevel(1 30 30)
 Tile;;70,70;1;1;7;
 Tile;;70,71;1;1;7;
 Tile;;70,72;1;1;7;
@@ -17630,26 +17630,26 @@ Tile;;49,14;1;1;7;
 Tile;;50,14;1;1;7;
 Tile;;51,14;1;1;7;
 Tile;;52,14;1;1;7;
-Tile;;54,37;1;8;7;enterLevel(0 30 30)
-Tile;;45,34;1;8;7;enterLevel(0 30 30)
-Tile;;56,34;1;8;7;enterLevel(0 30 30)
-Tile;;57,29;1;8;7;enterLevel(0 30 30)
-Tile;;58,36;1;8;7;enterLevel(0 30 30)
-Tile;;48,44;1;8;7;enterLevel(0 30 30)
-Tile;;52,39;1;8;7;enterLevel(0 30 30)
-Tile;;52,38;1;8;7;enterLevel(0 30 30)
-Tile;;56,38;1;8;7;enterLevel(0 30 30)
-Tile;;55,43;1;8;7;enterLevel(0 30 30)
-Tile;;52,28;1;8;7;enterLevel(0 30 30)
-Tile;;45,40;1;8;7;enterLevel(0 30 30)
-Tile;;51,29;1;8;7;enterLevel(0 30 30)
-Tile;;55,33;1;8;7;enterLevel(0 30 30)
-Tile;;49,41;1;8;7;enterLevel(0 30 30)
-Tile;;57,26;1;8;7;enterLevel(0 30 30)
-Tile;;48,43;1;8;7;enterLevel(0 30 30)
-Tile;;54,27;1;8;7;enterLevel(0 30 30)
-Tile;;55,26;1;8;7;enterLevel(0 30 30)
-Tile;;44,28;1;8;7;enterLevel(0 30 30)
+Tile;;54,37;1;8;7;enterLevel(1 30 30)
+Tile;;45,34;1;8;7;enterLevel(1 30 30)
+Tile;;56,34;1;8;7;enterLevel(1 30 30)
+Tile;;57,29;1;8;7;enterLevel(1 30 30)
+Tile;;58,36;1;8;7;enterLevel(1 30 30)
+Tile;;48,44;1;8;7;enterLevel(1 30 30)
+Tile;;52,39;1;8;7;enterLevel(1 30 30)
+Tile;;52,38;1;8;7;enterLevel(1 30 30)
+Tile;;56,38;1;8;7;enterLevel(1 30 30)
+Tile;;55,43;1;8;7;enterLevel(1 30 30)
+Tile;;52,28;1;8;7;enterLevel(1 30 30)
+Tile;;45,40;1;8;7;enterLevel(1 30 30)
+Tile;;51,29;1;8;7;enterLevel(1 30 30)
+Tile;;55,33;1;8;7;enterLevel(1 30 30)
+Tile;;49,41;1;8;7;enterLevel(1 30 30)
+Tile;;57,26;1;8;7;enterLevel(1 30 30)
+Tile;;48,43;1;8;7;enterLevel(1 30 30)
+Tile;;54,27;1;8;7;enterLevel(1 30 30)
+Tile;;55,26;1;8;7;enterLevel(1 30 30)
+Tile;;44,28;1;8;7;enterLevel(1 30 30)
 Tile;;42,24;1;1;7;
 Tile;;42,25;1;1;7;
 Tile;;42,26;1;1;7;
@@ -17960,8 +17960,8 @@ Tile;;56,14;1;1;7;
 Tile;;57,14;1;1;7;
 Tile;;59,14;1;1;7;
 Tile;;60,14;1;1;7;
-Tile;;64,23;1;8;7;enterLevel(0 30 30)
-Tile;;66,18;1;8;7;enterLevel(0 30 30)
+Tile;;64,23;1;8;7;enterLevel(1 30 30)
+Tile;;66,18;1;8;7;enterLevel(1 30 30)
 Tile;;60,14;1;1;7;
 Tile;;60,15;1;1;7;
 Tile;;60,16;1;1;7;
@@ -18037,8 +18037,8 @@ Tile;;62,24;1;1;7;
 Tile;;63,24;1;1;7;
 Tile;;64,24;1;1;7;
 Tile;;66,24;1;1;7;
-Tile;;73,26;1;8;7;enterLevel(0 30 30)
-Tile;;68,31;1;8;7;enterLevel(0 30 30)
+Tile;;73,26;1;8;7;enterLevel(1 30 30)
+Tile;;68,31;1;8;7;enterLevel(1 30 30)
 Tile;;66,24;1;1;7;
 Tile;;66,25;1;1;7;
 Tile;;66,26;1;1;7;
@@ -18564,21 +18564,21 @@ Tile;;77,-40;1;1;7;
 Tile;;78,-40;1;1;7;
 Tile;;79,-40;1;1;7;
 Tile;;80,-40;1;1;7;
-Tile;;80,-4;1;8;7;enterLevel(0 30 30)
-Tile;;80,-8;1;8;7;enterLevel(0 30 30)
-Tile;;87,1;1;8;7;enterLevel(0 30 30)
-Tile;;80,0;1;8;7;enterLevel(0 30 30)
-Tile;;91,-13;1;8;7;enterLevel(0 30 30)
-Tile;;84,-11;1;8;7;enterLevel(0 30 30)
-Tile;;80,-11;1;8;7;enterLevel(0 30 30)
-Tile;;76,-9;1;8;7;enterLevel(0 30 30)
-Tile;;78,-12;1;8;7;enterLevel(0 30 30)
-Tile;;76,-5;1;8;7;enterLevel(0 30 30)
-Tile;;91,-10;1;8;7;enterLevel(0 30 30)
-Tile;;87,-9;1;8;7;enterLevel(0 30 30)
-Tile;;83,1;1;8;7;enterLevel(0 30 30)
-Tile;;85,-2;1;8;7;enterLevel(0 30 30)
-Tile;;84,1;1;8;7;enterLevel(0 30 30)
+Tile;;80,-4;1;8;7;enterLevel(1 30 30)
+Tile;;80,-8;1;8;7;enterLevel(1 30 30)
+Tile;;87,1;1;8;7;enterLevel(1 30 30)
+Tile;;80,0;1;8;7;enterLevel(1 30 30)
+Tile;;91,-13;1;8;7;enterLevel(1 30 30)
+Tile;;84,-11;1;8;7;enterLevel(1 30 30)
+Tile;;80,-11;1;8;7;enterLevel(1 30 30)
+Tile;;76,-9;1;8;7;enterLevel(1 30 30)
+Tile;;78,-12;1;8;7;enterLevel(1 30 30)
+Tile;;76,-5;1;8;7;enterLevel(1 30 30)
+Tile;;91,-10;1;8;7;enterLevel(1 30 30)
+Tile;;87,-9;1;8;7;enterLevel(1 30 30)
+Tile;;83,1;1;8;7;enterLevel(1 30 30)
+Tile;;85,-2;1;8;7;enterLevel(1 30 30)
+Tile;;84,1;1;8;7;enterLevel(1 30 30)
 Tile;;74,-16;1;1;7;
 Tile;;74,-15;1;1;7;
 Tile;;74,-14;1;1;7;
@@ -19776,31 +19776,31 @@ Tile;grass;121,30;0;6;2;
 Tile;grass;121,31;0;6;2;
 Tile;grass;121,32;0;6;2;
 Tile;grass;121,33;0;6;2;
-Tile;;118,47;1;8;7;enterLevel(0 30 30)
-Tile;;113,49;1;8;7;enterLevel(0 30 30)
-Tile;;114,42;1;8;7;enterLevel(0 30 30)
-Tile;;110,52;1;8;7;enterLevel(0 30 30)
-Tile;;108,42;1;8;7;enterLevel(0 30 30)
-Tile;;122,51;1;8;7;enterLevel(0 30 30)
-Tile;;110,47;1;8;7;enterLevel(0 30 30)
-Tile;;111,41;1;8;7;enterLevel(0 30 30)
-Tile;;112,45;1;8;7;enterLevel(0 30 30)
-Tile;;116,49;1;8;7;enterLevel(0 30 30)
-Tile;;110,40;1;8;7;enterLevel(0 30 30)
-Tile;;105,50;1;8;7;enterLevel(0 30 30)
-Tile;;107,40;1;8;7;enterLevel(0 30 30)
-Tile;;117,39;1;8;7;enterLevel(0 30 30)
-Tile;;114,37;1;8;7;enterLevel(0 30 30)
-Tile;;116,41;1;8;7;enterLevel(0 30 30)
-Tile;;107,54;1;8;7;enterLevel(0 30 30)
-Tile;;111,54;1;8;7;enterLevel(0 30 30)
-Tile;;109,41;1;8;7;enterLevel(0 30 30)
-Tile;;109,55;1;8;7;enterLevel(0 30 30)
-Tile;;104,41;1;8;7;enterLevel(0 30 30)
-Tile;;108,37;1;8;7;enterLevel(0 30 30)
-Tile;;115,38;1;8;7;enterLevel(0 30 30)
-Tile;;108,48;1;8;7;enterLevel(0 30 30)
-Tile;;117,54;1;8;7;enterLevel(0 30 30)
+Tile;;118,47;1;8;7;enterLevel(1 30 30)
+Tile;;113,49;1;8;7;enterLevel(1 30 30)
+Tile;;114,42;1;8;7;enterLevel(1 30 30)
+Tile;;110,52;1;8;7;enterLevel(1 30 30)
+Tile;;108,42;1;8;7;enterLevel(1 30 30)
+Tile;;122,51;1;8;7;enterLevel(1 30 30)
+Tile;;110,47;1;8;7;enterLevel(1 30 30)
+Tile;;111,41;1;8;7;enterLevel(1 30 30)
+Tile;;112,45;1;8;7;enterLevel(1 30 30)
+Tile;;116,49;1;8;7;enterLevel(1 30 30)
+Tile;;110,40;1;8;7;enterLevel(1 30 30)
+Tile;;105,50;1;8;7;enterLevel(1 30 30)
+Tile;;107,40;1;8;7;enterLevel(1 30 30)
+Tile;;117,39;1;8;7;enterLevel(1 30 30)
+Tile;;114,37;1;8;7;enterLevel(1 30 30)
+Tile;;116,41;1;8;7;enterLevel(1 30 30)
+Tile;;107,54;1;8;7;enterLevel(1 30 30)
+Tile;;111,54;1;8;7;enterLevel(1 30 30)
+Tile;;109,41;1;8;7;enterLevel(1 30 30)
+Tile;;109,55;1;8;7;enterLevel(1 30 30)
+Tile;;104,41;1;8;7;enterLevel(1 30 30)
+Tile;;108,37;1;8;7;enterLevel(1 30 30)
+Tile;;115,38;1;8;7;enterLevel(1 30 30)
+Tile;;108,48;1;8;7;enterLevel(1 30 30)
+Tile;;117,54;1;8;7;enterLevel(1 30 30)
 Tile;;102,34;1;1;7;
 Tile;;102,35;1;1;7;
 Tile;;102,36;1;1;7;
@@ -20382,21 +20382,21 @@ Tile;;75,50;1;1;7;
 Tile;;76,50;1;1;7;
 Tile;;77,50;1;1;7;
 Tile;;78,50;1;1;7;
-Tile;;58,63;1;8;7;enterLevel(0 30 30)
-Tile;;53,65;1;8;7;enterLevel(0 30 30)
-Tile;;55,60;1;8;7;enterLevel(0 30 30)
-Tile;;57,53;1;8;7;enterLevel(0 30 30)
-Tile;;59,62;1;8;7;enterLevel(0 30 30)
-Tile;;54,56;1;8;7;enterLevel(0 30 30)
-Tile;;64,68;1;8;7;enterLevel(0 30 30)
-Tile;;58,58;1;8;7;enterLevel(0 30 30)
-Tile;;58,64;1;8;7;enterLevel(0 30 30)
-Tile;;56,58;1;8;7;enterLevel(0 30 30)
-Tile;;62,68;1;8;7;enterLevel(0 30 30)
-Tile;;65,52;1;8;7;enterLevel(0 30 30)
-Tile;;61,69;1;8;7;enterLevel(0 30 30)
-Tile;;65,67;1;8;7;enterLevel(0 30 30)
-Tile;;60,57;1;8;7;enterLevel(0 30 30)
+Tile;;58,63;1;8;7;enterLevel(1 30 30)
+Tile;;53,65;1;8;7;enterLevel(1 30 30)
+Tile;;55,60;1;8;7;enterLevel(1 30 30)
+Tile;;57,53;1;8;7;enterLevel(1 30 30)
+Tile;;59,62;1;8;7;enterLevel(1 30 30)
+Tile;;54,56;1;8;7;enterLevel(1 30 30)
+Tile;;64,68;1;8;7;enterLevel(1 30 30)
+Tile;;58,58;1;8;7;enterLevel(1 30 30)
+Tile;;58,64;1;8;7;enterLevel(1 30 30)
+Tile;;56,58;1;8;7;enterLevel(1 30 30)
+Tile;;62,68;1;8;7;enterLevel(1 30 30)
+Tile;;65,52;1;8;7;enterLevel(1 30 30)
+Tile;;61,69;1;8;7;enterLevel(1 30 30)
+Tile;;65,67;1;8;7;enterLevel(1 30 30)
+Tile;;60,57;1;8;7;enterLevel(1 30 30)
 Tile;;50,50;1;1;7;
 Tile;;50,51;1;1;7;
 Tile;;50,52;1;1;7;
@@ -20471,3 +20471,7 @@ Tile;;64,50;1;1;7;
 Tile;;65,50;1;1;7;
 Tile;;66,50;1;1;7;
 Player;Mctighe's;53,57;1;3;6;;playerControl;
+1
+Zone;House of Cheese;0,0;66,70;1;
+Tile;;30,29;1,1;7;
+Tile;;30,28;1;8;7;enterLevel(0 30 30)

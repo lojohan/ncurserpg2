@@ -48,7 +48,7 @@ class Map {
     
         Map();
         
-        void parseMap(std::vector<std::vector<Entity*> > * entityLists, std::vector<Zone*> * zones);
+        void parseMap(std::vector<std::vector<Entity*> > * entityLists, std::vector<std::vector<Zone*> > * zoneLists);
         
         void putEntityInMap(Entity * entity, std::vector<Entity*> * entities);
         
