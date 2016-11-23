@@ -12,6 +12,7 @@
 #include <boost/regex.hpp>
 #include <boost/bind.hpp>
 #include <sstream>
+#include <cctype>
 #include "../entities/Entities.h"
 #include "../utilities/UtilityFunctions.h"
 #include "../utilities/FunctionPointerStuff.h"
@@ -47,7 +48,7 @@ class Map {
     
         Map();
         
-        void parseMap(std::vector<Entity*> * tiles, std::vector<Zone*> * zones);
+        void parseMap(std::vector<std::vector<Entity*> > * entityLists, std::vector<Zone*> * zones);
         
         void putEntityInMap(Entity * entity, std::vector<Entity*> * entities);
         

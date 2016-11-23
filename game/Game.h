@@ -17,7 +17,7 @@ class Map;
 
 class Game {
     private: 
-        std::vector< std::vector<Entity*>* > entityLists;
+        std::vector< std::vector<Entity*> > entityLists;
         std::vector<Entity*> entityList;
         std::vector<Zone*> zoneList;
         std::unordered_map< std::string,std::vector<Entity*> > entityMap;

@@ -8,6 +8,9 @@ void Game::start() {
     map = new Map();
     this->init();
     
+    // placeholder
+    this->entityList = entityLists.at(0);
+    
     this->player = NULL; // initialize in case player is not found
     getPlayerFromEntities(&(this->player));
     
@@ -43,7 +46,7 @@ void Game::start() {
 
 // build map, will also build entities.
 void Game::fillTileMap() {
-    this->map->parseMap( &(this->entityList), &(this->zoneList));
+    this->map->parseMap( &(this->entityLists), &(this->zoneList));
 }
 
 Map * Game::getMap() {

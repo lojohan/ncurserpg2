@@ -49,8 +49,9 @@ int * Map::parseFunctionString(std::string * s, std::string * fname, int * count
 }
 
 //TODO: clean and split into smaller functions.
-void Map::parseMap(std::vector<Entity*> * tiles, std::vector<Zone*> * zones) {
+void Map::parseMap(std::vector<std::vector<Entity*> > * entityLists, std::vector<Zone*> * zones) {
     
+    //std::vector<Entity*> tiles;
     // placeholder
     
     std::string line;
@@ -81,10 +82,18 @@ void Map::parseMap(std::vector<Entity*> * tiles, std::vector<Zone*> * zones) {
             std::vector<UseFnPtr> usepointers;
             std::string name;
             
+            int levelid = 0;
+            
             std::string zone_name = "";
             int arr1[2];
             int arr2[2];
             bool friendlyArea = false;
+            
+            // will be used to determine the id of the level and the index of the vector to add to.
+            if(isdigit(line[0])) {
+                levelid = atoi(line.c_str());
+                entityLists->push_back(std::vector<Entity*>());
+            }
             
             std::string className = splitstrings.at(CLASS_NAME);
             
@@ -186,13 +195,13 @@ void Map::parseMap(std::vector<Entity*> * tiles, std::vector<Zone*> * zones) {
                 }
                     
                 if (!className.compare("Tile")) {
-                    putEntityInMap( new Tile(pos[0],pos[1],image,name,true,solid, color, collisionpointers, movementpointers, usepointers), tiles);
+                    putEntityInMap( new Tile(pos[0],pos[1],image,name,true,solid, color, collisionpointers, movementpointers, usepointers), &(entityLists->at(levelid)));
                 }
                 if (!className.compare("Player")) {
-                    putEntityInMap( new Player(pos[0],pos[1], solid, image, name, color, collisionpointers, movementpointers, usepointers), tiles);
+                    putEntityInMap( new Player(pos[0],pos[1], solid, image, name, color, collisionpointers, movementpointers, usepointers), &(entityLists->at(levelid)));
                 }
                 if (!className.compare("NPC")) {
-                    putEntityInMap( new NPC(pos[0],pos[1], solid, image, name, color, collisionpointers, movementpointers, usepointers), tiles);
+                    putEntityInMap( new NPC(pos[0],pos[1], solid, image, name, color, collisionpointers, movementpointers, usepointers), &(entityLists->at(levelid)));
                 }
             } else if(!className.compare("Zone")) {
                 

@@ -1,3 +1,4 @@
+0
 Tile;grass;0,0;0;6;2;
 Tile;grass;50,55;0;6;2;
 Tile;grass;38,72;0;6;2;
