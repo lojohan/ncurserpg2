@@ -50,7 +50,7 @@ int * Map::parseFunctionString(std::string * s, std::string * fname, int * count
 }
 
 //TODO: clean and split into smaller functions.
-void Map::parseMap(std::vector<std::vector<Entity*> > * entityLists, std::vector<std::vector<Zone*> > * zoneLists) {
+void Map::parseMap(std::<std::vector<Entity*> > * entityLists, std::vector<std::vector<Zone*> > * zoneLists) {
     
     std::string line;
     std::ifstream myfile ("res/maps/randommap.txt");
