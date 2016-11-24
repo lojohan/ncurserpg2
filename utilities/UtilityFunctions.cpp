@@ -2,6 +2,11 @@
 
 std::ofstream LOG;
 
+void init_logging() {
+    LOG.open("log.log", std::ofstream::out | std::ofstream::trunc);
+}
+
+
 //void clearScreen() {
 //    printf(0,0,"\033c");
 //}

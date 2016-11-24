@@ -18,6 +18,7 @@
 #include "typedefs.h"
 
 extern std::ofstream LOG;
+void init_logging();
 
 //void clearScreen();
 
