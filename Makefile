@@ -1,5 +1,5 @@
 CFLAGS=-Wall -g -Wno-error=unused-variable -std=c++0x
-LDLIBS=-lncursesw -lboost_regex
+LDLIBS=-lncursesw -lboost_regex -lrt
 BIN=output/RPG
 BUILD_DIR=build
 DEPS_DIR=$(BUILD_DIR)

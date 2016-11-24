@@ -32,9 +32,7 @@ class Game {
         std::string currentLevelID;
 
         UI *ui;
-    
-    public:
-        const static int time_passed = 15;
+		timespec diff(timespec start, timespec end);
 
     public:
         Game();
@@ -66,7 +64,7 @@ class Game {
         bool getCurrentZoneFriendly();
         
         // run logic for entities
-        void updateMovables(int ch, int t);
+        void updateMovables(int ch, long t);
         Player * getPlayer();
         void getPlayerFromEntities(Player ** player);
         

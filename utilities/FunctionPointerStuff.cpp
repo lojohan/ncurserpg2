@@ -58,10 +58,10 @@ void enterLevel(Entity * e1, Entity * e2, int count, int * params) {
 
 // functions to call on move
 
-void noMove(Entity * e, int c, int arr[2], int dt, int count, int * params) {
+void noMove(Entity * e, int c, int arr[2], long dt, int count, int * params) {
 }
 
-void playerControl(Entity * e, int c, int arr[2], int dt, int count, int * params) {
+void playerControl(Entity * e, int c, int arr[2], long dt, int count, int * params) {
     switch(c)
     {
     case KEY_UP:
@@ -119,10 +119,10 @@ void playerControl(Entity * e, int c, int arr[2], int dt, int count, int * param
     }
 }
 
-void randomAI(Entity * e, int c, int arr[2], int dt, int count, int * params) {
+void randomAI(Entity * e, int c, int arr[2], long dt, int count, int * params) {
 
     e->t += dt;
-    if(e->t > 75000) {
+    if(e->t > 1e9) {
         int output = (rand() % (int)(4));
         
         switch(output)
