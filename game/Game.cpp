@@ -194,9 +194,7 @@ void Game::drawEntities() {
 
 void Game::drawEntity(WINDOW * window, Entity * e, int x, int y) {
     // draws the entities in list of entities with the appropriate color.
-    wattron(window, COLOR_PAIR( e->getColor() ));
     e->draw(window, x, y);
-    wattroff(window, COLOR_PAIR( e->getColor() ));    
 }
 
 void Game::drawPause() {

@@ -132,15 +132,15 @@ void Entity::setColor(int color) {
 }
 
 void Entity::draw(WINDOW *win) {
-    ///wattron(window, COLOR_PAIR( this->getColor() ));
+    wattron(win, COLOR_PAIR( this->getColor() ));
     mvwaddwstr(win, this->x, this->y, this->image.img);
-    //wattroff(window, COLOR_PAIR( this->getColor() ));
+    wattroff(win, COLOR_PAIR( this->getColor() ));
 }
 
 void Entity::draw(WINDOW * win, int x, int y) {
-    ///wattron(window, COLOR_PAIR( this->getColor() ));
+    wattron(win, COLOR_PAIR( this->getColor() ));
     mvwaddwstr(win, x, y, this->image.img);
-    //wattroff(window, COLOR_PAIR( this->getColor() ));
+    wattroff(win, COLOR_PAIR( this->getColor() ));
 }
 
 Party &Entity::getParty() {
