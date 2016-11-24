@@ -8,12 +8,12 @@
 #include "Battle.h"
 #include "Game.h"
 
+#include "../ui/UI.h"
+
 Battle::Battle(Entity * e1, Entity * e2) {
 	this->e1 = e1;
 	this->e2 = e2;
-	log_window = game->getGUI1Window();
-	menu_window = game->getGUI2Window();
-	main_window = game->getGameWindow();
+
 }
 
 Battle::~Battle() {
@@ -29,55 +29,6 @@ bool Battle::checkPartySize(Entity * e1) {
 	}
 }
 
-void Battle::drawBattleLog() {
-	wclear(log_window);
-	for (size_t i= 0; i < battleLog.size(); i++) {
-		mvwprintw(log_window, i, 0, battleLog.at(i).c_str());
-	}
-}
-
-void Battle::printTopParty(Entity * e) {
-	int max_col,max_row;
-	getmaxyx(main_window, max_row, max_col);
-	mvwprintw(main_window, 0, 0, e->getName().c_str());
-	int row = 2;
-	int col = 0;
-	for (int i = 0; i < e->getParty().size(); i++) {
-		std::string name = e->getParty()[i]->getName();
-		if (col + (signed)name.length() > max_col) {
-			if (col == 0) {
-				name.resize(max_col);
-			} else {
-				row += 1;
-				col = 0;
-			}
-		}
-		mvwprintw(main_window, row, col, name.c_str());
-		col += name.length() + 1;
-	}
-}
-
-void Battle::printBottomParty(Entity * e) {
-	int max_col,max_row;
-	getmaxyx(main_window, max_row, max_col);
-	mvwprintw(main_window, max_row-1, 0, e->getName().c_str());
-	int row = max_row - 3;
-	int col = 0;
-	for (int i = 0; i < e->getParty().size(); i++) {
-		std::string name = e->getParty()[i]->getName();
-		if (col + (signed)name.length() > max_col) {
-			if (col == 0) {
-				name.resize(max_col);
-			} else {
-				row -= 1;
-				col = 0;
-			}
-		}
-		mvwprintw(main_window, row, col, name.c_str());
-		col += name.length() + 1;
-	}
-}
-
 void Battle::commence() {
 
 	LOG << "Start battle between " << e1->getName() << " and " << e2->getName() << "\n";
@@ -86,16 +37,6 @@ void Battle::commence() {
 
 	Player * player = game->getPlayer();
 
-	mvwprintw(menu_window, 0, 0, "You are under attack by ");
-
-	wattron(menu_window, COLOR_PAIR( e2->getColor() ));
-	wprintw(menu_window, "%s", e2->getName().c_str());
-	wattroff(menu_window, COLOR_PAIR( e2->getColor() ));
-	wprintw(menu_window, "!");
-
-	game->refreshAll();
-
-	wgetch(menu_window);
 
 	// vector containing all characters in this battle
 	//std::vector<Character*> fighters;
@@ -107,8 +48,7 @@ void Battle::commence() {
 
 	battleLog.push_back("You have entered battle!");
 
-	const char * items[] = { "Attack!", "Run!", "Meditate" };
-	Menu battleMenu(menu_window, items, sizeof(items)/sizeof(char*), 0);
+	const std::vector<std::string> items { "Attack!", "Run!", "Meditate" };
 
 	int meditateCount = 0;
 
@@ -124,17 +64,7 @@ void Battle::commence() {
 			break;
 		}
 
-		// Clear all windows
-		game->clearAll();
 
-		// draw battle log window
-		drawBattleLog();
-
-		// draw Main battle window
-		{
-			printTopParty(e2);
-			printBottomParty(e1);
-		}
 
 		// draw battle menu window
 		// not yet, do it when its players turn
@@ -142,10 +72,11 @@ void Battle::commence() {
 		// loop all characters and find who acts next
 
 		// blocking input for player
-		while (!battleMenu.getInput()) {
-			// still selecting...
-		}
-		int selectedItem = battleMenu.getCurrentItemIndex();
+		int selectedItem = game->getUI()->selectOption(items);
+		//while (!battleMenu.getInput()) {
+		//	// still selecting...
+		//}
+		//int selectedItem = battleMenu.getCurrentItemIndex();
 		if (selectedItem == 0) {
 			// user selected attack, select attacking character.
 
@@ -186,24 +117,10 @@ void Battle::commence() {
 			meditateCount++;
 		}
 		else ;
-
 		// run NPC actions
 
-		drawBattleLog();
-		// refresh all windows
-		game->refreshAll();
 	}
 
-	wclear(log_window);
-	wclear(menu_window);
-
-	// draw battle log window
-	drawBattleLog();
-	//mvwprintw(menu_window, 0, 0, );
-
-	game->refreshAll();
-
-	wgetch(main_window);
 
 	if (player->isPartyDead()) {
 		LOG << "Players party died! " << player->getParty() << "\n";
@@ -214,3 +131,17 @@ void Battle::commence() {
 		game->removeEntity(e2);
 	}
 }
+
+Entity *Battle::getEntity1(){
+	return e1;
+}
+
+Entity *Battle::getEntity2() {
+	return e2;
+}
+
+
+const std::vector<std::string>& Battle::getBattleLog() {
+	return battleLog;
+}
+

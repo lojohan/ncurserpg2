@@ -12,7 +12,6 @@
 #include <sys/time.h>
 #include <sys/types.h>
 #include <unistd.h>
-#include <ncursesw/ncurses.h>
 #include "../entities/Entities.h"
 #include "../game/Game.h"
 #include "typedefs.h"
@@ -21,14 +20,6 @@ extern std::ofstream LOG;
 void init_logging();
 
 //void clearScreen();
-
-bool kbhit();
-
-int kbhit(int t1,int t2);
-
-int playerInput(WINDOW *menu_win);
-
-int playerInputBlocking(WINDOW * menu_win);
 
 void gameLoopInputHandler(int c);
 

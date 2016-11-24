@@ -4,7 +4,6 @@
 #include <vector>
 #include <string>
 #include <stdlib.h>
-#include "../ui/ui.h"
 #include "../entities/Entities.h"
 #include "../game/Game.h"
 

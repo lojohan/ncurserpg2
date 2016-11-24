@@ -12,6 +12,7 @@
 #include "../map/Map.h"
 #include "../map/Zone.h"
 #include "../physics/Physics.h"
+#include "../ui/UI.h"
 
 class Map;
 
@@ -30,36 +31,9 @@ class Game {
         
         std::string currentLevelID;
 
-        // should be in drawing bit
-        WINDOW *super_window;
-        
-        WINDOW *title_window;
-        
-        WINDOW *game_box;
-        WINDOW *game_window;
-        
-        WINDOW *gui1_box;
-        WINDOW *gui1_window;
-
-        WINDOW *gui2_box;        
-        WINDOW *gui2_window;
+        UI *ui;
     
     public:
-        const static int GAME_HEIGHT = 15;
-        const static int GAME_WIDTH = 40;
-        
-        const static int GUI1_HEIGHT = 15;
-        const static int GUI1_WIDTH = 40;
-        
-        const static int GUI2_HEIGHT = 5;
-        const static int GUI2_WIDTH = GAME_WIDTH + GUI1_WIDTH +2;
-        
-        const static int TITLE_HEIGHT = 2;
-        const static int TITLE_WIDTH = GUI2_WIDTH + 2;
-        
-        const static int START_X = 0;
-        const static int START_Y = 0;
-        
         const static int time_passed = 15;
 
     public:
@@ -67,7 +41,7 @@ class Game {
         
         void fillTileMap();
         Map * getMap();
-        std::vector<Entity*> getEntities();
+        std::vector<Entity*> &getEntities();
         void removeEntity(Entity * entity);
         void detachEntity(Entity * entity);
         void removeEntityFromMap(std::unordered_map< std::string, std::vector<Entity*>> & entityMap, Entity* entity);
@@ -85,6 +59,8 @@ class Game {
         
         void togglePause();
         
+        bool isPaused();
+
         std::string getCurrentZoneNameforPlayer();
         
         bool getCurrentZoneFriendly();
@@ -94,38 +70,8 @@ class Game {
         Player * getPlayer();
         void getPlayerFromEntities(Player ** player);
         
-        // inits things related to ncurses (graphics)
-        void initNCurses();
-        void initColors();
-        
-        // creates windows and boxes.
-        void createWindows();
-        
-        // separate this drawing bit here
-        void clearBeforeDraw(WINDOW * win, int startX, int startY, int height, int width);
-        void clearGUI1();
-        void clearGUI2();
-        void clearGameWindow();
-        void clearAll();
-        
-        void drawTitle();
-        void drawEntities();
-        void drawEntity(WINDOW * window, Entity * e, int x, int y);
-        void drawGUI1Elements();
-        void drawGUI2Elements();
-        void drawPause();
-        void draw();
-        
-        void refreshGameScreen();
-        void refreshGUI1();
-        void refreshGUI2();
-        void refreshTitle();
-        void refreshAll();
-        
-        WINDOW * getGameWindow();
-        WINDOW * getGUI1Window();
-        WINDOW * getGUI2Window();
-             
+
+        UI * getUI();
 };
 
 // The Game pointer!

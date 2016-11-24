@@ -1,8 +1,9 @@
 #include "menu.h"
-#include "../game/Game.h"
 
-Menu::Menu(WINDOW * window, const char * items[], int n, int selected) :
-		menu_window(window), items(items), nItems(n), currentlySelectedItem(selected)
+namespace ncursesui {
+
+Menu::Menu(NcursesUI &ui, WINDOW * window, const char * items[], int n, int selected) :
+		ui(ui), menu_window(window), items(items), nItems(n), currentlySelectedItem(selected)
 {
 
 }
@@ -16,7 +17,7 @@ int Menu::getCurrentItemIndex(){
 
 bool Menu::getInput() {
 	draw();
-	int ch = playerInputBlocking(game->getGameWindow());
+	int ch = ui.playerInput();
 	if (ch == KEY_DOWN)
 		currentlySelectedItem++;
 	else if (ch == KEY_UP)
@@ -43,5 +44,8 @@ void Menu::draw() {
 		}
 	}
 	// refresh all windows
-	game->refreshAll();
+	ui.refreshAll();
+}
+
+
 }

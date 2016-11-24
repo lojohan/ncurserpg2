@@ -5,7 +5,6 @@
 #include <string.h>
 #include <vector>
 #include <time.h>
-#include <ncursesw/ncurses.h>
 #include "Character.h"
 #include "../../game/Party.h"
 #include "../../utilities/typedefs.h"

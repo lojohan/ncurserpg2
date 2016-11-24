@@ -12,27 +12,7 @@ void init_logging() {
 //}
 
 
-int kbhit(int t1,int t2) {
-  
-    struct timeval tv = { 0L, 0L };
-    fd_set fds;
-    FD_ZERO(&fds);
-    FD_SET(0, &fds);
-    return select(1, &fds, NULL, NULL, &tv);
-}
 
-int playerInput(WINDOW *menu_win) {
-    nodelay(stdscr, TRUE);
-    if(kbhit(1,0)) {
-        return wgetch(menu_win);    
-    } else {
-        return -1;
-    }
-}
-
-int playerInputBlocking(WINDOW * menu_win) {
-    return wgetch(menu_win);
-}
 
 void relativeCameraPos(Entity * centerentity, Entity * drawEntity, int arr[2], int height, int width) {
     arr[0] = height/2 - centerentity->getX() + drawEntity->getX();
@@ -48,20 +28,7 @@ void gameLoopInputHandler(int c) {
 	    }
         case KEY_F(1):
 		{
-        	game->clearAll();
-
-        	mvwaddwstr(game->getGameWindow(), 0,0,L"");
-        	for (int i = 1; i < 1000; i++) {
-				//const wchar_t * str;
-				Image image;
-				//str = game->getMap()->getImageFromImageMap(&image, i);
-				game->getMap()->getImageFromImageMap(&image, i);
-				if (*(image.img) == '\0')
-					break;
-				waddwstr(game->getGameWindow(),image.img);
-        	}
-        	game->refreshAll();
-        	playerInputBlocking(game->getGameWindow());
+        	game->getUI()->displayDebug1();
 			break;
 		}
     }

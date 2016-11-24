@@ -8,16 +8,13 @@
 #ifndef BATTLE_H_
 #define BATTLE_H_
 
-#include <ncursesw/ncurses.h>
 #include "../entities/Entities.h"
 
 class Battle {
 private:
 	Entity * e1;
 	Entity * e2;
-	WINDOW * log_window;
-	WINDOW * menu_window;
-	WINDOW * main_window;
+
 	std::vector<std::string> battleLog;
 
 	bool checkPartySize(Entity * e1);
@@ -30,6 +27,10 @@ public:
 	Battle(Entity * e1, Entity * e2);
 	virtual ~Battle();
 	void commence();
+
+	const std::vector<std::string>& getBattleLog();
+	Entity *getEntity1();
+	Entity *getEntity2();
 };
 
 #endif /* BATTLE_H_ */

@@ -3,15 +3,18 @@
 
 #include "ui.h"
 
-class Menu {
 
+namespace ncursesui {
+
+class Menu {
+	NcursesUI &ui;
 	WINDOW* menu_window;
 	const char ** items;
 	int nItems;
 	int currentlySelectedItem;
 public:
 
-	Menu(WINDOW * window, const char * items[], int n, int selected);
+	Menu(NcursesUI &ui, WINDOW * window, const char * items[], int n, int selected);
 
 	const char * getCurrentItem();
 	int getCurrentItemIndex();
@@ -23,4 +26,5 @@ public:
 };
 
 
+}// end namespace
 #endif

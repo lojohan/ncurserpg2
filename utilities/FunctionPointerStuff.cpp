@@ -28,25 +28,8 @@ void displayDialogue(Entity * e1, Entity * e2, int count, int * params) {
         
     } else {
         if(Player* v = dynamic_cast<Player*>( e1 )) {
-            game->clearGUI2();
-            
-            game->drawEntity(game->getGUI2Window(), e2, 0,0);
-            
-            std::string dialog = params[0] == 0 ? DialogueManager::getRandomDialogue() : DialogueManager::getDialogue(params[0]);
-            
-                            
-            wattron(game->getGUI2Window(), COLOR_PAIR( e2->getColor() ));
-            mvwprintw(game->getGUI2Window(), 0, 1, " %s: ", e2->getName().c_str());
-            wattroff(game->getGUI2Window(), COLOR_PAIR( e2->getColor() ));
-            
-            wprintw(game->getGUI2Window(), "%s",  dialog.c_str());
-            mvwprintw(game->getGUI2Window(), Game::GUI2_HEIGHT-1, 0, "▼");
-            game->refreshAll();
-            int c = 0;
-            
-            while( c != KEY_ENTER && c != ' ') {
-                c = playerInputBlocking(game->getGameWindow());
-            }
+        	std::string dialogue = params[0] == 0 ? DialogueManager::getRandomDialogue() : DialogueManager::getDialogue(params[0]);
+        	game->getUI()->displayDialogue(e1, e2, dialogue);
         }
     }
 
