@@ -47,11 +47,13 @@ void gameLoopInputHandler(int c) {
 
         	mvwaddwstr(game->getGameWindow(), 0,0,L"");
         	for (int i = 1; i < 1000; i++) {
-				const wchar_t * str;
-				game->getMap()->getImageFromImageMap(&str, i);
-				if (*str == '\0')
+				//const wchar_t * str;
+				Image image;
+				//str = game->getMap()->getImageFromImageMap(&image, i);
+				game->getMap()->getImageFromImageMap(&image, i);
+				if (*(image.img) == '\0')
 					break;
-				waddwstr(game->getGameWindow(),str);
+				waddwstr(game->getGameWindow(),image.img);
         	}
         	game->refreshAll();
         	playerInputBlocking(game->getGameWindow());

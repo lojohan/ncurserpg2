@@ -15,6 +15,7 @@
 #include <ncursesw/ncurses.h>
 #include "../entities/Entities.h"
 #include "../game/Game.h"
+#include "typedefs.h"
 
 extern std::ofstream LOG;
 

@@ -1,12 +1,11 @@
 #include "../entityheaders/Entity.h"
 
-Entity::Entity(int x, int y, bool solid, const wchar_t * image, std::string name, int color, std::vector<ColFnPtr> collision_ptrs, std::vector<MovFnPtr> movement_ptrs, std::vector<UseFnPtr> use_ptrs) {
+Entity::Entity(int x, int y, bool solid, std::string name, Image image, std::vector<ColFnPtr> collision_ptrs, std::vector<MovFnPtr> movement_ptrs, std::vector<UseFnPtr> use_ptrs) {
     this->image = image;
     this->name = name;
     this->solid = solid;
     this->setX(x);
     this->setY(y);
-    this->color = color;
     
     int l1 = collision_ptrs.size();
     for(int i = 0; i < l1; i++) {
@@ -114,30 +113,34 @@ void Entity::onUse(Entity * e) {
     }
 }
 
-void Entity::setImage(const wchar_t * image) {
+void Entity::setImage(Image image) {
     this->image = image;
 }
         
-const wchar_t * Entity::getImage() {
+Image Entity::getImage() {
     return this->image;
 }
 
 int Entity::getColor() {
-    return this->color;
+    return this->image.color;
 }
 
 void Entity::setColor(int color) {
     if(color > 0 && color < 8) {
-        this->color = color;
+        this->image.color = color;
     }
 }
 
 void Entity::draw(WINDOW *win) {
-    mvwaddwstr(win, this->x, this->y, this->image);
+    ///wattron(window, COLOR_PAIR( this->getColor() ));
+    mvwaddwstr(win, this->x, this->y, this->image.img);
+    //wattroff(window, COLOR_PAIR( this->getColor() ));
 }
 
 void Entity::draw(WINDOW * win, int x, int y) {
-    mvwaddwstr(win, x, y, this->image);
+    ///wattron(window, COLOR_PAIR( this->getColor() ));
+    mvwaddwstr(win, x, y, this->image.img);
+    //wattroff(window, COLOR_PAIR( this->getColor() ));
 }
 
 Party &Entity::getParty() {

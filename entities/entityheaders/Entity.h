@@ -25,9 +25,10 @@ class Entity {
 
         int x, y;
         bool solid;
-        const wchar_t * image;
-        int color;
+        //const wchar_t * image;
+        //int color;
         std::string name;
+        Image image;
         
     public:
     
@@ -37,7 +38,7 @@ class Entity {
         
         int t;
         
-        Entity(int x, int y, bool solid, const wchar_t * image, std::string name, int color, std::vector<ColFnPtr> collision_ptrs, std::vector<MovFnPtr> movement_ptrs, std::vector<UseFnPtr> use_ptrs);
+        Entity(int x, int y, bool solid, std::string name, Image image, std::vector<ColFnPtr> collision_ptrs, std::vector<MovFnPtr> movement_ptrs, std::vector<UseFnPtr> use_ptrs);
         
         virtual void setX(int x);
         virtual void setY(int y);
@@ -66,9 +67,9 @@ class Entity {
         virtual void onUse(Entity *e);
         
         // Drawing
-        void setImage(const wchar_t * image);
+        void setImage(Image image);
         
-        const wchar_t * getImage();
+        Image getImage();
         virtual void setColor(int color);
         virtual int getColor();
         

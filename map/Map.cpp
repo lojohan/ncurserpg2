@@ -72,9 +72,10 @@ void Map::parseMap(std::unordered_map<std::string,std::vector<Entity*> > * entit
             
             splitString(line, &splitstrings, ';');
             
-            const wchar_t * image;
+            //const wchar_t * image;
+            Image image;
             int pos[2];
-            int color;
+            //int color;
             bool solid = true;
             std::vector<ColFnPtr> collisionpointers;
             std::vector<MovFnPtr> movementpointers;
@@ -129,11 +130,6 @@ void Map::parseMap(std::unordered_map<std::string,std::vector<Entity*> > * entit
                             int value = atoi( splitstrings.at(i).c_str());
                             
                             getImageFromImageMap(&image,value);
-                        break;
-                        }
-                    case COLOR:
-                        {
-                            color = atoi( splitstrings.at(i).c_str());
                         break;
                         }
                     case COLLISION:
@@ -194,13 +190,13 @@ void Map::parseMap(std::unordered_map<std::string,std::vector<Entity*> > * entit
                 }
                     
                 if (!className.compare("Tile")) {
-                    putEntityInMap( new Tile(pos[0],pos[1],image,name,true,solid, color, collisionpointers, movementpointers, usepointers), &(entityLists->at(levelid)));
+                    putEntityInMap( new Tile(pos[0],pos[1],name,true,solid, image, collisionpointers, movementpointers, usepointers), &(entityLists->at(levelid)));
                 }
                 if (!className.compare("Player")) {
-                    putEntityInMap( new Player(pos[0],pos[1], solid, image, name, color, collisionpointers, movementpointers, usepointers), &(entityLists->at(levelid)));
+                    putEntityInMap( new Player(pos[0],pos[1], solid, name, image, collisionpointers, movementpointers, usepointers), &(entityLists->at(levelid)));
                 }
                 if (!className.compare("NPC")) {
-                    putEntityInMap( new NPC(pos[0],pos[1], solid, image, name, color, collisionpointers, movementpointers, usepointers), &(entityLists->at(levelid)));
+                    putEntityInMap( new NPC(pos[0],pos[1], solid, name, image, collisionpointers, movementpointers, usepointers), &(entityLists->at(levelid)));
                 }
             } else if(!className.compare("Zone")) {
                 
@@ -268,34 +264,56 @@ void Map::putZoneInList(Zone * zone, std::vector<Zone*> * zones) {
     zones->push_back(zone);
 }
 
-void Map::getImageFromImageMap(const wchar_t ** wch, int i ) {
+void Map::getImageFromImageMap(Image* image, int i ) {
     switch(i)
     {	case 1:
-            *wch = L"#";
+        // regular wall
+        image->img = L"#";
+        image->color = COLOR_WHITE;
 		break;
 	case 2:
-            *wch = L"\u00A2";
+        // player
+        image->img = L"\u03C3";
+        image->color = COLOR_CYAN;
 		break;
 	case 3:
-	        *wch = L"\u03C3";
+        // house
+        image->img = L"\u2302";
+        image->color = COLOR_WHITE;
 	    break;
 	case 4:
-	        *wch = L"\u21D1";
-	        break;
+        // grass
+        image->img = L"\u2591";
+        image->color = COLOR_GREEN;
+        break;
 	case 5: 
-	    *wch = L"\u2248";
+	    // tree
+	    image->img = L"\u21D1";
+	    image->color = COLOR_GREEN;
 	    break;
 	case 6:
-	    *wch = L"\u2591";
+	    // brown wall
+	    image->img = L"\u2591";
+	    image->color = COLOR_YELLOW;
 	    break;
 	case 7:
-	    *wch = L"\u2593";
+	    // enemy NPC
+	    image->img = L"\u00A2";
+	    image->color = COLOR_RED;
 	    break;
 	case 8:
-	    *wch = L"\u2302";
+	    // friendly NPC
+	    image->img = L"\u00A2";
+	    image->color = COLOR_GREEN;
+	    break;
+	case 9:
+	    // water
+	    image->img = L"\u2591";
+	    image->color = COLOR_CYAN;
 	    break;
 	default:
-	        *wch = L"";
+	        image->img = L"";
+	        image->color = COLOR_WHITE;
 		break;
     }
 }
