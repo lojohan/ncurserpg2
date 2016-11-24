@@ -1,6 +1,20 @@
 #include "Game.h"
+#include <sys/time.h>
 
 Game::Game() {
+}
+
+timespec Game::diff(timespec start, timespec end)
+{
+	timespec temp;
+	if ((end.tv_nsec-start.tv_nsec)<0) {
+		temp.tv_sec = end.tv_sec-start.tv_sec-1;
+		temp.tv_nsec = 1000000000+end.tv_nsec-start.tv_nsec;
+	} else {
+		temp.tv_sec = end.tv_sec-start.tv_sec;
+		temp.tv_nsec = end.tv_nsec-start.tv_nsec;
+	}
+	return temp;
 }
 
 void Game::start() {
@@ -17,11 +31,18 @@ void Game::start() {
     
     addEntitiesToMap(this->entityMap, this->entityList);
     
+    timespec start;
+    timespec end;
+    long time_passed = 0;
     while(true) {
+        
+        clock_gettime(CLOCK_REALTIME, &start);
         
         // placeholder
         int ch = playerInput(this->game_window);
         
+        if (ch > 0)
+            LOG<< "input!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
         gameLoopInputHandler(ch);
         
         // run game logic here if not paused
@@ -38,6 +59,11 @@ void Game::start() {
             refreshAll();
         }
         */
+        
+        clock_gettime(CLOCK_REALTIME, &end);
+        
+        time_passed = diff(start,end).tv_nsec;
+        
         
     }
     
@@ -161,7 +187,7 @@ void Game::switchLevel(std::string id, int newPlayerX, int newPlayerY) {
 }
 
 // run logic for movables
-void Game::updateMovables(int ch, int t) {
+void Game::updateMovables(int ch, long t) {
     physicsLoop(ch, this->entityList, this->entityMap,t);
 }
 

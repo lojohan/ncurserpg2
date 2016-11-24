@@ -36,7 +36,7 @@ class Entity {
         
         Direction dir;
         
-        int t;
+        long t;
         
         Entity(int x, int y, bool solid, std::string name, Image image, std::vector<ColFnPtr> collision_ptrs, std::vector<MovFnPtr> movement_ptrs, std::vector<UseFnPtr> use_ptrs);
         
@@ -51,7 +51,7 @@ class Entity {
         virtual void setName(std::string name);
         
         // Movement
-        virtual void getNextMove(int c, int arr[2], int dt);
+        virtual void getNextMove(int c, int arr[2], long dt);
         const std::string getCurrentDirection();
         void setCurrentDirection(Direction dir);
     

@@ -43,6 +43,8 @@ class Game {
 
         WINDOW *gui2_box;        
         WINDOW *gui2_window;
+        
+        timespec diff(timespec start, timespec end);
     
     public:
         const static int GAME_HEIGHT = 15;
@@ -60,7 +62,7 @@ class Game {
         const static int START_X = 0;
         const static int START_Y = 0;
         
-        const static int time_passed = 15;
+        //const static int time_passed = 15;
 
     public:
         Game();
@@ -90,7 +92,7 @@ class Game {
         bool getCurrentZoneFriendly();
         
         // run logic for entities
-        void updateMovables(int ch, int t);
+        void updateMovables(int ch, long t);
         Player * getPlayer();
         void getPlayerFromEntities(Player ** player);
         

@@ -53,7 +53,7 @@ int Entity::getY(){
     return this->y;
 }
 
-void Entity::getNextMove(int c, int arr[2], int dt) {
+void Entity::getNextMove(int c, int arr[2], long dt) {
     int l = movementPointers.size();
     
     for(int i = 0; i < l; i++) {
