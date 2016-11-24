@@ -53,6 +53,10 @@ UI *Game::getUI() {
 	return ui;
 }
 
+bool Game::isInBattle(){
+	return false; // TODO !!
+}
+
 // build map, will also build entities.
 void Game::fillTileMap() {
     this->map->parseMap( &(this->entityLists), &(this->zoneLists));

@@ -2,13 +2,13 @@
 
 namespace ncursesui {
 
-Menu::Menu(NcursesUI &ui, WINDOW * window, const char * items[], int n, int selected) :
-		ui(ui), menu_window(window), items(items), nItems(n), currentlySelectedItem(selected)
+Menu::Menu(NcursesUI &ui, WINDOW * window, const std::vector<std::string> &items, int selected) :
+		ui(ui), menu_window(window), items(items), currentlySelectedItem(selected)
 {
 
 }
 
-const char * Menu::getCurrentItem(){
+const std::string Menu::getCurrentItem(){
 	return items[currentlySelectedItem];
 }
 int Menu::getCurrentItemIndex(){
@@ -17,7 +17,7 @@ int Menu::getCurrentItemIndex(){
 
 bool Menu::getInput() {
 	draw();
-	int ch = ui.playerInput();
+	int ch = ui.playerInputBlocking(menu_window);
 	if (ch == KEY_DOWN)
 		currentlySelectedItem++;
 	else if (ch == KEY_UP)
@@ -25,7 +25,7 @@ bool Menu::getInput() {
 	else if (ch == '\n') {
 		return true;
 	}
-	currentlySelectedItem = (unsigned)currentlySelectedItem % nItems;
+	currentlySelectedItem = (unsigned)currentlySelectedItem % items.size();
 	draw();
 	return false;
 }
@@ -35,12 +35,12 @@ void Menu::draw() {
 	wattron(menu_window, A_STANDOUT);
 	mvwprintw(menu_window, 0, 0, "What do you want to do?");
 	wattroff(menu_window, A_STANDOUT);
-	for (int i = 0, startRow = 1; i < nItems; i++) {
-		if (currentlySelectedItem == i) {
+	for (size_t i = 0, startRow = 1; i < items.size(); i++) {
+		if (currentlySelectedItem == (signed)i) {
 			mvwprintw(menu_window, startRow + i, 0, "> ");
-			mvwprintw(menu_window, startRow + i, 2, items[i]);
+			mvwprintw(menu_window, startRow + i, 2, items[i].c_str());
 		} else {
-			mvwprintw(menu_window, startRow + i, 0, items[i]);
+			mvwprintw(menu_window, startRow + i, 0, items[i].c_str());
 		}
 	}
 	// refresh all windows

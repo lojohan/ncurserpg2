@@ -9,6 +9,7 @@
 #define UI_UI_H_
 
 class Entity;
+class Battle;
 #include <string>
 #include <vector>
 
@@ -25,6 +26,8 @@ public:
 	virtual void displayDialogue(Entity * e1, Entity * e2, std::string dialogue) =0;
 
 	virtual int selectOption(const std::vector<std::string> &options) =0;
+
+	virtual void startBattle(Battle &) = 0;
 
 	virtual void displayDebug1() =0;
 };

@@ -8,17 +8,22 @@
 #ifndef UI_NCURSES_NCURSESUI_H_
 #define UI_NCURSES_NCURSESUI_H_
 
+#include "ui.h"
 #include "../UI.h"
 #include "../../entities/entityheaders/Entity.h"
 #include <ncursesw/ncurses.h>
 
 class Game;
 
+
 namespace ncursesui {
+
+class BattleView;
 
 class NcursesUI: public UI {
 private:
 	Game &game;
+	BattleView * battleView;
 
     // should be in drawing bit
     WINDOW *super_window;
@@ -60,6 +65,7 @@ public:
 	void displayDialogue(Entity * e1, Entity * e2, std::string dialogue);
 	void displayDebug1();
 	int selectOption(const std::vector<std::string> &options);
+	void startBattle(Battle &battle);
 
 	/* Input stuff */
 	int kbhit(int t1,int t2);

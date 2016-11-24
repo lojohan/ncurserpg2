@@ -8,11 +8,12 @@
 #include "NcursesUI.h"
 
 #include "../../game/Game.h"
+#include "BattleView.h"
 
 namespace ncursesui {
 
 NcursesUI::NcursesUI(Game &game)
-:	game(game)
+:	game(game), battleView(NULL)
 {
 }
 
@@ -24,12 +25,19 @@ void NcursesUI::init() {
 	initNCurses();
 }
 
+void NcursesUI::startBattle(Battle &battle) {
+	battleView = new BattleView(*this, game, battle);
+}
+
 void NcursesUI::update(long dt) {
 	draw();
 }
 
 int NcursesUI::selectOption(const std::vector<std::string> &options) {
-	return 0;
+	int selected = 0;
+	Menu menu(*this, getGUI2Window(), options, selected);
+	while (!menu.getInput());
+	return menu.getCurrentItemIndex();
 }
 
 void NcursesUI::drawEntities() {

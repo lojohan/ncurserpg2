@@ -2,21 +2,25 @@
 #define MENU_H
 
 #include "ui.h"
+#include <string>
+#include <vector>
+
 
 
 namespace ncursesui {
 
+class NcursesUI;
+
 class Menu {
 	NcursesUI &ui;
 	WINDOW* menu_window;
-	const char ** items;
-	int nItems;
+	const std::vector<std::string> &items;
 	int currentlySelectedItem;
 public:
 
-	Menu(NcursesUI &ui, WINDOW * window, const char * items[], int n, int selected);
+	Menu(NcursesUI &ui, WINDOW * window, const std::vector<std::string> &items, int);
 
-	const char * getCurrentItem();
+	const std::string getCurrentItem();
 	int getCurrentItemIndex();
 
 	bool getInput();

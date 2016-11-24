@@ -33,6 +33,8 @@ void Battle::commence() {
 
 	LOG << "Start battle between " << e1->getName() << " and " << e2->getName() << "\n";
 
+	game->getUI()->startBattle(*this);
+
 	bool fight = true;
 
 	Player * player = game->getPlayer();
@@ -64,9 +66,6 @@ void Battle::commence() {
 			break;
 		}
 
-
-
-		// draw battle menu window
 		// not yet, do it when its players turn
 
 		// loop all characters and find who acts next

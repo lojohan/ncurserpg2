@@ -70,6 +70,7 @@ class Game {
         Player * getPlayer();
         void getPlayerFromEntities(Player ** player);
         
+        bool isInBattle();
 
         UI * getUI();
 };
