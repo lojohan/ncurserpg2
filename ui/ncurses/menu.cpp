@@ -5,7 +5,8 @@ namespace ncursesui {
 Menu::Menu(NcursesUI &ui, WINDOW * window, const std::vector<std::string> &items, int selected) :
 		ui(ui), menu_window(window), items(items), currentlySelectedItem(selected)
 {
-
+    // ???
+    keypad(menu_window,TRUE);
 }
 
 const std::string Menu::getCurrentItem(){

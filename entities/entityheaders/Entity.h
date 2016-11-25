@@ -24,8 +24,6 @@ class Entity {
 
         int x, y;
         bool solid;
-        //const wchar_t * image;
-        //int color;
         std::string name;
         Image image;
         
