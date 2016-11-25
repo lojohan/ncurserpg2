@@ -71,6 +71,7 @@ class Game {
         
         bool isInBattle();
 
+        void setUI(UI *ui);
         UI * getUI();
 };
 

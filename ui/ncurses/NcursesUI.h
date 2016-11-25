@@ -66,6 +66,7 @@ public:
 
 	/* Interface */
 	void init();
+	void deinit();
 	void update(long dt);
 	Input playerInput();
 	void displayDialogue(Entity * e1, Entity * e2, std::string dialogue);

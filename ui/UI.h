@@ -19,6 +19,8 @@ public:
 	virtual ~UI() {};
 
 	virtual void init() = 0;
+	
+	virtual void deinit() = 0;
 
 	virtual void update(long dt)= 0;
 	

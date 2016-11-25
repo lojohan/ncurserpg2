@@ -3,10 +3,7 @@
 
 #include "../ui/UI.h"
 
-#include "../ui/ncurses/NcursesUI.h"
-
 Game::Game() {
-	ui = new ncursesui::NcursesUI(*this);
 }
 
 timespec Game::diff(timespec start, timespec end)
@@ -71,6 +68,10 @@ void Game::start() {
     }
     
     this->end();
+}
+
+void Game::setUI(UI *ui) {
+    this->ui = ui;
 }
 
 UI *Game::getUI() {
@@ -273,6 +274,6 @@ void Game::togglePause() {
 
 // closes all windows on close.
 void Game::end() {
-    endwin();
+    ui->deinit();
 }
 //---------------------------------------------------------------------------------------------------------------------------------

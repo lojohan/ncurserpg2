@@ -25,6 +25,10 @@ void NcursesUI::init() {
 	initNCurses();
 }
 
+void NcursesUI::deinit() {
+    endwin();
+}
+
 void NcursesUI::startBattle(Battle &battle) {
 	battleView = new BattleView(*this, game, battle);
 	battleView->startBattle();
