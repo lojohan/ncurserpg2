@@ -120,31 +120,34 @@ void playerControl(Entity * e, int c, int arr[2], long dt, int count, int * para
 }
 
 void randomAI(Entity * e, int c, int arr[2], long dt, int count, int * params) {
-
-    e->t += dt;
-    if(e->t > 1e9) {
-        int output = (rand() % (int)(4));
-        
-        switch(output)
-        {	case 0:
-                arr[0] = e->getX() - 1;
-                e->dir = Entity::NORTH;
-		    break;
-	    case 1:
-                arr[0] = e->getX() + 1;
-                e->dir = Entity::SOUTH;
-		    break;
-	    case 2:
-	            arr[1] = e->getY() - 1;
-	            e->dir = Entity::WEST;
-		    break;
-	    case 3:
-	            arr[1] = e->getY() + 1;
-	            e->dir = Entity::EAST;
-		    break;
-	    default:
-		    break;
+    
+    if(count != 1) {
+    } else {
+        e->t += dt;
+        if(e->t > params[0]) {
+            int output = (rand() % (int)(4));
+            
+            switch(output)
+            {	case 0:
+                    arr[0] = e->getX() - 1;
+                    e->dir = Entity::NORTH;
+		        break;
+	        case 1:
+                    arr[0] = e->getX() + 1;
+                    e->dir = Entity::SOUTH;
+		        break;
+	        case 2:
+	                arr[1] = e->getY() - 1;
+	                e->dir = Entity::WEST;
+		        break;
+	        case 3:
+	                arr[1] = e->getY() + 1;
+	                e->dir = Entity::EAST;
+		        break;
+	        default:
+		        break;
+            }
+            e->t = 0;
         }
-        e->t = 0;
     }
 }
