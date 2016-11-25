@@ -265,57 +265,7 @@ void Map::putZoneInList(Zone * zone, std::vector<Zone*> * zones) {
 }
 
 void Map::getImageFromImageMap(Image* image, int i ) {
-    switch(i)
-    {	case 1:
-        // regular wall
-        image->img = L"#";
-        image->color = COLOR_WHITE;
-		break;
-	case 2:
-        // player
-        image->img = L"\u03C3";
-        image->color = COLOR_CYAN;
-		break;
-	case 3:
-        // house
-        image->img = L"\u2302";
-        image->color = COLOR_WHITE;
-	    break;
-	case 4:
-        // grass
-        image->img = L"\u2591";
-        image->color = COLOR_GREEN;
-        break;
-	case 5: 
-	    // tree
-	    image->img = L"\u21D1";
-	    image->color = COLOR_GREEN;
-	    break;
-	case 6:
-	    // brown wall
-	    image->img = L"\u2591";
-	    image->color = COLOR_YELLOW;
-	    break;
-	case 7:
-	    // enemy NPC
-	    image->img = L"\u00A2";
-	    image->color = COLOR_RED;
-	    break;
-	case 8:
-	    // friendly NPC
-	    image->img = L"\u00A2";
-	    image->color = COLOR_GREEN;
-	    break;
-	case 9:
-	    // water
-	    image->img = L"\u2591";
-	    image->color = COLOR_CYAN;
-	    break;
-	default:
-	        image->img = L"";
-	        image->color = COLOR_WHITE;
-		break;
-    }
+    image->id = i;
 }
 
 

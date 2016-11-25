@@ -7,6 +7,7 @@
 #include <ctime>
 #include <unordered_map>
 #include "../utilities/Point.h"
+#include "../utilities/typedefs.h"
 #include "../entities/Entities.h"
 #include "../utilities/UtilityFunctions.h"
 #include "../map/Map.h"
@@ -64,7 +65,7 @@ class Game {
         bool getCurrentZoneFriendly();
         
         // run logic for entities
-        void updateMovables(int ch, long t);
+        void updateMovables(Input input, long t);
         Player * getPlayer();
         void getPlayerFromEntities(Player ** player);
         

@@ -32,6 +32,8 @@ bool Battle::checkPartySize(Entity * e1) {
 void Battle::commence() {
 
 	LOG << "Start battle between " << e1->getName() << " and " << e2->getName() << "\n";
+	
+//game->showDialogue(NULL, NULL, "You are under attack by ");
 
 	game->getUI()->startBattle(*this);
 
@@ -55,6 +57,8 @@ void Battle::commence() {
 	int meditateCount = 0;
 
 	while(fight) {
+	
+	    game->getUI()->update(0);
 
 		// check if battle is done
 		if(e1->isPartyDead()) {
@@ -65,6 +69,8 @@ void Battle::commence() {
 			battleLog.push_back(e2->getName() + "'s party died...");
 			break;
 		}
+		
+		
 
 		// not yet, do it when its players turn
 
@@ -117,9 +123,12 @@ void Battle::commence() {
 		}
 		else ;
 		// run NPC actions
+		
+		game->getUI()->update(0);
 
 	}
 
+    game->getUI()->update(0);
 
 	if (player->isPartyDead()) {
 		LOG << "Players party died! " << player->getParty() << "\n";
@@ -129,6 +138,8 @@ void Battle::commence() {
 		LOG << "Opponents party died! " << e2->getParty() << "\n";
 		game->removeEntity(e2);
 	}
+	
+	game->getUI()->endBattle(*this);
 }
 
 Entity *Battle::getEntity1(){

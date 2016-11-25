@@ -26,9 +26,9 @@ void BattleView::startBattle() {
 
 	mvwprintw(menu_window, 0, 0, "You are under attack by ");
 
-	wattron(menu_window, COLOR_PAIR( battle.getEntity2()->getColor() ));
+	wattron(menu_window, COLOR_PAIR( ui.getEntityColor(battle.getEntity2()) ));
 	wprintw(menu_window, "%s", battle.getEntity2()->getName().c_str());
-	wattroff(menu_window, COLOR_PAIR( battle.getEntity2()->getColor() ));
+	wattroff(menu_window, COLOR_PAIR( ui.getEntityColor(battle.getEntity2()) ));
 	wprintw(menu_window, "!");
 
 	ui.refreshAll();
@@ -59,7 +59,7 @@ void BattleView::update(long dt) {
 
 	ui.refreshAll();
 
-	wgetch(main_window);
+	//wgetch(main_window);
 }
 
 void BattleView::drawBattleLog() {

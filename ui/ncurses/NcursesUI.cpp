@@ -27,10 +27,20 @@ void NcursesUI::init() {
 
 void NcursesUI::startBattle(Battle &battle) {
 	battleView = new BattleView(*this, game, battle);
+	battleView->startBattle();
+}
+
+void NcursesUI::endBattle(Battle &battle) {
+    playerInputBlocking(game_window);
+    delete battleView;
+	battleView = NULL;
 }
 
 void NcursesUI::update(long dt) {
-	draw();
+	if (battleView != NULL)
+	    battleView->update(dt);
+	else
+	    draw();
 }
 
 int NcursesUI::selectOption(const std::vector<std::string> &options) {
@@ -59,8 +69,35 @@ int NcursesUI::kbhit(int t1,int t2) {
     return select(1, &fds, NULL, NULL, &tv);
 }
 
-int NcursesUI::playerInput() {
-	return playerInput(this->game_window);
+Input NcursesUI::playerInput() {
+	switch(playerInput(this->game_window))
+    {
+    case KEY_UP:
+        return Input::GO_UP;
+	case KEY_DOWN:
+	    return Input::GO_DOWN;
+	case KEY_LEFT:
+	    return Input::GO_LEFT;
+	case KEY_RIGHT:
+	    return Input::GO_RIGHT;
+	// ctrl+left
+	case 540:
+	    return Input::TURN_LEFT;
+	case 555:
+	    return Input::TURN_RIGHT;
+	case 561:
+	    return Input::TURN_UP;
+	case 520:
+	    return Input::TURN_DOWN;
+	case 'e':
+	    return Input::USE_KEY;
+	case 'p':
+	    return Input::PAUSE;
+	case KEY_F(1):
+	    return Input::DEBUG1; 
+	default:
+		return Input::NONE;
+	}
 }
 int NcursesUI::playerInput(WINDOW *menu_win) {
     nodelay(stdscr, TRUE);
@@ -75,9 +112,82 @@ int NcursesUI::playerInputBlocking(WINDOW * menu_win) {
     return wgetch(menu_win);
 }
 
+void NcursesUI::getEntityImage(Entity *e, ImageInternal &image) {
+    const wchar_t * img;
+    int color;
+    
+    switch(e->getImage().id)
+    {	case 1:
+        // regular wall
+        img = L"#";
+        color = COLOR_WHITE;
+		break;
+	case 2:
+        // player
+        img = L"\u03C3";
+        color = COLOR_CYAN;
+		break;
+	case 3:
+        // house
+        img = L"\u2302";
+        color = COLOR_WHITE;
+	    break;
+	case 4:
+        // grass
+        img = L"\u2591";
+        color = COLOR_GREEN;
+        break;
+	case 5: 
+	    // tree
+	    img = L"\u21D1";
+	    color = COLOR_GREEN;
+	    break;
+	case 6:
+	    // brown wall
+	    img = L"\u2591";
+	    color = COLOR_YELLOW;
+	    break;
+	case 7:
+	    // enemy NPC
+	    img = L"\u00A2";
+	    color = COLOR_RED;
+	    break;
+	case 8:
+	    // friendly NPC
+	    img = L"\u00A2";
+	    color = COLOR_GREEN;
+	    break;
+	case 9:
+	    // water
+	    img = L"\u2591";
+	    color = COLOR_CYAN;
+	    break;
+	default:
+	        img = L"";
+	        color = COLOR_WHITE;
+		break;
+    }
+    
+    image.img = img;
+    image.color = color;
+    image.id = e->getImage().id;
+}
+
+int NcursesUI::getEntityColor(Entity *e) {
+    ImageInternal img;
+    getEntityImage(e, img);
+    return img.color;
+}
+
 void NcursesUI::drawEntity(WINDOW * window, Entity * e, int x, int y) {
     // draws the entities in list of entities with the appropriate color.
-    e->draw(window, x, y);
+    
+    ImageInternal img;
+    getEntityImage(e, img);
+    
+    wattron(window, COLOR_PAIR( img.color ));
+    mvwaddwstr(window, x, y, img.img);
+    wattroff(window, COLOR_PAIR( img.color ));
 }
 
 void NcursesUI::drawPause() {
@@ -108,20 +218,23 @@ void NcursesUI::displayDebug1(){
 
 void NcursesUI::displayDialogue(Entity * e1, Entity * e2, std::string dialogue){
 	clearGUI2();
+	
+	int color = getEntityColor(e2);
 
 	drawEntity(getGUI2Window(), e2, 0,0);
 
-	wattron(getGUI2Window(), COLOR_PAIR( e2->getColor() ));
-	mvwprintw(getGUI2Window(), 0, 1, " %s: ", e2->getName().c_str());
-	wattroff(getGUI2Window(), COLOR_PAIR( e2->getColor() ));
-
+    if (e2 != NULL) {
+	    wattron(getGUI2Window(), COLOR_PAIR( color ));
+	    mvwprintw(getGUI2Window(), 0, 1, " %s: ", e2->getName().c_str());
+	    wattroff(getGUI2Window(), COLOR_PAIR( color ));
+    }
 	wprintw(getGUI2Window(), "%s",  dialogue.c_str());
 	mvwprintw(getGUI2Window(), GUI2_HEIGHT-1, 0, "▼");
 	refreshAll();
 
 	int c = 0;
-	while( c != KEY_ENTER && c != ' ') {
-		c = playerInput();
+	while( c != '\n' && c != ' ') {
+        c = playerInput(getGameWindow());
 	}
 }
 

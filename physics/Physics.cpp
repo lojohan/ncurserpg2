@@ -19,7 +19,7 @@ size_t getEntitiesAtPoint(int x, int y, std::vector<Entity*> &result, std::unord
 
 // should be rewritten so that all moves are performed first, then move things
 // back, then perform onCollision;
-void physicsLoop(int ch, std::vector<Entity*> entityList, std::unordered_map< std::string,std::vector<Entity*> >  &entityMap, long t) {
+void physicsLoop(Input input, std::vector<Entity*> entityList, std::unordered_map< std::string,std::vector<Entity*> >  &entityMap, long t) {
 
 	std::vector<Entity*> entitiesOnPosition;
 	std::vector<Entity*> collidees;
@@ -33,7 +33,7 @@ void physicsLoop(int ch, std::vector<Entity*> entityList, std::unordered_map< st
         arr[0] = (*it)->getX();
         arr[1] = (*it)->getY();
         
-        (*it)->getNextMove(ch, arr, t);
+        (*it)->getNextMove(input, arr, t);
         
         if(arr[0] == origX && arr[1] == origY)
             continue;

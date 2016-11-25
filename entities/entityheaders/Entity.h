@@ -48,7 +48,7 @@ class Entity {
         virtual void setName(std::string name);
         
         // Movement
-        virtual void getNextMove(int c, int arr[2], long dt);
+        virtual void getNextMove(Input input, int arr[2], long dt);
         const std::string getCurrentDirection();
         void setCurrentDirection(Direction dir);
     
@@ -66,12 +66,14 @@ class Entity {
         // Drawing
         void setImage(Image image);
         
-        Image getImage();
+        Image &getImage();
         virtual void setColor(int color);
         virtual int getColor();
         
+        /* 
         virtual void draw(WINDOW * win);
         virtual void draw(WINDOW * win, int x, int y);
+        */
         
         // Party!!!
         Party &getParty();

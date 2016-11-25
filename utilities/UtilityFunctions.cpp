@@ -19,18 +19,21 @@ void relativeCameraPos(Entity * centerentity, Entity * drawEntity, int arr[2], i
     arr[1] = width/2 - centerentity->getY() + drawEntity->getY();
 }
 
-void gameLoopInputHandler(int c) {
-    switch(c)  {
-        case 'p':
+void gameLoopInputHandler(Input input) {
+    switch(input)  {
+        case PAUSE:
         {
             game->togglePause();
 		    break;
 	    }
-        case KEY_F(1):
+        case DEBUG1:
 		{
         	game->getUI()->displayDebug1();
 			break;
 		}
+		default:
+		    
+		break;
     }
 }
 

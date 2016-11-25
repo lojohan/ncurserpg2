@@ -44,23 +44,21 @@ void Game::start() {
         clock_gettime(CLOCK_REALTIME, &start);
         
         // placeholder
-        int ch = ui->playerInput();
+        Input input = ui->playerInput();
         
-        if (ch > 0)
-            LOG<< "input!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
-        gameLoopInputHandler(ch);
+        gameLoopInputHandler(input);
         
         // run game logic here if not paused
         if(!game_paused) {
-            updateMovables(ch, time_passed);
+            updateMovables(input, time_passed);
         }
         
         ui->update(time_passed);
         
         // Debugging key
         /*
-        if (ch != -1) {
-            mvwprintw(game_window, 0,0,"%d",ch);
+        if (input != -1) {
+            mvwprintw(game_window, 0,0,"%d",input);
             refreshAll();
         }
         */
@@ -199,8 +197,8 @@ void Game::switchLevel(std::string id, int newPlayerX, int newPlayerY) {
 }
 
 // run logic for movables
-void Game::updateMovables(int ch, long t) {
-    physicsLoop(ch, this->entityList, this->entityMap,t);
+void Game::updateMovables(Input input, long t) {
+    physicsLoop(input, this->entityList, this->entityMap,t);
 }
 
 

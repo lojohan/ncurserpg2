@@ -21,7 +21,7 @@ void init_logging();
 
 //void clearScreen();
 
-void gameLoopInputHandler(int c);
+void gameLoopInputHandler(Input input);
 
 void relativeCameraPos(Entity * centerentity, Entity * drawEntity, int arr[2], int height, int width);
 

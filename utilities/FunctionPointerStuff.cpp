@@ -58,58 +58,57 @@ void enterLevel(Entity * e1, Entity * e2, int count, int * params) {
 
 // functions to call on move
 
-void noMove(Entity * e, int c, int arr[2], long dt, int count, int * params) {
+void noMove(Entity * e, Input input, int arr[2], long dt, int count, int * params) {
 }
 
-void playerControl(Entity * e, int c, int arr[2], long dt, int count, int * params) {
-    switch(c)
+void playerControl(Entity * e, Input input, int arr[2], long dt, int count, int * params) {
+    switch(input)
     {
-    case KEY_UP:
+    case GO_UP:
         {
             arr[0] = e->getX() - 1;
             e->dir = Entity::NORTH;
 		break;
 		}
-	case KEY_DOWN:
+	case GO_DOWN:
 	{
             arr[0] = e->getX() + 1;
             e->dir = Entity::SOUTH;
 		break;
     }
-	case KEY_LEFT:
+	case GO_LEFT:
 	{
 	        arr[1] = e->getY() - 1;
 	        e->dir = Entity::WEST;
 		break;
 	}
-	case KEY_RIGHT:
+	case GO_RIGHT:
 	{
 	        arr[1] = e->getY() + 1;
 	        e->dir = Entity::EAST;
 		break;
 	}
-	// ctrl+left
-	case 540:
+	case TURN_LEFT:
 	{
 	        e->setCurrentDirection( Entity::WEST );
 		break;
 	}
-	case 555:
+	case TURN_RIGHT:
 	{
 	        e->setCurrentDirection( Entity::EAST );
 		break;
 	}
-	case 561:
+	case TURN_UP:
 	{
 	        e->setCurrentDirection( Entity::NORTH );
 		break;
 	}
-	case 520:
+	case TURN_DOWN:
 	{
 	        e->setCurrentDirection( Entity::SOUTH );
 		break;
 	}
-	case 'e':
+	case USE_KEY:
 	{
 	    useKeyBehaviour(e);
 	    break;
@@ -119,7 +118,7 @@ void playerControl(Entity * e, int c, int arr[2], long dt, int count, int * para
     }
 }
 
-void randomAI(Entity * e, int c, int arr[2], long dt, int count, int * params) {
+void randomAI(Entity * e, Input input, int arr[2], long dt, int count, int * params) {
     
     if(count != 1) {
     } else {

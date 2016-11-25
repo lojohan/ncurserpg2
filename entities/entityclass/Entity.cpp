@@ -53,11 +53,11 @@ int Entity::getY(){
     return this->y;
 }
 
-void Entity::getNextMove(int c, int arr[2], long dt) {
+void Entity::getNextMove(Input input, int arr[2], long dt) {
     int l = movementPointers.size();
     
     for(int i = 0; i < l; i++) {
-        (movementPointers.at(i))(this, c, arr, dt);
+        (movementPointers.at(i))(this, input, arr, dt);
     }
 }
 
@@ -117,7 +117,7 @@ void Entity::setImage(Image image) {
     this->image = image;
 }
         
-Image Entity::getImage() {
+Image &Entity::getImage() {
     return this->image;
 }
 
@@ -131,6 +131,7 @@ void Entity::setColor(int color) {
     }
 }
 
+/*
 void Entity::draw(WINDOW *win) {
     wattron(win, COLOR_PAIR( this->getColor() ));
     mvwaddwstr(win, this->x, this->y, this->image.img);
@@ -138,10 +139,9 @@ void Entity::draw(WINDOW *win) {
 }
 
 void Entity::draw(WINDOW * win, int x, int y) {
-    wattron(win, COLOR_PAIR( this->getColor() ));
-    mvwaddwstr(win, x, y, this->image.img);
-    wattroff(win, COLOR_PAIR( this->getColor() ));
+
 }
+*/
 
 Party &Entity::getParty() {
     return party;

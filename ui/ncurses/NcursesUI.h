@@ -20,12 +20,17 @@ namespace ncursesui {
 
 class BattleView;
 
+struct ImageInternal {
+    const wchar_t * img;
+    int color;
+    int id;
+};
+
 class NcursesUI: public UI {
 private:
 	Game &game;
 	BattleView * battleView;
 
-    // should be in drawing bit
     WINDOW *super_window;
     WINDOW *title_window;
 
@@ -37,6 +42,7 @@ private:
 
     WINDOW *gui2_box;
     WINDOW *gui2_window;
+    
 
 public:
     const static int GAME_HEIGHT = 15;
@@ -61,11 +67,12 @@ public:
 	/* Interface */
 	void init();
 	void update(long dt);
-	int playerInput();
+	Input playerInput();
 	void displayDialogue(Entity * e1, Entity * e2, std::string dialogue);
 	void displayDebug1();
 	int selectOption(const std::vector<std::string> &options);
 	void startBattle(Battle &battle);
+	void endBattle(Battle &battle);
 
 	/* Input stuff */
 	int kbhit(int t1,int t2);
@@ -78,6 +85,9 @@ public:
     void clearGUI2();
     void clearGameWindow();
     void clearAll();
+    
+    int getEntityColor(Entity *e);
+    void getEntityImage(Entity *e, ImageInternal &image);
 
     void refreshGameScreen();
     void refreshGUI1();
