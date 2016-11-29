@@ -10,6 +10,7 @@
 
 class Entity;
 class Battle;
+class Game;
 #include <string>
 #include <vector>
 #include "../utilities/typedefs.h"

@@ -21,6 +21,8 @@ timespec Game::diff(timespec start, timespec end)
 
 void Game::start() {
 
+	LOG << "Starting new game." << std::endl;
+
     map = new Map();
     this->init();
     currentLevelID = "0";
@@ -33,6 +35,8 @@ void Game::start() {
     
     addEntitiesToMap(this->entityMap, this->entityList);
     
+    LOG << "Running update loop." << std::endl;
+
     timespec start;
     timespec end;
     long time_passed = 0;
@@ -67,6 +71,8 @@ void Game::start() {
         
     }
     
+    LOG << "Game loop ended." << std::endl;
+
     this->end();
 }
 
@@ -256,12 +262,18 @@ void Game::init() {
 
 	init_logging();
 
+	LOG << "Game initializing..." << std::endl;
+
     srand (time(NULL));
 
     game_paused = false;
     fillTileMap();
     
+    LOG << "UI initializing..." << std::endl;
+
     ui->init();
+
+    LOG << "Game initialization done." << std::endl;
 }
 
 bool Game::isPaused(){
@@ -274,6 +286,8 @@ void Game::togglePause() {
 
 // closes all windows on close.
 void Game::end() {
+	LOG << "Game ending..." << std::endl;
     ui->deinit();
+    LOG << "Game ending done." << std::endl;
 }
 //---------------------------------------------------------------------------------------------------------------------------------
