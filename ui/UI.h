@@ -18,24 +18,23 @@ class UI {
 public:
 	virtual ~UI() {};
 
-	virtual void init() = 0;
+	virtual void init() {};
 	
-	virtual void deinit() = 0;
+	virtual void deinit() {};
 
-	virtual void update(long dt)= 0;
+	virtual void update(long dt) {};
 	
-	virtual Input playerInput() = 0;
+	virtual Input playerInput() { return Input::NONE; };
 
-	virtual void displayDialogue(Entity * e1, Entity * e2, std::string dialogue) =0;
+	virtual void displayDialogue(Entity * e1, Entity * e2, std::string dialogue) {};
 
-	virtual int selectOption(const std::vector<std::string> &options) =0;
+	virtual int selectOption(const std::vector<std::string> &options) = 0;
 
-	virtual void startBattle(Battle &) = 0;
+	virtual void startBattle(Battle &) {};
 	
-	virtual void endBattle(Battle &) = 0;
+	virtual void endBattle(Battle &) {};
 
-	virtual void displayDebug1() =0;
-	
+	virtual void displayDebug1() {};
 };
 
 #endif /* UI_UI_H_ */
