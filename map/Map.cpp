@@ -136,6 +136,7 @@ void Map::parseMap(std::unordered_map<std::string,std::vector<Entity*> > * entit
                     case LAYER:
                         {
                             layer = static_cast<Entity::Layer>(atoi( splitstrings.at(i).c_str()));
+                        break;
                         }
                     case COLLISION:
                         {
