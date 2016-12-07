@@ -74,6 +74,7 @@ void Map::parseMap(std::unordered_map<std::string,std::vector<Entity*> > * entit
             
             //const wchar_t * image;
             Image image;
+            Entity::Layer layer;
             int pos[2];
             //int color;
             bool solid = true;
@@ -131,6 +132,10 @@ void Map::parseMap(std::unordered_map<std::string,std::vector<Entity*> > * entit
                             
                             getImageFromImageMap(&image,value);
                         break;
+                        }
+                    case LAYER:
+                        {
+                            layer = static_cast<Entity::Layer>(atoi( splitstrings.at(i).c_str()));
                         }
                     case COLLISION:
                         {
@@ -190,13 +195,13 @@ void Map::parseMap(std::unordered_map<std::string,std::vector<Entity*> > * entit
                 }
                     
                 if (!className.compare("Tile")) {
-                    putEntityInMap( new Tile(pos[0],pos[1],name,true,solid, image, collisionpointers, movementpointers, usepointers), &(entityLists->at(levelid)));
+                    putEntityInMap( new Tile(pos[0],pos[1],name,true,solid, image, layer, collisionpointers, movementpointers, usepointers), &(entityLists->at(levelid)));
                 }
                 if (!className.compare("Player")) {
-                    putEntityInMap( new Player(pos[0],pos[1], solid, name, image, collisionpointers, movementpointers, usepointers), &(entityLists->at(levelid)));
+                    putEntityInMap( new Player(pos[0],pos[1], solid, name, image, layer, collisionpointers, movementpointers, usepointers), &(entityLists->at(levelid)));
                 }
                 if (!className.compare("NPC")) {
-                    putEntityInMap( new NPC(pos[0],pos[1], solid, name, image, collisionpointers, movementpointers, usepointers), &(entityLists->at(levelid)));
+                    putEntityInMap( new NPC(pos[0],pos[1], solid, name, image, layer, collisionpointers, movementpointers, usepointers), &(entityLists->at(levelid)));
                 }
             } else if(!className.compare("Zone")) {
                 

@@ -1,11 +1,12 @@
 #include "../entityheaders/Entity.h"
 
-Entity::Entity(int x, int y, bool solid, std::string name, Image image, std::vector<ColFnPtr> collision_ptrs, std::vector<MovFnPtr> movement_ptrs, std::vector<UseFnPtr> use_ptrs) {
+Entity::Entity(int x, int y, bool solid, std::string name, Image image, Layer layer, std::vector<ColFnPtr> collision_ptrs, std::vector<MovFnPtr> movement_ptrs, std::vector<UseFnPtr> use_ptrs) {
     this->image = image;
     this->name = name;
     this->solid = solid;
     this->setX(x);
     this->setY(y);
+    this->layer = layer;
     
     int l1 = collision_ptrs.size();
     for(int i = 0; i < l1; i++) {
