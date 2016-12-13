@@ -86,4 +86,6 @@ class Entity {
 
 };
 
+std::ostream& operator<<(std::ostream &strm, Entity &e);
+
 #endif

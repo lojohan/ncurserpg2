@@ -153,5 +153,11 @@ bool Entity::isPartyDead() {
 }
 
 
+std::ostream& operator<<(std::ostream &strm, Entity &e) {
+  strm << "Entity< " << e.getName() <<" @ ("<< e.getX() << "," << e.getY() << ")" << " >";
+  return strm;
+}
+
+
 
 

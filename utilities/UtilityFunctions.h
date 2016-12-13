@@ -21,6 +21,19 @@ void init_logging();
 
 //void clearScreen();
 
+/*
+removes first occurence of t in vec.
+*/
+template<class T> bool removeFromVector(std::vector<T> &vec, const T &t)  {
+	for (auto it = vec.begin(); it != vec.end(); it++) {
+        if (*it == t) {
+            vec.erase(it);
+            return true;
+        }
+    }
+    return false;
+}
+
 void gameLoopInputHandler(Input input);
 
 void relativeCameraPos(Entity * centerentity, Entity * drawEntity, int arr[2], int height, int width);
