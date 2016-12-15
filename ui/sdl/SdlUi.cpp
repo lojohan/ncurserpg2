@@ -9,8 +9,11 @@
 #include "Sprite.h"
 #include "../../utilities/UtilityFunctions.h"
 #include "../../entities/entityheaders/Entity.h"
+#include "EntityView.h"
 
 namespace sdlui {
+
+EntityView *entityViews[10];
 
 SdlUi::SdlUi(Game &game)
 :game(game), battleView(NULL){
@@ -115,30 +118,43 @@ SDL_Surface* SDL_ScaleSurface(SDL_Surface *Surface)
     return _ret;
 }
 
-void SdlUi::loadSprites() {
-	LOG << "Loading sprites..." << std::endl;
-	SDL_Surface *temp   = SDL_LoadBMP("res/bmps/basictiles.bmp");
+SDL_Surface *SdlUi::loadSpritesheet(const char * path) {
+	LOG << "Loading spritesheet:" << path << std::endl;
+	SDL_Surface *temp   = SDL_LoadBMP(path);
 	SDL_Surface *temp2 = SDL_ScaleSurface(temp);
 	SDL_SetColorKey(temp2, SDL_SRCCOLORKEY, SDL_MapRGB(temp2->format, 255, 0, 255));
 	SDL_Surface *sheet = SDL_DisplayFormat(temp2);
 	SDL_FreeSurface(temp);
 	SDL_FreeSurface(temp2);
+	LOG << "Loading spritesheet done:" << path << std::endl;
+	return sheet;
+}
 
-	LOG << "Loading spritesheet done." << std::endl;
+/*
+void SdlUi::loadSprite(int id) {
+
+}*/
+void SdlUi::loadSprites() {
+	LOG << "Loading sprites..." << std::endl;
+
+	SDL_Surface *tiles = loadSpritesheet("res/bmps/basictiles.bmp");
+	SDL_Surface *chars = loadSpritesheet("res/bmps/characters.bmp");
+
+	LOG << "Loading spritesheets done." << std::endl;
 
 	int w = SPRITE_W*SCALE_FACTOR;
 	int h = SPRITE_H*SCALE_FACTOR;
 
-	static_sprites[0] = new Sprite(w, h,12, 0, sheet); // empty
-	static_sprites[1] = new Sprite(w, h, 0, 0, sheet); //wall
-	static_sprites[2] = new Sprite(w, h, 7, 3, sheet); // player
-	static_sprites[3] = new Sprite(w, h, 6, 2, sheet);//house
-	static_sprites[4] = new Sprite(w, h, 8, 0, sheet);//grass
-	static_sprites[5] = new Sprite(w, h, 3, 6, sheet);//tree
-	static_sprites[6] = new Sprite(w, h, 0, 4, sheet);// brown wall
-	static_sprites[7] = new Sprite(w, h, 6, 7, sheet);// enemy npc
-	static_sprites[8] = new Sprite(w, h, 7, 6, sheet);// friendly npc
-	static_sprites[9] = new Sprite(w, h, 1, 5, sheet);// water
+	entityViews[0] =  new StaticEntityView(12, 0, tiles); // empty
+	entityViews[1] =  new DirectedEntityView(0, 1, 0, 2, 0, 3, 0, 0, tiles); //wall
+	entityViews[2] =  new DirectedEntityView(1, 1, 0, 1, 2, 1, 3, 1, chars); // player
+	entityViews[3] =  new StaticEntityView(6, 2, tiles);//house
+	entityViews[4] =  new StaticEntityView(8, 0, tiles);//grass
+	entityViews[5] =  new StaticEntityView(3, 6, tiles);//tree
+	entityViews[6] =  new StaticEntityView(0, 4, tiles);// brown wall
+	entityViews[7] =  new DirectedEntityView(1, 10, 0, 10, 2, 10, 3, 10, chars);// enemy npc
+	entityViews[8] =  new DirectedEntityView(1, 7, 0, 7, 2, 7, 3, 7, chars);// friendly npc
+	entityViews[9] =  new StaticEntityView(1, 5, tiles);// water
 
 	LOG << "Loading sprites done." << std::endl;
 }
@@ -154,19 +170,12 @@ void SdlUi::drawEntities() {
 	for (int layer = Entity::BACKGROUND; layer >= Entity::FOREGROUND; layer--) {
 		for(auto it = game.getEntities().begin(); it != game.getEntities().end(); ++it) {
 			if ((*it)->layer != layer) continue;
-			int img = (*it)->getImage().id;
-			int maxImg = sizeof(static_sprites)/sizeof(Sprite*);
-
-			if (img >= maxImg) {
-				LOG << "Entity img is too high " << img << " >= " << maxImg << std::endl;
-				img = maxImg - 1;
-			}
 
 			// Center camera on player
 			int pos[2]; // Array containing positions of entities relative to camera.
-			relativeCameraPos(game.getPlayer(), *it, pos, screen->w / (SPRITE_W*SCALE_FACTOR), screen->h / (SPRITE_H*SCALE_FACTOR));
+			relativeCameraPos(game.getPlayer()->getX(), game.getPlayer()->getY(), 0, 0, pos, screen->w / (SPRITE_W*SCALE_FACTOR), screen->h / (SPRITE_H*SCALE_FACTOR));
 
-			static_sprites[img]->drawOnSurface(screen, pos[0]*(SPRITE_W*SCALE_FACTOR), pos[1]*(SCALE_FACTOR*SPRITE_H));
+			entityViews[(*it)->getImage().id]->draw(screen, *it, pos[0], pos[1]);
 		}
 	}
 }

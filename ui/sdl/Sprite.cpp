@@ -11,10 +11,12 @@
 
 namespace sdlui {
 
+Sprite::Sprite() :
+		width(0), height(0), row(0), col(0), spritesheet(0)
+{
+}
 Sprite::Sprite(int width, int height, int row, int col, SDL_Surface *spritesheet):
-	width(width), height(height), row(row), col(col), spritesheet(spritesheet),
-	nOfSheetColumns(spritesheet->w / width),
-	nOfSheetRows(spritesheet->h / height)
+	width(width), height(height), row(row), col(col), spritesheet(spritesheet)
 {
 	if (width > spritesheet->w) {
 		std::cerr << "width > spritesheet->w" << std::endl;

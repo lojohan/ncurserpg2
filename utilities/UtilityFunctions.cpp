@@ -11,10 +11,14 @@ void init_logging() {
 //    printf(0,0,"\033c");
 //}
 
+void relativeCameraPos(int cx, int cy, int x, int y, int arr[2], int height, int width) {
+    arr[0] = height/2 - cx + x;
+    arr[1] = width/2 - cy + y;
+}
+
 
 void relativeCameraPos(Entity * centerentity, Entity * drawEntity, int arr[2], int height, int width) {
-    arr[0] = height/2 - centerentity->getX() + drawEntity->getX();
-    arr[1] = width/2 - centerentity->getY() + drawEntity->getY();
+	relativeCameraPos(centerentity->getX(), centerentity->getY(), drawEntity->getX(), drawEntity->getY(), arr, height, width);
 }
 
 void gameLoopInputHandler(Input input) {

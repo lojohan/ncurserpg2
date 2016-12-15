@@ -18,9 +18,9 @@ class Sprite {
 private:
 	int width, height, row, col;
 	SDL_Surface *spritesheet;
-	const int nOfSheetColumns, nOfSheetRows;
 
 public:
+	Sprite();
 	Sprite(int width, int height, int row, int col, SDL_Surface *spritesheet);
 	virtual ~Sprite();
 

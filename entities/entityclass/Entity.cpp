@@ -2,7 +2,10 @@
 #include "../../utilities/UtilityFunctions.h"
 
 Entity::Entity(int x, int y, bool solid, std::string name, Image image, Layer layer, std::vector<ColFnPtr> collision_ptrs, std::vector<MovFnPtr> movement_ptrs, std::vector<UseFnPtr> use_ptrs) {
-    this->image = image;
+    // placeholder
+    this->dir = NORTH;
+
+	this->image = image;
     this->name = name;
     this->solid = solid;
     this->setX(x);

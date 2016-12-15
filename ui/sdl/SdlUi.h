@@ -13,13 +13,16 @@
 
 #define SPRITE_W 16
 #define SPRITE_H 16
-#define SCALE_FACTOR 2
+#define SCALE_FACTOR 3
 
 class BattleView;
 
 namespace sdlui {
 
 class Sprite;
+class EntityView;
+
+extern EntityView *entityViews[10];
 
 class SdlUi: public UI {
 private:
@@ -28,11 +31,11 @@ private:
 
 	SDL_Surface *screen;
 
-	Sprite *static_sprites[10];
-
 	void loadSprites();
 
 	void drawEntities();
+
+	SDL_Surface *loadSpritesheet(const char * path);
 
 public:
 	SdlUi(Game &game);
