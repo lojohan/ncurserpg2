@@ -8,7 +8,7 @@
 class Player : public Entity {
     
     public:
-        Player(int x, int y, bool solid, std::string name, Image image, std::vector<ColFnPtr> collision_ptrs, std::vector<MovFnPtr> movement_ptrs, std::vector<UseFnPtr> use_ptrs);
+        Player(int x, int y, bool solid, std::string name, Image image, Layer layer, std::vector<ColFnPtr> collision_ptrs, std::vector<MovFnPtr> movement_ptrs, std::vector<UseFnPtr> use_ptrs);
         
 };
 

@@ -24,9 +24,10 @@
 #define POSITION 2
 #define SOLID 3
 #define IMAGE 4
-#define COLLISION 5
-#define MOVEMENT 6
-#define USE 7
+#define LAYER 5
+#define COLLISION 6
+#define MOVEMENT 7
+#define USE 8
 
 #define ZONE_NAME 1
 #define ZONE_POSITION1 2

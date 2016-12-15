@@ -31,11 +31,15 @@ class Entity {
     
         enum Direction {NORTH = 0, EAST = 1, SOUTH = 2, WEST = 3};
         
+        enum Layer {FOREGROUND = 0, MIDDLE = 1, BACKGROUND = 2};
+        
         Direction dir;
+        
+        Layer layer;
         
         long t;
         
-        Entity(int x, int y, bool solid, std::string name, Image image, std::vector<ColFnPtr> collision_ptrs, std::vector<MovFnPtr> movement_ptrs, std::vector<UseFnPtr> use_ptrs);
+        Entity(int x, int y, bool solid, std::string name, Image image, Layer layer, std::vector<ColFnPtr> collision_ptrs, std::vector<MovFnPtr> movement_ptrs, std::vector<UseFnPtr> use_ptrs);
         
         virtual void setX(int x);
         virtual void setY(int y);
@@ -67,6 +71,7 @@ class Entity {
         void setImage(Image image);
         
         Image &getImage();
+        
         virtual void setColor(int color);
         virtual int getColor();
         
@@ -80,5 +85,7 @@ class Entity {
         bool isPartyDead();
 
 };
+
+std::ostream& operator<<(std::ostream &strm, Entity &e);
 
 #endif

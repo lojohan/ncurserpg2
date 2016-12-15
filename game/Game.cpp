@@ -106,18 +106,19 @@ std::vector<Entity*> &Game::getEntities() {
 void Game::removeEntity(Entity * entity) {
     detachEntity(entity);
 	delete entity;
+	LOG << "Deallocated entity " << std::endl;
 }
 
 void Game::detachEntity(Entity * entity) {
 	removeEntityFromMap(entityMap, entity);
-	//LOG << "Removed entity from map " << std::endl;
+	LOG << "Removed entity from map " << std::endl;
 	for (auto it = entityList.begin(); it != entityList.end(); it++) {
 		if (*it == entity) {
 			entityList.erase(it);
 			break;
 		}
 	}
-	//LOG << "Removed entity from entity list " << std::endl;
+	LOG << "Removed entity from entity list " << std::endl;
 }
 
 void Game::removeEntityFromMap(std::unordered_map< std::string, std::vector<Entity*>> & entityMap, Entity* entity) {
