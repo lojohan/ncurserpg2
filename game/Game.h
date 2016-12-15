@@ -29,6 +29,7 @@ class Game {
         Player * player;
         
         bool game_paused;
+        bool running;
         
         std::string currentLevelID;
 

@@ -9,12 +9,17 @@
 #define UI_SDL_SDLUI_H_
 
 #include <SDL/SDL.h>
-
 #include "../UI.h"
+
+#define SPRITE_W 16
+#define SPRITE_H 16
+
 
 class BattleView;
 
 namespace sdlui {
+
+class Sprite;
 
 class SdlUi: public UI {
 private:
@@ -22,10 +27,12 @@ private:
 	BattleView * battleView;
 
 	SDL_Surface *screen;
-	SDL_Surface *sprite;
 
+	Sprite *static_sprites[6];
 
 	void loadSprites();
+
+	void drawEntities();
 
 public:
 	SdlUi(Game &game);

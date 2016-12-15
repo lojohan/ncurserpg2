@@ -8,13 +8,24 @@
 #ifndef UI_SDL_SPRITE_H_
 #define UI_SDL_SPRITE_H_
 
+#include <SDL/SDL.h>
+
+#include "SdlUi.h"
+
 namespace sdlui {
 
 class Sprite {
+private:
+	int spriteIndex;
+	SDL_Surface *spritesheet;
+	const int nOfSheetColumns, nOfSheetRows;
+
 public:
-	Sprite();
+	Sprite(int width, int height, int spriteIndex, SDL_Surface *spritesheet);
 	virtual ~Sprite();
 
+	void setSpriteIndex(int i);
+	void drawOnSurface(SDL_Surface * screen, int x, int y);
 };
 
 } /* namespace sdlui */

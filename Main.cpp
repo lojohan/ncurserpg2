@@ -37,6 +37,6 @@ void signalHandler( int signum ) {
    game->end();
 
    // terminate program
-   exit(signum);
+   //exit(signum);
 
 }

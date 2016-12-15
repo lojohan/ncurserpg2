@@ -23,6 +23,8 @@ void Game::start() {
 
 	LOG << "Starting new game." << std::endl;
 
+	running = true;
+
     map = new Map();
     this->init();
     currentLevelID = "0";
@@ -40,7 +42,7 @@ void Game::start() {
     timespec start;
     timespec end;
     long time_passed = 0;
-    while(true) {
+    while(running) {
         
         clock_gettime(CLOCK_REALTIME, &start);
         
@@ -286,6 +288,11 @@ void Game::togglePause() {
 
 // closes all windows on close.
 void Game::end() {
+	if (running) {
+		// game loop will come here.
+		running = false;
+		return;
+	}
 	LOG << "Game ending..." << std::endl;
     ui->deinit();
     LOG << "Game ending done." << std::endl;
