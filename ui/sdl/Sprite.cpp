@@ -11,12 +11,11 @@
 
 namespace sdlui {
 
-Sprite::Sprite(int width, int height, int spriteIndex, SDL_Surface *spritesheet):
-	spriteIndex(0), spritesheet(spritesheet),
+Sprite::Sprite(int width, int height, int row, int col, SDL_Surface *spritesheet):
+	width(width), height(height), row(row), col(col), spritesheet(spritesheet),
 	nOfSheetColumns(spritesheet->w / width),
 	nOfSheetRows(spritesheet->h / height)
 {
-	setSpriteIndex(spriteIndex);
 	if (width > spritesheet->w) {
 		std::cerr << "width > spritesheet->w" << std::endl;
 	}
@@ -30,19 +29,19 @@ Sprite::~Sprite()
 
 }
 
-void Sprite::setSpriteIndex(int i) {
+/*void Sprite::setSpriteIndex(int i) {
 	if (spriteIndex % nOfSheetColumns >= nOfSheetRows) {
 		std::cerr << "spriteIndex % nOfSheetColumns >= nOfSheetRow" << std::endl;
 	}
 	spriteIndex = i;
 }
-
+*/
 void Sprite::drawOnSurface(SDL_Surface * screen, int x, int y) {
 	SDL_Rect srcRect;
-	srcRect.x = (spriteIndex * SPRITE_W) % spritesheet->w;
-	srcRect.y = (spriteIndex % nOfSheetColumns) * SPRITE_H;
-	srcRect.w = SPRITE_W;
-	srcRect.h = SPRITE_H;
+	srcRect.x = col * width;
+	srcRect.y = row * height;
+	srcRect.w = width;
+	srcRect.h = height;
 	SDL_Rect scrnPos;
 	scrnPos.x = x;
 	scrnPos.y = y;

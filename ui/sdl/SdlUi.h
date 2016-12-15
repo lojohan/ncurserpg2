@@ -13,7 +13,7 @@
 
 #define SPRITE_W 16
 #define SPRITE_H 16
-
+#define SCALE_FACTOR 2
 
 class BattleView;
 
@@ -28,7 +28,7 @@ private:
 
 	SDL_Surface *screen;
 
-	Sprite *static_sprites[6];
+	Sprite *static_sprites[10];
 
 	void loadSprites();
 

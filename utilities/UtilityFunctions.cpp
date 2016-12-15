@@ -29,6 +29,11 @@ void gameLoopInputHandler(Input input) {
         	game->getUI()->displayDebug1();
 			break;
 		}
+        case QUIT:
+		{
+			game->end();
+			break;
+		}
 		default:
 		    
 		break;

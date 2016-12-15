@@ -1,4 +1,5 @@
 #include "../entityheaders/Entity.h"
+#include "../../utilities/UtilityFunctions.h"
 
 Entity::Entity(int x, int y, bool solid, std::string name, Image image, Layer layer, std::vector<ColFnPtr> collision_ptrs, std::vector<MovFnPtr> movement_ptrs, std::vector<UseFnPtr> use_ptrs) {
     this->image = image;
@@ -58,6 +59,9 @@ void Entity::getNextMove(Input input, int arr[2], long dt) {
     int l = movementPointers.size();
     
     for(int i = 0; i < l; i++) {
+    	if (movementPointers.at(i).empty()) {
+    		LOG << "Movement pointer at index "<<i<<" for " << *this << " is empty!" << std::endl;
+    	}
         (movementPointers.at(i))(this, input, arr, dt);
     }
 }

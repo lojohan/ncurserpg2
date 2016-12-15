@@ -15,7 +15,8 @@ enum Input {
     TURN_RIGHT,
     USE_KEY,
     PAUSE,
-    DEBUG1
+    DEBUG1,
+	QUIT
 };
 
 class Character;

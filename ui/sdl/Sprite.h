@@ -16,15 +16,15 @@ namespace sdlui {
 
 class Sprite {
 private:
-	int spriteIndex;
+	int width, height, row, col;
 	SDL_Surface *spritesheet;
 	const int nOfSheetColumns, nOfSheetRows;
 
 public:
-	Sprite(int width, int height, int spriteIndex, SDL_Surface *spritesheet);
+	Sprite(int width, int height, int row, int col, SDL_Surface *spritesheet);
 	virtual ~Sprite();
 
-	void setSpriteIndex(int i);
+	//void setSpriteIndex(int i);
 	void drawOnSurface(SDL_Surface * screen, int x, int y);
 };
 
