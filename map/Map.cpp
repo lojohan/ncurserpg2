@@ -153,8 +153,11 @@ void Map::parseMap(std::unordered_map<std::string,std::vector<Entity*> > * entit
                                 std::string fname;
                                 int count;
                                 int * paramsInts;
-                                if ( (paramsInts = parseFunctionString(&*it, &fname, &count)) != NULL) {                            
+                                if ( (paramsInts = parseFunctionString(&*it, &fname, &count)) != NULL) {
                                     ColFnPtr_unbound f = collisionFunctionMap[ fname ];
+                                    if (f.empty()) {
+										LOG << "Map.cpp: Empty ColFnPtr_unbound for name " << fname << std::endl;
+									}
                                     ColFnPtr f_bound = boost::bind(f, _1, _2, count, paramsInts);
                                     collisionpointers.push_back(f_bound);
                                 }
@@ -172,6 +175,9 @@ void Map::parseMap(std::unordered_map<std::string,std::vector<Entity*> > * entit
                                 int * paramsInts;
                                 if ( (paramsInts = parseFunctionString(&*it, &fname, &count)) != NULL) {                            
                                     MovFnPtr_unbound f = movementFunctionMap[ fname ];
+                                    if (f.empty()) {
+                                    	LOG << "Map.cpp: Empty MovFnPtr_unbound for name " << fname << std::endl;
+                                    }
                                     MovFnPtr f_bound = boost::bind(f, _1, _2, _3, _4, count, paramsInts);
                                     movementpointers.push_back(f_bound);
                                 }
@@ -189,6 +195,9 @@ void Map::parseMap(std::unordered_map<std::string,std::vector<Entity*> > * entit
                                 int * paramsInts;
                                 if ( (paramsInts = parseFunctionString(&*it, &fname, &count)) != NULL) {                            
                                     UseFnPtr_unbound f = useFunctionMap[ fname ];
+                                    if (f.empty()) {
+										LOG << "Map.cpp: Empty UseFnPtr_unbound for name " << fname << std::endl;
+									}
                                     UseFnPtr f_bound = boost::bind(f, _1, _2, count, paramsInts);
                                     usepointers.push_back(f_bound);
                                 }
