@@ -27,6 +27,11 @@ class Entity {
         std::string name;
         Image image;
         
+        int movingFrom[2];
+        double movementProgress;
+
+        double movementProgressPerMs;
+
     public:
     
         enum Direction {NORTH = 0, EAST = 1, SOUTH = 2, WEST = 3};
@@ -48,9 +53,16 @@ class Entity {
         virtual int getX();
         virtual int getY();
         
+        virtual double getMovementProgress();
+        double getMovementX();
+        double getMovementY();
+
         virtual std::string getName();
         virtual void setName(std::string name);
         
+
+        virtual void update(long dt);
+
         // Movement
         virtual void getNextMove(Input input, int arr[2], long dt);
         const std::string getCurrentDirection();
@@ -58,6 +70,8 @@ class Entity {
     
         void move(int arr[2]);
         
+
+
         // Collision
         void setSolid(bool solid);
         

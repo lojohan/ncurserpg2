@@ -27,8 +27,11 @@ void SdlUi::init() {
 	LOG << "Init sdl..." << std::endl;
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_WM_SetCaption("ADVAN", NULL);
-    screen = SDL_SetVideoMode(800, 600, 32, SDL_HWSURFACE);
-    SDL_ShowCursor( SDL_DISABLE ); // The cursor is ugly :(
+    screen = SDL_SetVideoMode(800, 600, 32, SDL_HWSURFACE | SDL_DOUBLEBUF);
+    if (!screen) LOG << "Create SDL screen failed." << std::endl;
+    //SDL_ShowCursor( SDL_DISABLE ); // The cursor is ugly :(
+
+    //SDL_EnableKeyRepeat(200, 50);
 
     LOG << "Init sdl done." << std::endl;
 
@@ -169,8 +172,8 @@ void SdlUi::drawEntities() {
 			if ((*it)->layer != layer) continue;
 
 			// Center camera on player
-			int pos[2]; // Array containing positions of entities relative to camera.
-			relativeCameraPos(game.getPlayer()->getX(), game.getPlayer()->getY(), 0, 0, pos, screen->h / (SPRITE_H*SCALE_FACTOR), screen->w / (SPRITE_W*SCALE_FACTOR));
+			double pos[2]; // Array containing player offset relative to origo.
+			relativeCameraPosContinuous(game.getPlayer()->getMovementX(), game.getPlayer()->getMovementY(), 0, 0, pos, screen->h / (SPRITE_H*SCALE_FACTOR), screen->w / (SPRITE_W*SCALE_FACTOR));
 
 			entityViews[(*it)->getImage().id]->draw(screen, *it, pos[0], pos[1]);
 		}
@@ -185,7 +188,7 @@ Input SdlUi::playerInput() {
 		switch (event.type) {
 		case SDL_KEYDOWN:
 
-			switch(event.key.keysym.sym) {
+			/*switch(event.key.keysym.sym) {
 			case SDLK_UP:
 				return Input::GO_UP;
 				break;
@@ -196,11 +199,12 @@ Input SdlUi::playerInput() {
 				return Input::GO_LEFT;
 				break;
 			case SDLK_RIGHT:
-				return Input::GO_RIGHT;
+				//return Input::GO_RIGHT;
 				break;
 			default:
 				break;
 			}
+			*/
 			break;
 
 		case SDL_KEYUP:
@@ -212,6 +216,22 @@ Input SdlUi::playerInput() {
 			break;
 		}
 	}
+	// Need to do this after SDL_PollEvent loop has run out!
+	Uint8 *keystate = SDL_GetKeyState(NULL);
+
+	if (keystate[SDLK_UP]) {
+		return Input::GO_UP;
+	}
+	if (keystate[SDLK_RIGHT]) {
+		return Input::GO_RIGHT;
+	}
+	if (keystate[SDLK_DOWN]) {
+		return Input::GO_DOWN;
+	}
+	if (keystate[SDLK_LEFT]) {
+		return Input::GO_LEFT;
+	}
+
 	return Input::NONE;
 }
 

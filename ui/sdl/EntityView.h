@@ -20,7 +20,7 @@ class EntityView {
 public:
 	virtual ~EntityView();
 	/* offsetx and y is tile x and y !!! */
-	virtual void draw(SDL_Surface * screen, Entity *e, int offsetx, int offsety){};
+	virtual void draw(SDL_Surface * screen, Entity *e, double offsetx, double offsety){};
 };
 class StaticEntityView : public EntityView{
 	Sprite sprite;
@@ -28,7 +28,7 @@ public:
 	StaticEntityView(int row, int col, SDL_Surface *sheet);
 
 	/* offsetx and y is tile x and y !!! */
-	void draw(SDL_Surface * screen, Entity *e,  int offsetx, int offsety);
+	void draw(SDL_Surface * screen, Entity *e,  double offsetx, double offsety);
 };
 
 class DirectedEntityView : public EntityView{
@@ -37,7 +37,7 @@ public:
 	DirectedEntityView(int row1, int col1, int row2, int col2, int row3, int col3, int row4, int col4, SDL_Surface *sheet);
 
 	// offsetx and y is tile x and y !!!
-	void draw(SDL_Surface * screen, Entity *e,  int offsetx, int offsety);
+	void draw(SDL_Surface * screen, Entity *e,  double offsetx, double offsety);
 };
 
 } /* namespace sdlui */

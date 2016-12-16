@@ -5,6 +5,9 @@ Entity::Entity(int x, int y, bool solid, std::string name, Image image, Layer la
     // placeholder
     this->dir = dir;
 
+    this->movementProgress = 1;
+    this->movementProgressPerMs = 0.004;
+
 	this->image = image;
     this->name = name;
     this->solid = solid;
@@ -58,7 +61,37 @@ int Entity::getY(){
     return this->y;
 }
 
+double Entity::getMovementProgress() {
+	return movementProgress;
+}
+
+double Entity::getMovementX() {
+	if (movementProgress >= 0 && movementProgress < 1){
+		return this->movingFrom[0] + movementProgress * (this->x - this->movingFrom[0]);
+	} else {
+		return this->x;
+	}
+}
+double Entity::getMovementY() {
+	if (movementProgress >= 0 && movementProgress < 1){
+		return this->movingFrom[1] + movementProgress * (this->y - this->movingFrom[1]);
+	} else {
+		return this->y;
+	}
+}
+
+void Entity::update(long dt){};
+
 void Entity::getNextMove(Input input, int arr[2], long dt) {
+	if (movementProgress >= 0 && movementProgress < 1) {
+		movementProgress += (dt/(double)1e6) /* in millis */ * movementProgressPerMs;
+		if (!(movementProgress >= 0 && movementProgress < 1)) {
+			movementProgress = 1;
+		} else {
+			return;
+		}
+	}
+
     int l = movementPointers.size();
     
     for(int i = 0; i < l; i++) {
@@ -93,6 +126,8 @@ void Entity::setCurrentDirection(Direction dir) {
 }
 
 void Entity::move(int arr[2]) {
+	this->movementProgress = 0;
+	this->movingFrom={this->x, this->y};
     this->setX(arr[0]);
     this->setY(arr[1]);
 }
@@ -109,6 +144,9 @@ void Entity::onCollision(Entity *e) {
     int l = myCollisionFunctionPointers.size();
     
     for(int i = 0; i < l; i++) {
+    	if (myCollisionFunctionPointers.at(i).empty()) {
+    		LOG << "CollisionFunctionPointer at index "<<i<<" for " << *this << " is empty!" << std::endl;
+    	}
         (myCollisionFunctionPointers.at(i))(e,this);
     }
 }
@@ -117,6 +155,9 @@ void Entity::onUse(Entity * e) {
     int l = useKeyPointers.size();
     
     for(int i = 0; i < l; i++) {
+    	if (useKeyPointers.at(i).empty()) {
+			LOG << "useKeyPointer at index "<<i<<" for " << *this << " is empty!" << std::endl;
+		}
         (useKeyPointers.at(i))(e,this);
     }
 }
@@ -138,18 +179,6 @@ void Entity::setColor(int color) {
         this->image.color = color;
     }
 }
-
-/*
-void Entity::draw(WINDOW *win) {
-    wattron(win, COLOR_PAIR( this->getColor() ));
-    mvwaddwstr(win, this->x, this->y, this->image.img);
-    wattroff(win, COLOR_PAIR( this->getColor() ));
-}
-
-void Entity::draw(WINDOW * win, int x, int y) {
-
-}
-*/
 
 Party &Entity::getParty() {
     return party;

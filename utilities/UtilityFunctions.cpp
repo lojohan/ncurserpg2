@@ -16,6 +16,11 @@ void relativeCameraPos(int cx, int cy, int x, int y, int arr[2], int height, int
     arr[1] = height/2 - cy + y;
 }
 
+void relativeCameraPosContinuous(double cx, double cy, double x, double y, double arr[2], double height, double width) {
+    arr[0] = width/2 - cx + x;
+    arr[1] = height/2 - cy + y;
+}
+
 
 void relativeCameraPos(Entity * centerentity, Entity * drawEntity, int arr[2], int height, int width) {
 	relativeCameraPos(centerentity->getX(), centerentity->getY(), drawEntity->getX(), drawEntity->getY(), arr, height, width);

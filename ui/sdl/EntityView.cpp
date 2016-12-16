@@ -22,7 +22,7 @@ StaticEntityView::StaticEntityView(int row, int col, SDL_Surface *sheet):
 }
 
 /* offsetx and y is tile x and y !!! */
-void StaticEntityView::draw(SDL_Surface * screen, Entity *e,  int offsetx, int offsety){
+void StaticEntityView::draw(SDL_Surface * screen, Entity *e,  double offsetx, double offsety){
 	sprite.drawOnSurface(screen, (e->getX()+offsetx)*(SPRITE_W*SCALE_FACTOR), (e->getY()+offsety)*(SCALE_FACTOR*SPRITE_H));
 }
 
@@ -41,8 +41,8 @@ DirectedEntityView::DirectedEntityView(int row1, int col1, int row2, int col2, i
 }
 
 // offsetx and y is tile x and y !!!
-void DirectedEntityView::draw(SDL_Surface * screen, Entity *e,  int offsetx, int offsety){
-	sprite[e->dir].drawOnSurface(screen, (e->getX()+offsetx)*(SPRITE_W*SCALE_FACTOR), (e->getY()+offsety)*(SCALE_FACTOR*SPRITE_H));
+void DirectedEntityView::draw(SDL_Surface * screen, Entity *e, double offsetx, double offsety){
+	sprite[e->dir].drawOnSurface(screen, (e->getMovementX()+offsetx)*(SPRITE_W*SCALE_FACTOR), (e->getMovementY()+offsety)*(SCALE_FACTOR*SPRITE_H));
 }
 
 

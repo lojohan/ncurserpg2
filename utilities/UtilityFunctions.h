@@ -37,6 +37,7 @@ template<class T> bool removeFromVector(std::vector<T> &vec, const T &t)  {
 void gameLoopInputHandler(Input input);
 
 void relativeCameraPos(int cx, int cy, int x, int y, int arr[2], int height, int width);
+void relativeCameraPosContinuous(double cx, double cy, double x, double y, double arr[2], double height, double width);
 
 void relativeCameraPos(Entity * centerentity, Entity * drawEntity, int arr[2], int height, int width);
 
