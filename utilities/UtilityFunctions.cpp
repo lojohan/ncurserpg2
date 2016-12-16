@@ -12,8 +12,8 @@ void init_logging() {
 //}
 
 void relativeCameraPos(int cx, int cy, int x, int y, int arr[2], int height, int width) {
-    arr[0] = height/2 - cx + x;
-    arr[1] = width/2 - cy + y;
+    arr[0] = width/2 - cx + x;
+    arr[1] = height/2 - cy + y;
 }
 
 
@@ -67,22 +67,22 @@ void useKeyBehaviour(Entity * e) {
         switch(e->dir)
         {
             case Entity::NORTH:
-                if(ents.at(i)->getX() == e->getX()-1 && ents.at(i)->getY() == e->getY()) {
+                if(ents.at(i)->getY() == e->getY()-1 && ents.at(i)->getX() == e->getX()) {
                     ents.at(i)->onUse(e);
                 }
             break;
             case Entity::SOUTH:
-                if(ents.at(i)->getX() == e->getX()+1 && ents.at(i)->getY() == e->getY()) {
+                if(ents.at(i)->getY() == e->getY()+1 && ents.at(i)->getX() == e->getX()) {
                     ents.at(i)->onUse(e);
                 }
             break;
             case Entity::EAST:
-                if(ents.at(i)->getX() == e->getX() && ents.at(i)->getY() == e->getY()+1) {
+                if(ents.at(i)->getY() == e->getY() && ents.at(i)->getX() == e->getX()+1) {
                     ents.at(i)->onUse(e);
                 }
             break;
             case Entity::WEST:
-                if(ents.at(i)->getX() == e->getX() && ents.at(i)->getY() == e->getY()-1) {
+                if(ents.at(i)->getY() == e->getY() && ents.at(i)->getX() == e->getX()-1) {
                     ents.at(i)->onUse(e);
                 }
             break;

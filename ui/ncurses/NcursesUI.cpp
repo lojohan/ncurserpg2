@@ -55,12 +55,16 @@ int NcursesUI::selectOption(const std::vector<std::string> &options) {
 }
 
 void NcursesUI::drawEntities() {
-
-    for(auto it = game.getEntities().begin(); it != game.getEntities().end(); ++it) {
-        // Array containing positions of entities relative to camera.
-        int arr[2];
-        relativeCameraPos(game.getPlayer(), *it, arr, GAME_HEIGHT, GAME_WIDTH);
-        drawEntity(game_window, *it, arr[0], arr[1]);
+    
+    for(int i = Entity::BACKGROUND; i >= Entity::FOREGROUND; i--) {
+        for(auto it = game.getEntities().begin(); it != game.getEntities().end(); ++it) {
+            // Array containing positions of entities relative to camera.
+            if( (*it)->layer == i) {
+                int arr[2];
+                relativeCameraPos(game.getPlayer(), *it, arr, GAME_HEIGHT, GAME_WIDTH);
+                drawEntity(game_window, *it, arr[0], arr[1]);
+            }
+        }
     }
 }
 
@@ -190,7 +194,7 @@ void NcursesUI::drawEntity(WINDOW * window, Entity * e, int x, int y) {
     getEntityImage(e, img);
     
     wattron(window, COLOR_PAIR( img.color ));
-    mvwaddwstr(window, x, y, img.img);
+    mvwaddwstr(window, y, x, img.img);
     wattroff(window, COLOR_PAIR( img.color ));
 }
 
