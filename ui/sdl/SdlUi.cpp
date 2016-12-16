@@ -147,13 +147,13 @@ void SdlUi::loadSprites() {
 
 	entityViews[0] =  new StaticEntityView(12, 0, tiles); // empty
 	entityViews[1] =  new DirectedEntityView(0, 1, 0, 2, 0, 3, 0, 0, tiles); //wall
-	entityViews[2] =  new DirectedEntityView(1, 1, 0, 1, 2, 1, 3, 1, chars); // player
+	entityViews[2] =  new DirectedEntityView(3, 1, 2, 1, 0, 1, 1, 1, chars); // player
 	entityViews[3] =  new StaticEntityView(6, 2, tiles);//house
 	entityViews[4] =  new StaticEntityView(8, 0, tiles);//grass
 	entityViews[5] =  new StaticEntityView(3, 6, tiles);//tree
 	entityViews[6] =  new StaticEntityView(0, 4, tiles);// brown wall
-	entityViews[7] =  new DirectedEntityView(1, 10, 0, 10, 2, 10, 3, 10, chars);// enemy npc
-	entityViews[8] =  new DirectedEntityView(1, 7, 0, 7, 2, 7, 3, 7, chars);// friendly npc
+	entityViews[7] =  new DirectedEntityView(3, 10, 2, 10, 0, 10, 1, 10, chars);// enemy npc
+	entityViews[8] =  new DirectedEntityView(3, 7, 2, 7, 0, 7, 1, 7, chars);// friendly npc
 	entityViews[9] =  new StaticEntityView(1, 5, tiles);// water
 
 	LOG << "Loading sprites done." << std::endl;
@@ -190,16 +190,16 @@ Input SdlUi::playerInput() {
 
 			switch(event.key.keysym.sym) {
 			case SDLK_UP:
-				return Input::GO_LEFT;
-				break;
-			case SDLK_DOWN:
-				return Input::GO_RIGHT;
-				break;
-			case SDLK_LEFT:
 				return Input::GO_UP;
 				break;
-			case SDLK_RIGHT:
+			case SDLK_DOWN:
 				return Input::GO_DOWN;
+				break;
+			case SDLK_LEFT:
+				return Input::GO_LEFT;
+				break;
+			case SDLK_RIGHT:
+				return Input::GO_RIGHT;
 				break;
 			default:
 				break;
