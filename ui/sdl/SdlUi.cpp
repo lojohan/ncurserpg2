@@ -142,9 +142,6 @@ void SdlUi::loadSprites() {
 
 	LOG << "Loading spritesheets done." << std::endl;
 
-	int w = SPRITE_W*SCALE_FACTOR;
-	int h = SPRITE_H*SCALE_FACTOR;
-
 	entityViews[0] =  new StaticEntityView(12, 0, tiles); // empty
 	entityViews[1] =  new DirectedEntityView(0, 1, 0, 2, 0, 3, 0, 0, tiles); //wall
 	entityViews[2] =  new DirectedEntityView(1, 1, 0, 1, 2, 1, 3, 1, chars); // player
