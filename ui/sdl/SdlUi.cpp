@@ -173,7 +173,7 @@ void SdlUi::drawEntities() {
 
 			// Center camera on player
 			int pos[2]; // Array containing positions of entities relative to camera.
-			relativeCameraPos(game.getPlayer()->getX(), game.getPlayer()->getY(), 0, 0, pos, screen->w / (SPRITE_W*SCALE_FACTOR), screen->h / (SPRITE_H*SCALE_FACTOR));
+			relativeCameraPos(game.getPlayer()->getX(), game.getPlayer()->getY(), 0, 0, pos, screen->h / (SPRITE_H*SCALE_FACTOR), screen->w / (SPRITE_W*SCALE_FACTOR));
 
 			entityViews[(*it)->getImage().id]->draw(screen, *it, pos[0], pos[1]);
 		}
