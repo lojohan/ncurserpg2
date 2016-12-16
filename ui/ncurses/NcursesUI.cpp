@@ -194,7 +194,7 @@ void NcursesUI::drawEntity(WINDOW * window, Entity * e, int x, int y) {
     getEntityImage(e, img);
     
     wattron(window, COLOR_PAIR( img.color ));
-    mvwaddwstr(window, x, y, img.img);
+    mvwaddwstr(window, y, x, img.img);
     wattroff(window, COLOR_PAIR( img.color ));
 }
 

@@ -66,25 +66,25 @@ void playerControl(Entity * e, Input input, int arr[2], long dt, int count, int 
     {
     case GO_UP:
         {
-            arr[0] = e->getX() - 1;
+            arr[1] = e->getY() - 1;
             e->dir = Entity::NORTH;
 		break;
 		}
 	case GO_DOWN:
 	{
-            arr[0] = e->getX() + 1;
+            arr[1] = e->getY() + 1;
             e->dir = Entity::SOUTH;
 		break;
     }
 	case GO_LEFT:
 	{
-	        arr[1] = e->getY() - 1;
+	        arr[0] = e->getX() - 1;
 	        e->dir = Entity::WEST;
 		break;
 	}
 	case GO_RIGHT:
 	{
-	        arr[1] = e->getY() + 1;
+	        arr[0] = e->getX() + 1;
 	        e->dir = Entity::EAST;
 		break;
 	}
@@ -128,19 +128,19 @@ void randomAI(Entity * e, Input input, int arr[2], long dt, int count, int * par
             
             switch(output)
             {	case 0:
-                    arr[0] = e->getX() - 1;
+                    arr[1] = e->getY() - 1;
                     e->dir = Entity::NORTH;
 		        break;
 	        case 1:
-                    arr[0] = e->getX() + 1;
+                    arr[1] = e->getY() + 1;
                     e->dir = Entity::SOUTH;
 		        break;
 	        case 2:
-	                arr[1] = e->getY() - 1;
+	                arr[0] = e->getX() - 1;
 	                e->dir = Entity::WEST;
 		        break;
 	        case 3:
-	                arr[1] = e->getY() + 1;
+	                arr[0] = e->getX() + 1;
 	                e->dir = Entity::EAST;
 		        break;
 	        default:
