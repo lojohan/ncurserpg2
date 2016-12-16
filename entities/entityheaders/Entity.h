@@ -39,7 +39,7 @@ class Entity {
         
         long t;
         
-        Entity(int x, int y, bool solid, std::string name, Image image, Layer layer, std::vector<ColFnPtr> collision_ptrs, std::vector<MovFnPtr> movement_ptrs, std::vector<UseFnPtr> use_ptrs);
+        Entity(int x, int y, bool solid, std::string name, Image image, Layer layer, Direction dir, std::vector<ColFnPtr> collision_ptrs, std::vector<MovFnPtr> movement_ptrs, std::vector<UseFnPtr> use_ptrs);
         
         virtual void setX(int x);
         virtual void setY(int y);

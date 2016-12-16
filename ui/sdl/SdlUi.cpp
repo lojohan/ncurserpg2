@@ -146,7 +146,7 @@ void SdlUi::loadSprites() {
 	int h = SPRITE_H*SCALE_FACTOR;
 
 	entityViews[0] =  new StaticEntityView(12, 0, tiles); // empty
-	entityViews[1] =  new DirectedEntityView(0, 1, 0, 2, 0, 3, 0, 0, tiles); //wall
+	entityViews[1] =  new DirectedEntityView(0, 0, 0, 1, 0, 2, 0, 3, tiles); //wall
 	entityViews[2] =  new DirectedEntityView(3, 1, 2, 1, 0, 1, 1, 1, chars); // player
 	entityViews[3] =  new StaticEntityView(6, 2, tiles);//house
 	entityViews[4] =  new StaticEntityView(8, 0, tiles);//grass

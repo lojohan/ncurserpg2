@@ -1,9 +1,9 @@
 #include "../entityheaders/Entity.h"
 #include "../../utilities/UtilityFunctions.h"
 
-Entity::Entity(int x, int y, bool solid, std::string name, Image image, Layer layer, std::vector<ColFnPtr> collision_ptrs, std::vector<MovFnPtr> movement_ptrs, std::vector<UseFnPtr> use_ptrs) {
+Entity::Entity(int x, int y, bool solid, std::string name, Image image, Layer layer, Direction dir, std::vector<ColFnPtr> collision_ptrs, std::vector<MovFnPtr> movement_ptrs, std::vector<UseFnPtr> use_ptrs) {
     // placeholder
-    this->dir = NORTH;
+    this->dir = dir;
 
 	this->image = image;
     this->name = name;

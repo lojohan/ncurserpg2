@@ -1,8 +1,8 @@
 #include "../entityheaders/NPC.h"
 #include "../entityheaders/Character.h"
 
-NPC::NPC(int x, int y, bool solid, std::string name, Image image, Layer layer, std::vector<ColFnPtr> collision_ptrs, std::vector<MovFnPtr> movement_ptrs, std::vector<UseFnPtr> use_ptrs)
-: Entity(x, y, solid, name,image, layer, collision_ptrs, movement_ptrs, use_ptrs) {
+NPC::NPC(int x, int y, bool solid, std::string name, Image image, Layer layer, Direction dir, std::vector<ColFnPtr> collision_ptrs, std::vector<MovFnPtr> movement_ptrs, std::vector<UseFnPtr> use_ptrs)
+: Entity(x, y, solid, name,image, layer, dir, collision_ptrs, movement_ptrs, use_ptrs) {
     this-> t = rand() % 75000;
 
     if(party.size() == 0) {

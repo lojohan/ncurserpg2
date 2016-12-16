@@ -75,6 +75,7 @@ void Map::parseMap(std::unordered_map<std::string,std::vector<Entity*> > * entit
             //const wchar_t * image;
             Image image;
             Entity::Layer layer;
+            Entity::Direction dir;
             int pos[2];
             //int color;
             bool solid = true;
@@ -138,6 +139,11 @@ void Map::parseMap(std::unordered_map<std::string,std::vector<Entity*> > * entit
                             layer = static_cast<Entity::Layer>(atoi( splitstrings.at(i).c_str()));
                         break;
                         }
+                    case DIRECTION:
+                        {
+                            dir = static_cast<Entity::Direction>(atoi( splitstrings.at(i).c_str()));
+                        break;
+                        }
                     case COLLISION:
                         {
                             std::vector<std::string> functionstrings;
@@ -196,13 +202,13 @@ void Map::parseMap(std::unordered_map<std::string,std::vector<Entity*> > * entit
                 }
                     
                 if (!className.compare("Tile")) {
-                    putEntityInMap( new Tile(pos[0],pos[1],name,true,solid, image, layer, collisionpointers, movementpointers, usepointers), &(entityLists->at(levelid)));
+                    putEntityInMap( new Tile(pos[0],pos[1],name,true,solid, image, layer, dir, collisionpointers, movementpointers, usepointers), &(entityLists->at(levelid)));
                 }
                 if (!className.compare("Player")) {
-                    putEntityInMap( new Player(pos[0],pos[1], solid, name, image, layer, collisionpointers, movementpointers, usepointers), &(entityLists->at(levelid)));
+                    putEntityInMap( new Player(pos[0],pos[1], solid, name, image, layer, dir, collisionpointers, movementpointers, usepointers), &(entityLists->at(levelid)));
                 }
                 if (!className.compare("NPC")) {
-                    putEntityInMap( new NPC(pos[0],pos[1], solid, name, image, layer, collisionpointers, movementpointers, usepointers), &(entityLists->at(levelid)));
+                    putEntityInMap( new NPC(pos[0],pos[1], solid, name, image, layer, dir, collisionpointers, movementpointers, usepointers), &(entityLists->at(levelid)));
                 }
             } else if(!className.compare("Zone")) {
                 
