@@ -218,6 +218,20 @@ Input SdlUi::playerInput() {
 	}
 	// Need to do this after SDL_PollEvent loop has run out!
 	Uint8 *keystate = SDL_GetKeyState(NULL);
+    if(keystate[SDLK_LCTRL]) {
+       if (keystate[SDLK_UP]) {
+		return Input::TURN_UP;
+	    }
+	    if (keystate[SDLK_RIGHT]) {
+		    return Input::TURN_RIGHT;
+	    }
+	    if (keystate[SDLK_DOWN]) {
+		    return Input::TURN_DOWN;
+	    }
+	    if (keystate[SDLK_LEFT]) {
+		    return Input::TURN_LEFT;
+	    } 
+    }
 
 	if (keystate[SDLK_UP]) {
 		return Input::GO_UP;
