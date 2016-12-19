@@ -52,6 +52,8 @@ class Game {
         void addEntitiesToMap(std::unordered_map< std::string, std::vector<Entity*>> & entityMap, std::vector<Entity*> entities);
         void clearEntityMap();
         void switchLevel(std::string id, int newPlayerX, int newPlayerY);
+        void getEntitiesForUpdate(std::vector<Entity*> &entities);
+        
         
         void init();
         
