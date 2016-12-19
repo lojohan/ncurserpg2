@@ -208,7 +208,32 @@ void Game::switchLevel(std::string id, int newPlayerX, int newPlayerY) {
 
 // run logic for movables
 void Game::updateMovables(Input input, long t) {
-    physicsLoop(input, this->entityList, this->entityMap,t);
+    if(!LIMITED_UPDATE) {
+        physicsLoop(input, this->entityList, this->entityMap,t);
+    } 
+    else {
+        // this code segment is more efficient for small UPDATE_SIZE ( < 40 )
+        // less efficient than normal for large UPDATE_SIZE
+        int posX = player->getX();
+        int posY = player->getY();
+        
+        std::stringstream s;
+        std::string coords;
+        std::vector<Entity*> entities;
+        
+        for(int i = posX - UPDATE_SIZE; i < posX + UPDATE_SIZE; i++) {
+            for(int j = posY - UPDATE_SIZE; j < posY + UPDATE_SIZE; j++) {
+                s << i << "," << j;
+                coords = s.str();
+                
+                if(entityMap.find(coords) != entityMap.end()) {
+                    entities = entityMap.find(coords)->second;
+                    physicsLoop(input, entities, this->entityMap, t);
+                }
+                s.str(std::string());
+            }
+        }
+    }
 }
 
 

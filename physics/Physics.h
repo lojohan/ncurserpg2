@@ -12,7 +12,7 @@
 #include "../utilities/typedefs.h"
 
 
-void physicsLoop(Input input, std::vector<Entity*> entityList,std::unordered_map< std::string,std::vector<Entity*> > & entityMap, long t);
+void physicsLoop(Input input, std::vector<Entity*> &entityList,std::unordered_map< std::string,std::vector<Entity*> > & entityMap, long t);
 
 #endif
 

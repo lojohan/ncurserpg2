@@ -8,6 +8,7 @@
 #ifndef UI_SDL_SDLUI_H_
 #define UI_SDL_SDLUI_H_
 
+#include <iomanip>
 #include <SDL/SDL.h>
 #include "../UI.h"
 
@@ -58,6 +59,12 @@ public:
 	void endBattle(Battle &);
 
 	void displayDebug1();
+	
+	void fpsinit();
+	
+	void fpsthink();
+	
+	void displayFPS();
 };
 
 } /* namespace sdlui */

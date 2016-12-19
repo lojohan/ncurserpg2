@@ -31,7 +31,7 @@ bool isEntityGone(int x, int y, Entity * e, std::unordered_map< std::string,std:
 
 // should be rewritten so that all moves are performed first, then move things
 // back, then perform onCollision;
-void physicsLoop(Input input, std::vector<Entity*> entityList, std::unordered_map< std::string,std::vector<Entity*> >  &entityMap, long t) {
+void physicsLoop(Input input, std::vector<Entity*> &entityList, std::unordered_map< std::string,std::vector<Entity*> >  &entityMap, long t) {
 
 
     std::vector<Entity*> gones;

@@ -15,6 +15,9 @@
 #include "../physics/Physics.h"
 #include "../ui/UI.h"
 
+#define LIMITED_UPDATE 1
+#define UPDATE_SIZE 20
+
 class Map;
 
 class Game {
@@ -23,7 +26,7 @@ class Game {
         std::vector<Entity*> entityList;
         std::unordered_map<std::string, std::vector<Zone*> > zoneLists;
         std::vector<Zone*> zoneList;
-        std::unordered_map< std::string,std::vector<Entity*> > entityMap;
+        std::unordered_map< std::string, std::vector<Entity*> > entityMap;
         
         Map * map;
         Player * player;
