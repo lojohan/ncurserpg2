@@ -57,7 +57,9 @@ int NcursesUI::selectOption(const std::vector<std::string> &options) {
 void NcursesUI::drawEntities() {
     
     for(int i = Entity::BACKGROUND; i >= Entity::FOREGROUND; i--) {
-        for(auto it = game.getEntities().begin(); it != game.getEntities().end(); ++it) {
+	    std::vector<Entity*> entities;
+	    game.getEntitiesForUpdate(entities);
+		for(auto it = entities.begin(); it != entities.end(); ++it) {
             // Array containing positions of entities relative to camera.
             if( (*it)->layer == i) {
                 int arr[2];
