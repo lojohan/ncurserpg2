@@ -187,7 +187,9 @@ void SdlUi::update(long dt) {
 
 void SdlUi::drawEntities() {
 	for (int layer = Entity::BACKGROUND; layer >= Entity::FOREGROUND; layer--) {
-		for(auto it = game.getEntities().begin(); it != game.getEntities().end(); ++it) {
+	    std::vector<Entity*> entities;
+	    game.getEntitiesForUpdate(entities);
+		for(auto it = entities.begin(); it != entities.end(); ++it) {
 			if ((*it)->layer != layer) continue;
 
 			// Center camera on player
