@@ -58,7 +58,7 @@ void NcursesUI::drawEntities() {
     
     for(int i = Entity::BACKGROUND; i >= Entity::FOREGROUND; i--) {
 	    std::vector<Entity*> entities;
-	    game.getEntitiesForUpdate(entities);
+	    getEntitiesForUpdate(entities, RENDER_DISTANCE, game.getPlayer(), game.getEntityMap());
 		for(auto it = entities.begin(); it != entities.end(); ++it) {
             // Array containing positions of entities relative to camera.
             if( (*it)->layer == i) {

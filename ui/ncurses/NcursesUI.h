@@ -13,6 +13,8 @@
 #include "../../entities/entityheaders/Entity.h"
 #include <ncursesw/ncurses.h>
 
+#define RENDER_DISTANCE 20
+
 class Game;
 
 

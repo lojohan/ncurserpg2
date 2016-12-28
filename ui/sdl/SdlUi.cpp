@@ -188,7 +188,7 @@ void SdlUi::update(long dt) {
 void SdlUi::drawEntities() {
 	for (int layer = Entity::BACKGROUND; layer >= Entity::FOREGROUND; layer--) {
 	    std::vector<Entity*> entities;
-	    game.getEntitiesForUpdate(entities);
+	    getEntitiesForUpdate(entities, RENDER_DISTANCE, game.getPlayer(), game.getEntityMap());
 		for(auto it = entities.begin(); it != entities.end(); ++it) {
 			if ((*it)->layer != layer) continue;
 

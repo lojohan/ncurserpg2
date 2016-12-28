@@ -141,6 +141,10 @@ void Game::removeEntityFromMap(std::unordered_map< std::string, std::vector<Enti
     }
 }
 
+std::unordered_map< std::string, std::vector<Entity*> >& Game::getEntityMap() {
+	return this->entityMap;
+}
+
 void Game::addEntityToMap(std::unordered_map< std::string, std::vector<Entity*>> & entityMap, Entity* entity) {
     std::stringstream s;
     s << entity->getX() << "," << entity->getY();
@@ -213,31 +217,10 @@ void Game::updateMovables(Input input, long t) {
     } 
     else {
         std::vector<Entity*> entities;
-        getEntitiesForUpdate(entities);
+        getEntitiesForUpdate(entities, UPDATE_SIZE, this->player, this->entityMap);
         physicsLoop(input, entities, this->entityMap, t);
     }
 }
-
-void Game::getEntitiesForUpdate(std::vector<Entity*> &entities) {
-    int posX = player->getX();
-    int posY = player->getY();
-    std::stringstream s;
-    std::string coords;
-
-    for(int i = posX - UPDATE_SIZE; i < posX + UPDATE_SIZE; i++) {
-        for(int j = posY - UPDATE_SIZE; j < posY + UPDATE_SIZE; j++) {
-            s << i << "," << j;
-            coords = s.str();
-            
-            if(entityMap.find(coords) != entityMap.end()) {
-                entities.insert( entities.end(), (entityMap.find(coords)->second).begin(), 
-                                (entityMap.find(coords)->second).end());
-            }
-            s.str(std::string());
-        }
-    }
-}
-
 
 Player * Game::getPlayer() {
 	return player;

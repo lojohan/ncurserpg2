@@ -97,5 +97,25 @@ void useKeyBehaviour(Entity * e) {
     }
 }
 
+void getEntitiesForUpdate(std::vector<Entity*> &entities, int range, Entity * centerEntity, std::unordered_map< std::string, std::vector<Entity*> > &entityMap) {
+    int posX = centerEntity->getX();
+    int posY = centerEntity->getY();
+    std::stringstream s;
+    std::string coords;
+
+    for(int i = posX - range; i < posX + range; i++) {
+        for(int j = posY - range; j < posY + range; j++) {
+            s << i << "," << j;
+            coords = s.str();
+            
+            if(entityMap.find(coords) != entityMap.end()) {
+                entities.insert( entities.end(), (entityMap.find(coords)->second).begin(), 
+                                (entityMap.find(coords)->second).end());
+            }
+            s.str(std::string());
+        }
+    }
+}
+
 
 

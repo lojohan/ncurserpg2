@@ -45,4 +45,6 @@ void splitString(std::string str_to_split, std::vector< std::string > * splits, 
 
 void useKeyBehaviour(Entity * e);
 
+void getEntitiesForUpdate(std::vector<Entity*> &entities, int range, Entity * centerEntity, std::unordered_map< std::string, std::vector<Entity*> > &entityMap);
+
 #endif

@@ -15,6 +15,7 @@
 #define SPRITE_W 16
 #define SPRITE_H 16
 #define SCALE_FACTOR 3
+#define RENDER_DISTANCE 10
 
 class BattleView;
 
