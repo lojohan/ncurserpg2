@@ -127,7 +127,8 @@ void Entity::setCurrentDirection(Direction dir) {
 
 void Entity::move(int arr[2]) {
 	this->movementProgress = 0;
-	this->movingFrom={this->x, this->y};
+	this->movingFrom[0]=this->x;
+	this->movingFrom[1]=this->y;
     this->setX(arr[0]);
     this->setY(arr[1]);
 }

@@ -27,7 +27,7 @@ class Entity {
         std::string name;
         Image image;
         
-        std::array<int,2> movingFrom;
+        int movingFrom[2];
         double movementProgress;
 
         double movementProgressPerMs;
